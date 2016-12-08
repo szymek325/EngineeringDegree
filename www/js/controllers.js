@@ -4,7 +4,7 @@ angular.module('starter.controllers', [])
 
 
 
-.controller('DashCtrl', function($scope) {
+.controller('TempCtrl', function($scope) {
 
   $scope.ConfirmTemp= function(){
     window.alert("String");
@@ -12,7 +12,7 @@ angular.module('starter.controllers', [])
 
 })
 
-.controller('ChatsCtrl', function($scope) {
+.controller('LightCtrl', function($scope) {
   // With the new view caching in Ionic, Controllers are only called
   // when they are recreated or on app start, instead of every page change.
   // To listen for when this page is active (for example, to refresh data),
@@ -39,11 +39,6 @@ angular.module('starter.controllers', [])
   $scope.text4='ON';
   $scope.type4='button button-positive';
   buttonBool4=false;
-
-
-
-
-
 
 
   $scope.ClickAll = function(){
@@ -83,7 +78,7 @@ angular.module('starter.controllers', [])
   $scope.Click2 = function(){
     buttonBool2=!buttonBool2;
     console.log(buttonBool2);
-        if(buttonBool2){
+    if(buttonBool2){
       $scope.text2 = 'OFF';
       $scope.type2='button button-assertive';
     }
@@ -96,7 +91,7 @@ angular.module('starter.controllers', [])
   $scope.Click3 = function(){
     buttonBool3=!buttonBool3;
     console.log(buttonBool3);
-        if(buttonBool3){
+    if(buttonBool3){
       $scope.text3 = 'OFF';
       $scope.type3='button button-assertive';
     }
@@ -109,7 +104,7 @@ angular.module('starter.controllers', [])
   $scope.Click4 = function(){
     buttonBool4=!buttonBool4;
     console.log(buttonBool4);
-        if(buttonBool4){
+    if(buttonBool4){
       $scope.text4 = 'OFF';
       $scope.type4='button button-assertive';
     }
@@ -119,23 +114,40 @@ angular.module('starter.controllers', [])
     };
   };
 
-
-
 })
 
-.controller('ChatDetailCtrl', function($scope, $stateParams, Chats) {
-  $scope.chat = Chats.get($stateParams.chatId);
 
-})
+.controller('BlueCtrl', function($scope) {
 
-.controller('AccountCtrl', function($scope) {
-  $scope.settings = {
-    enableBluetooth: true
+  $scope.textConnect='Connect';
+  $scope.typeConnect='button button-block button-positive';
+  buttonConnect=true;
+
+  bluetoothSerial.isEnabled(console.log(1), bluetoothSerial.enable(console.log(1), console.log(0)));
+
+
+  $scope.disButton=function(){
+    $scope.textConnect = 'Disconnect';
+    $scope.typeConnect='button button-block button-assertive';
+    buttonConnect=!buttonConnect;
   };
-  $scope.setting = {
-    enableAnalog: false
+
+  $scope.conButton=function(){
+    $scope.textConnect = 'Connect';
+    $scope.typeConnect='button button-block button-positive';
+    buttonConnect=!buttonConnect;
   };
 
+  $scope.connectMac = function(){
+
+    console.log(buttonConnect);
+    if(buttonConnect){
+      bluetoothSerial.connect('20:16:10:20:46:17', $scope.disButton(),console.log(0));
+    }
+    else{
+      bluetoothSerial.disconnect($scope.conButton(),console.log(0));
+    };
+  };
 
 
 });
