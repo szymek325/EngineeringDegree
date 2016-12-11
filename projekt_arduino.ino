@@ -3,41 +3,42 @@
 #include "motor_driver.h"
 #include "regulator.h"
 
-float previousZadana=0;
-
 void setup(void) {
-  setLCD_start();
-  pinMode(IN3, OUTPUT);
-  pinMode(IN4, OUTPUT);
-  pinMode(ENB, OUTPUT);
+  
+  pinMode(IN1, OUTPUT);
+  pinMode(IN2, OUTPUT);
+  pinMode(ENA, OUTPUT);
+  pinMode(8, OUTPUT);
   pinMode(9, OUTPUT);
-  pinMode(10, OUTPUT);
 
+  pinMode(10, OUTPUT);
+  pinMode(11, OUTPUT);
+  pinMode(12, OUTPUT);
+  pinMode(13, OUTPUT);
+
+  setLCD_start();
   Serial.begin(9600);
 }
 
 
 void loop(void) {
-  float zadanaTemp = 24;
+  float zadanaTemp = 23;
   float temp = TempRead();
   setLCD(zadanaTemp,temp);
 
-  int pwm=PID(zadanaTemp, temp, 40, 0.1, 0.1);
-  int pwmKP=PID(zadanaTemp, temp, 40, 0, 0);
-  Motor_Control(pwm);
-  Fan(255);
+  float pwm=PID(zadanaTemp, temp,millis(), 20 , 2, 3);
+  Motor_Control(pwm); /////zmienione na POTRZEBY TESTU
+  Fan(200);
 
 
 
   Serial.print(zadanaTemp);
   Serial.print("\t");
   Serial.print(temp);
-  Serial.print("\t");
-    Serial.print(pwm);
-  Serial.println("");
+  Serial.println("\t");
+  //Serial.print(pwm);
+  //Serial.println("");
 
-  
-  previousZadana=zadanaTemp;
   delay(1000);
   }
 

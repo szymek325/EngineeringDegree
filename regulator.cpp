@@ -4,44 +4,45 @@ float output=0;
 float derivative=0;
 float integral=0;
 float error=0;
+float previousTime=0;
+float previousError=0;
+float dt=0;
 //float epsilon=0.6;
-//float dt=0.01;
 
-float pre_error=0;
 
 float maximum=255;
 float minimum=-255;
 
-float PID(float setpoint, float currentT, float kp, float ki, float kd){
-  error=setpoint-currentT;
-  derivative=error-pre_error;
-  integral= integral+error;
+float PID(float setpointTemperature, float currentTemperature,float actualTime, float kp, float ki, float kd){
+  error=setpointTemperature-currentTemperature;
+  
+  dt=(float)(actualTime-previousTime);
+  dt=dt/60000; //skalowanie 1 milisekunda = 1/60000 min
+  integral= integral+(error*dt);
+  if(integral>10){
+    integral=10;
+  }
+  else if(integral<-10){
+    integral=-10;
+  }
+  derivative=(error-previousError)/dt;
   
   output= kp*error+ki*integral+kd*derivative;
-
-  if(output>255)
+  previousError=error;
+  previousTime=actualTime;
+  
+  if(output>maximum)
   {
     output=maximum;
   }
-  else if( output<-255)
+  else if( output<minimum)
   {
     output=minimum;
   }
 
-  pre_error=error;
-
   return output;
 }
 
-float absF(float value)
-{
-  if(value<0)
-  {
-    value=value*(-1);
-  }
-
-  return value;
-}
 
 
 

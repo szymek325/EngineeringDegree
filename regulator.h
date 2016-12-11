@@ -1,7 +1,8 @@
-#include "Arduino.h"
 
-float PID(float setpoint, float currentT, float kp, float ki, float kd);
-float absF(float value);
+
+float PID(float setpoint, float currentT,float actualTime, float kp, float ki, float kd);
+
+
 
 
 

@@ -1,7 +1,7 @@
 #include "temperatura.h"
 #include <OneWire.h>
 
-OneWire  ds(11);  // on pin 5 (a 4.7K resistor is necessary)
+OneWire  ds(4);  // on pin 5 (a 4.7K resistor is necessary)
 
 byte i;
 byte present = 0;
@@ -12,8 +12,8 @@ float celsius;
 float fahrenheit;
 
 float SensorValue() {
-  float zadanaT = 26;
-  return zadanaT;
+
+  return 1;
 }
 
 float TempRead()
