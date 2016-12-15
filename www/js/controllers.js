@@ -7,7 +7,7 @@ angular.module('starter.controllers', [])
 .controller('TempCtrl', function($scope) {
 
   $scope.ConfirmTemp= function(){
-    window.alert("String");
+    alert("String");
   };
 
 })
