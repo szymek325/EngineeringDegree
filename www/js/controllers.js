@@ -1,13 +1,16 @@
-
-
-document.addEventListener("deviceready", onDeviceReady, false);
-		function onDeviceReady() {var myVar = setInterval($scope.receiveData(), 1000);}
-
 angular.module('starter.controllers', [])
 
 
-
 .controller('TempCtrl', function($scope) {
+	$scope.currentSetpoint="value";
+	$scope.currentTemperature="value"
+
+	document.addEventListener("deviceready", onDeviceReady(), false);
+
+	function onDeviceReady() {
+		var myVar = setInterval(receiveData, 5000);
+	}
+
 	var dataReceived="    ";
 	var dataToSend;
 
@@ -19,17 +22,20 @@ angular.module('starter.controllers', [])
 		//bluetoothSerial.readUntil('\n',$scope.currentSetpoint, console.log("dupa"));
 		
 	}
-	$scope.receiveData= function(){
-		//alert("Wysłano");
+	function receiveData(){
 		console.log("Receiving");
 		bluetoothSerial.readUntil("/n",function (data) {
 			console.log(data);
 			dataReceived=data.substring(1, 5);
 			console.log(dataReceived);
-			$scope.currentTemperature=dataReceived;
-			console.log($scope.currentTemperature)
+			$scope.$apply(function () {
+				$scope.currentTemperature = "dupa";
+			});
+			console.log($scope.currentTemperature);
+
 		},console.log());
 		bluetoothSerial.clear(console.log(), console.log());
+
 		//bluetoothSerial.readUntil('/n',function (data) {console.log(data); dataReceived=data}, console.log("nic nie otrzymalem"));
 		//$scope.currentTemperature=dataReceived.substring(1, 5);
 	}
