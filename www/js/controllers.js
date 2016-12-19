@@ -1,15 +1,19 @@
+
+
 angular.module('starter.controllers', [])
 
 
-.controller('TempCtrl', function($scope) {
+.controller('TempCtrl', function($scope, $interval) {
 	$scope.currentSetpoint="value";
 	$scope.currentTemperature="value"
 
-	document.addEventListener("deviceready", onDeviceReady(), false);
+	$interval(receiveData, 5000);
 
-	function onDeviceReady() {
-		var myVar = setInterval(receiveData, 5000);
-	}
+	//document.addEventListener("deviceready", onDeviceReady(), false);
+
+	//function onDeviceReady() {
+	//	var myVar = setInterval(receiveData, 5000);
+	//}
 
 	var dataReceived="    ";
 	var dataToSend;
@@ -28,11 +32,8 @@ angular.module('starter.controllers', [])
 			console.log(data);
 			dataReceived=data.substring(1, 5);
 			console.log(dataReceived);
-			$scope.$apply(function () {
-				$scope.currentTemperature = "dupa";
-			});
+			$scope.currentTemperature = dataReceived
 			console.log($scope.currentTemperature);
-
 		},console.log());
 		bluetoothSerial.clear(console.log(), console.log());
 
@@ -146,7 +147,7 @@ angular.module('starter.controllers', [])
 })
 
 
-.controller('BlueCtrl', function($scope) {
+.controller('BlueCtrl', function($scope, $timeout) {
 
 	$scope.textConnect='Connect';
 	$scope.typeConnect='button button-block button-positive';
