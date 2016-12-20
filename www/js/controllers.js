@@ -6,19 +6,21 @@ angular.module('starter.controllers', [])
 .controller('TempCtrl', function($scope, $interval) {
 	$scope.currentSetpoint="value";
 	$scope.currentTemperature="value"
-
+	$scope.newSetpoint=22;
+	receiveButton=true;
+	$scope.type='button button-block button-positive';
+	$scope.startStop="Start"
 	//$interval(receiveData, 5000); 
-
+	var interval1;
 
 	var dataReceived="    ";
 	var dataToSend;
 
 	$scope.sendSetpoint= function(){
 		//alert("Wysłano");
-		dataToSend=document.getElementById("setpointData").value;
-		console.log("Sending");
+		dataToSend=$scope.newSetpoint;
 		bluetoothSerial.write("t"+dataToSend+"\n", function (data){
-			console.log("This: "+data+" was send");
+			console.log("Sending process was"+data+". This: "+dataToSend+" was send");
 		}, function (data){
 			console.log("Nothing was send");
 		});
@@ -27,18 +29,42 @@ angular.module('starter.controllers', [])
 	}
 
 
+	$scope.receiveButton= function(){
+		if(receiveButton)
+		{
+			console.log("Receiving process started");
+			interval1=$interval(receiveData, 5000);
+			receiveButton=!receiveButton;
+			$scope.type='button button-block button-assertive';
+			$scope.startStop="Stop"
+		}
+		else{
+			console.log("Receiving process has been terminated");
+			$interval.cancel(interval1);
+			receiveButton=!receiveButton;
+			$scope.type='button button-block button-positive';
+			$scope.startStop="Start"
+		}
+		
+	}
 
+	$scope.Add= function(){
+		$scope.newSetpoint=$scope.newSetpoint+1;
+	}
 
+	$scope.Substract= function(){
+		$scope.newSetpoint=$scope.newSetpoint-1;
+	}
 
 
 	function receiveData(){
 		console.log("Receiving");
 		bluetoothSerial.readUntil("/n",function (data) {
-			console.log("This: "+data+" was received");
+			console.log("Raw data received: "+data);
 			dataReceived=data.substring(1, 5);
-			console.log(dataReceived);
+			//console.log("Temperature data: "+dataReceived);
 			$scope.currentTemperature = dataReceived
-			console.log($scope.currentTemperature);
+			console.log("Temperature data: "+$scope.currentTemperature);
 		},console.log());
 		bluetoothSerial.clear(console.log(), console.log());
 
@@ -156,7 +182,7 @@ angular.module('starter.controllers', [])
 
 	$scope.addresses = [];
 	$scope.textConnect='Connect';
-	$scope.typeConnect='button button-block button-positive';
+	$scope.typeConnect='button button-block button-calm';
 	buttonConnect=true;
 
 	bluetoothSerial.isEnabled(function (){
@@ -185,7 +211,7 @@ angular.module('starter.controllers', [])
 	$scope.conButton=function(){
 		console.log("You are not connected");
 		$scope.textConnect = 'Connect';
-		$scope.typeConnect='button button-block button-positive';
+		$scope.typeConnect='button button-block button-calm';
 		buttonConnect=!buttonConnect;
 	};
 
@@ -194,29 +220,31 @@ angular.module('starter.controllers', [])
 		bluetoothSerial.list(function (data) {
 			console.log("List: ");
 			console.log(data);
-			$scope.pairedDevices=data;},function () {
-			console.log("No devices found");
+			$scope.$apply(function () {
+				$scope.pairedDevices=data})},function () {
+				console.log("No devices found");
 			//$scope.addresses.push(data);
 			//$scope.addresses.push(data);
 		});
 		bluetoothSerial.discoverUnpaired(function (data) {
 			console.log("Discover Unpaired: ");
 			console.log(data);
-			$scope.discoveredDevices=data;},function () {
-			console.log("No devices found");
+			$scope.$apply(function () {
+				$scope.discoveredDevices=data})},function () {
+				console.log("No devices found");
 			//$scope.addresses.push(data);
 			//$scope.addresses.push(data);
 		});
 	};
 
-	$scope.connectMac = function(){
-
+	$scope.connectMac = function(data){
+		console.log(data);
 		//console.log('ConnectButton state is: '+buttonConnect);
 		if(buttonConnect){
-			bluetoothSerial.connect('20:16:10:20:46:17', function (){
+			bluetoothSerial.connect(data.address, function (){
 				console.log("You have been connected to device:"); alert("You have been connected")},function (){
-				console.log("Connection wasn't possible");alert("Connection wasn't possible")
-			});
+					console.log("Connection wasn't possible");alert("Connection wasn't possible")
+				});
 			//$timeout(function() { $scope.checkConnection()}, 3000);
 		}
 		else{
