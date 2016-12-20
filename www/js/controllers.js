@@ -7,13 +7,8 @@ angular.module('starter.controllers', [])
 	$scope.currentSetpoint="value";
 	$scope.currentTemperature="value"
 
-	$interval(receiveData, 5000);
+	//$interval(receiveData, 5000); 
 
-	//document.addEventListener("deviceready", onDeviceReady(), false);
-
-	//function onDeviceReady() {
-	//	var myVar = setInterval(receiveData, 5000);
-	//}
 
 	var dataReceived="    ";
 	var dataToSend;
@@ -22,14 +17,24 @@ angular.module('starter.controllers', [])
 		//alert("Wysłano");
 		dataToSend=document.getElementById("setpointData").value;
 		console.log("Sending");
-		bluetoothSerial.write("t"+dataToSend+"\n", console.log("Send"), console.log("Not Send"));
+		bluetoothSerial.write("t"+dataToSend+"\n", function (data){
+			console.log("This: "+data+" was send");
+		}, function (data){
+			console.log("Nothing was send");
+		});
 		//bluetoothSerial.readUntil('\n',$scope.currentSetpoint, console.log("dupa"));
 		
 	}
+
+
+
+
+
+
 	function receiveData(){
 		console.log("Receiving");
 		bluetoothSerial.readUntil("/n",function (data) {
-			console.log(data);
+			console.log("This: "+data+" was received");
 			dataReceived=data.substring(1, 5);
 			console.log(dataReceived);
 			$scope.currentTemperature = dataReceived
@@ -149,11 +154,21 @@ angular.module('starter.controllers', [])
 
 .controller('BlueCtrl', function($scope, $timeout) {
 
+	$scope.addresses = [];
 	$scope.textConnect='Connect';
 	$scope.typeConnect='button button-block button-positive';
 	buttonConnect=true;
 
-	bluetoothSerial.isEnabled(console.log(1), bluetoothSerial.enable(console.log(1), console.log(0)));
+	bluetoothSerial.isEnabled(function (){
+		console.log("Bluetooth is ON")},function (){
+			console.log("Bluetooth is OFF. Please ENABLE");
+			bluetoothSerial.enable(function (){
+				console.log("Bluetooth was ENABLED")},function (){
+					console.log("Bluetooth wasn't ENABLED");
+					console.log("Application is closing now");
+					navigator.app.exitApp();
+				})
+		});
 
 
 	$scope.checkConnection=function(){
@@ -161,31 +176,50 @@ angular.module('starter.controllers', [])
 	};
 
 	$scope.disButton=function(){
+		console.log("You are connected to device");
 		$scope.textConnect = 'Disconnect';
 		$scope.typeConnect='button button-block button-assertive';
 		buttonConnect=!buttonConnect;
 	};
 
 	$scope.conButton=function(){
+		console.log("You are not connected");
 		$scope.textConnect = 'Connect';
 		$scope.typeConnect='button button-block button-positive';
 		buttonConnect=!buttonConnect;
 	};
 
 
-
+	$scope.findDevices = function(){
+		bluetoothSerial.list(function (data) {
+			console.log("List: ");
+			console.log(data);},function () {
+			console.log("No devices found");
+			//$scope.addresses.push(data);
+			//$scope.addresses.push(data);
+		});
+		bluetoothSerial.discoverUnpaired(function (data) {
+			console.log("Discover Unpaired: ");
+			console.log(data);},function () {
+			console.log("No devices found");
+			//$scope.addresses.push(data);
+			//$scope.addresses.push(data);
+		});
+	};
 
 	$scope.connectMac = function(){
-		console.log('Checking ConnectButton state:');
-		console.log(buttonConnect);
 
+		//console.log('ConnectButton state is: '+buttonConnect);
 		if(buttonConnect){
-			bluetoothSerial.connect('20:16:10:20:46:17', console.log('connecting'),console.log("connection not avaiable"));
-			$timeout(function() { $scope.checkConnection()}, 3000);
+			bluetoothSerial.connect('20:16:10:20:46:17', function (){
+				console.log("You have been connected to device:"); alert("You have been connected")},function (){
+				console.log("Connection wasn't possible");alert("Connection wasn't possible")
+			});
+			//$timeout(function() { $scope.checkConnection()}, 3000);
 		}
 		else{
 			bluetoothSerial.disconnect(console.log('disconencted'),console.log('can not disconnect'));
-			$timeout(function() { $scope.checkConnection()}, 3000);
+			//$timeout(function() { $scope.checkConnection()}, 3000);
 		};
 	};
 

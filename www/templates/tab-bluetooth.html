@@ -1,13 +1,29 @@
 <ion-view view-title="Settings">
-  <ion-content>
-    <ion-list>
-      <ion-item>
-      
-        <button ng-click="connectMac()" class='{{typeConnect}}'>
-          {{textConnect}} 
-        </button>
+	<ion-content>
+		<ion-list>
+			<ion-item>
+				<ion-row>
+					Paired Devices
+				</ion-row>
+				<ion-row>
+					LIST
+				</ion-row>
+				<ion-row>
+					Discovered Devices
+				</ion-row>
+				<ion-row>
+					LIST
+				</ion-row>
+				<button ng-click="findDevices()" class='button button-block button-positive'>
+					Refresh 
+				</button>
 
-      </ion-item>
-    </ion-list>
-  </ion-content>
+			</ion-item>
+			<ion-item>
+				<button ng-click="connectMac()" class='{{typeConnect}}'>
+					{{textConnect}} 
+				</button>
+			</ion-item>
+		</ion-list>
+	</ion-content>
 </ion-view>
