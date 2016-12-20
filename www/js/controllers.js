@@ -193,14 +193,16 @@ angular.module('starter.controllers', [])
 	$scope.findDevices = function(){
 		bluetoothSerial.list(function (data) {
 			console.log("List: ");
-			console.log(data);},function () {
+			console.log(data);
+			$scope.pairedDevices=data;},function () {
 			console.log("No devices found");
 			//$scope.addresses.push(data);
 			//$scope.addresses.push(data);
 		});
 		bluetoothSerial.discoverUnpaired(function (data) {
 			console.log("Discover Unpaired: ");
-			console.log(data);},function () {
+			console.log(data);
+			$scope.discoveredDevices=data;},function () {
 			console.log("No devices found");
 			//$scope.addresses.push(data);
 			//$scope.addresses.push(data);
