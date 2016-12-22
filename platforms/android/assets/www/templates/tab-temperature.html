@@ -1,0 +1,41 @@
+
+
+
+
+<ion-view view-title="Temperature Control">
+  <ion-content class="padding" >
+    <p>
+        <button ng-click="Add()"  class='button button-block button-balanced'>
+          +
+        </button> 
+        <h2>{{newSetpoint}}</h2>
+        <button  ng-click="Substract()" class='button button-block button-assertive'>
+          -
+        </button> 
+
+
+
+      <button ng-click="sendSetpoint()" class="button button-block button-calm">
+        Confirm new setpoint
+      </button>
+    </ion-item>
+
+    <h2> Readings </h2>
+
+    <div class="list">
+     <label class="item item-input">
+      <span class="input-label">Setpoint Temperature</span>
+      {{currentSetpoint}}
+    </label> 
+    <label class="item item-input">
+      <span class="input-label">Current Temperature</span>
+      <span>{{currentTemperature}}</span>
+    </label> 
+    <button class="{{type}}" ng-click="receiveButton()">
+      {{startStop}} receiving
+    </button>
+  </div>
+</p>
+</ion-content>
+</ion-view>
+
