@@ -2,27 +2,21 @@
 	<ion-content>
 		<ion-list>
 			<ion-item>
-				<ion-item class="row">
-					Paired Devices
-				</ion-item>
-				<ion-item class="row" ng-repeat="device in pairedDevices">
-					{{device.name}}
-				</ion-item>
-				<ion-item class="row">
-					Discovered Devices
-				</ion-item>
-				<ion-item class="row" ng-repeat="device in discoveredDevices">
-					{{device.name}}
-				</ion-item>
 				<button ng-click="findDevices()" class='button button-block button-positive'>
-					Refresh 
+					Search devices
 				</button>
-
-			</ion-item>
-			<ion-item>
-				<button ng-click="connectMac()" class='{{typeConnect}}'>
-					{{textConnect}} 
+				<ion-item>
+					<h2>Paired Devices</h2>
+				</ion-item>
+				<button ng-repeat="device in pairedDevices" ng-click="connectMac({{device}})" class='{{typeConnect}}'>
+					Connect {{device.name}}
 				</button>
+				<ion-item>
+					<h2>Discovered Devices</h2>
+				</ion-item>
+				<button ng-repeat="device in discoveredDevices" ng-click="connectMac({{device}})" class='{{typeConnect}}'>
+					Connect {{device.name}}
+				</button>			
 			</ion-item>
 		</ion-list>
 	</ion-content>
