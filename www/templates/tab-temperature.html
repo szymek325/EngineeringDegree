@@ -5,13 +5,13 @@
 <ion-view view-title="Temperature Control">
   <ion-content class="padding" >
     <p>
-        <button ng-click="Add()"  class='button button-block button-balanced'>
-          +
-        </button> 
-        <h2>{{newSetpoint}}</h2>
-        <button  ng-click="Substract()" class='button button-block button-assertive'>
-          -
-        </button> 
+      <button ng-click="Add()"  class='button button-block button-balanced'>
+        +
+      </button> 
+      <h2>{{newSetpoint}}</h2>
+      <button  ng-click="Substract()" class='button button-block button-assertive'>
+        -
+      </button> 
 
 
 
@@ -36,6 +36,14 @@
     </button>
   </div>
 </p>
+<div class="card" ng-controller="ExampleController">
+  <div class="item item-divider">
+    Line Chart
+  </div>
+  <div class="item item-text-wrap">
+  <canvas id="line" class="chart chart-line" chart-data="data" chart-labels="labels" chart-legend="true" chart-series="series" chart-options="{showTooltips: true}" chart-options="{showXLabels: 10}"></canvas>
+  </div>
+</div>
 </ion-content>
 </ion-view>
 

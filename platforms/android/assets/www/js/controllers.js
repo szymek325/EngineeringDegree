@@ -2,7 +2,6 @@
 
 angular.module('starter.controllers', [])
 
-
 .controller('TempCtrl', function($scope, $interval) {
 	$scope.currentSetpoint="value";
 	$scope.currentTemperature="value"
@@ -15,6 +14,17 @@ angular.module('starter.controllers', [])
 
 	var dataReceived="    ";
 	var dataToSend;
+
+	var tempWykres=[0];
+	var czasWykres=[0];
+	var zmienna=0;
+
+	$scope.labels = czasWykres;
+	$scope.series = ['Actual Temperature'];
+	$scope.data =tempWykres;
+	$scope.colors = ['#45b7cd'];
+
+
 
 	$scope.sendSetpoint= function(){
 		//alert("Wysłano");
@@ -65,8 +75,13 @@ angular.module('starter.controllers', [])
 			//console.log("Temperature data: "+dataReceived);
 			$scope.currentTemperature = dataReceived
 			console.log("Temperature data: "+$scope.currentTemperature);
+			zmienna=zmienna+1;
+			$scope.labels.push(zmienna);
+			$scope.data.push(zmienna);
+			console.log($scope.labels)
 		},console.log());
 		bluetoothSerial.clear(console.log(), console.log());
+
 
 		//bluetoothSerial.readUntil('/n',function (data) {console.log(data); dataReceived=data}, console.log("nic nie otrzymalem"));
 		//$scope.currentTemperature=dataReceived.substring(1, 5);
@@ -257,16 +272,8 @@ angular.module('starter.controllers', [])
 
 .controller("ExampleController", function($scope) {
 
-	$scope.labels = ["January", "February", "March", "April", "May", "June", "July"];
-	$scope.series = ['Average Spent Effort', 'Average Estimated Effort', 'Average Remainning Effort'];
-	$scope.data = [
-	[65, 59, 80, 81, 56, 55, 40],
-	[28, 48, 40, 19, 86, 27, 90],
-	[18, 38, 40, 49, 81, 43, 77]
-	];
-
-	$scope.colors = ['#45b7cd', '#ff6384', '#ff8e72'];
+	
 
 
-     
+
 });
