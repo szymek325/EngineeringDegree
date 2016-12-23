@@ -177,7 +177,6 @@ angular.module('starter.controllers', [])
 
 })
 
-
 .controller('BlueCtrl', function($scope, $timeout) {
 
 	$scope.addresses = [];
@@ -254,4 +253,20 @@ angular.module('starter.controllers', [])
 	};
 
 
+})
+
+.controller("ExampleController", function($scope) {
+
+	$scope.labels = ["January", "February", "March", "April", "May", "June", "July"];
+	$scope.series = ['Average Spent Effort', 'Average Estimated Effort', 'Average Remainning Effort'];
+	$scope.data = [
+	[65, 59, 80, 81, 56, 55, 40],
+	[28, 48, 40, 19, 86, 27, 90],
+	[18, 38, 40, 49, 81, 43, 77]
+	];
+
+	$scope.colors = ['#45b7cd', '#ff6384', '#ff8e72'];
+
+
+     
 });
