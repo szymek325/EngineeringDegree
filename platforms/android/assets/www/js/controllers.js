@@ -43,7 +43,7 @@ angular.module('starter.controllers', [])
 		if(receiveButton)
 		{
 			console.log("Receiving process started");
-			interval1=$interval(receiveData, 5000);
+			interval1=$interval(receiveData, 2000);
 			receiveButton=!receiveButton;
 			$scope.type='button button-block button-assertive';
 			$scope.startStop="Stop"
@@ -71,13 +71,15 @@ angular.module('starter.controllers', [])
 		console.log("Receiving");
 		bluetoothSerial.readUntil("/n",function (data) {
 			console.log("Raw data received: "+data);
-			dataReceived=data.substring(1, 5);
+			temperatureReceived=data.substring(1, 6);
+			setpointReceived=data.substring(7, 12);
 			//console.log("Temperature data: "+dataReceived);
-			$scope.currentTemperature = dataReceived
+			$scope.currentSetpoint = setpointReceived;
+			$scope.currentTemperature = temperatureReceived;
 			console.log("Temperature data: "+$scope.currentTemperature);
 			zmienna=zmienna+1;
 			$scope.labels.push(zmienna);
-			$scope.data.push(zmienna);
+			$scope.data.push($scope.currentTemperature);
 			console.log($scope.labels)
 		},console.log());
 		bluetoothSerial.clear(console.log(), console.log());
@@ -256,7 +258,7 @@ angular.module('starter.controllers', [])
 		//console.log('ConnectButton state is: '+buttonConnect);
 		if(buttonConnect){
 			bluetoothSerial.connect(data.address, function (){
-				console.log("You have been connected to device:"); alert("You have been connected")},function (){
+				console.log("You have been connected to device:"); alert("You have been connected"); $scope.checkConnection()},function (){
 					console.log("Connection wasn't possible");alert("Connection wasn't possible")
 				});
 			//$timeout(function() { $scope.checkConnection()}, 3000);
