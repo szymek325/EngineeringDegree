@@ -5,16 +5,13 @@ angular.module('starter.controllers', [])
 .controller('TempCtrl', function($scope, $interval) {
 	$scope.currentSetpoint="value";
 	$scope.currentTemperature="value"
-	$scope.newSetpoint=22;
 	receiveButton=true;
 	$scope.type='button button-block button-positive';
 	$scope.startStop="Start"
 	//$interval(receiveData, 5000); 
 	var interval1;
-
 	var dataReceived="    ";
 	var dataToSend;
-
 	var tempWykres=[0];
 	var czasWykres=[0];
 	var zmienna=0;
@@ -23,21 +20,6 @@ angular.module('starter.controllers', [])
 	$scope.series = ['Actual Temperature'];
 	$scope.data =tempWykres;
 	$scope.colors = ['#45b7cd'];
-
-
-
-	$scope.sendSetpoint= function(){
-		//alert("Wysłano");
-		dataToSend=$scope.newSetpoint;
-		bluetoothSerial.write("t"+dataToSend+"\n", function (data){
-			console.log("Sending process was"+data+". This: "+dataToSend+" was send");
-		}, function (data){
-			console.log("Nothing was send");
-		});
-		//bluetoothSerial.readUntil('\n',$scope.currentSetpoint, console.log("dupa"));
-		
-	}
-
 
 	$scope.receiveButton= function(){
 		if(receiveButton)
@@ -57,15 +39,6 @@ angular.module('starter.controllers', [])
 		}
 		
 	}
-
-	$scope.Add= function(){
-		$scope.newSetpoint=$scope.newSetpoint+1;
-	}
-
-	$scope.Substract= function(){
-		$scope.newSetpoint=$scope.newSetpoint-1;
-	}
-
 
 	function receiveData(){
 		console.log("Receiving");
@@ -98,24 +71,27 @@ angular.module('starter.controllers', [])
 	//
 	//$scope.$on('$ionicView.enter', function(e) {
 	//});
+	$scope.newSetpoint=22;
+
+
 	$scope.textAll='ON';
 	$scope.typeAll='button button-block button-positive';
 	buttonBoolAll=false;
 
 	$scope.text1='ON';
-	$scope.type1='button button-positive';
+	$scope.type1='button button-block button-positive';
 	buttonBool1=false;
 
 	$scope.text2='ON';
-	$scope.type2='button button-positive';
+	$scope.type2='button button-block button-positive';
 	buttonBool2=false;
 
 	$scope.text3='ON';
-	$scope.type3='button button-positive';
+	$scope.type3='button button-block button-positive';
 	buttonBool3=false;
 
 	$scope.text4='ON';
-	$scope.type4='button button-positive';
+	$scope.type4='button button-block button-positive';
 	buttonBool4=false;
 
 
@@ -145,11 +121,11 @@ angular.module('starter.controllers', [])
 		console.log(buttonBool1);
 		if(buttonBool1){
 			$scope.text1 = 'OFF';
-			$scope.type1='button button-assertive';
+			$scope.type1='button button-block button-assertive';
 		}
 		else{
 			$scope.text1='ON';
-			$scope.type1='button button-positive';
+			$scope.type1='button button-block button-positive';
 		};
 	};
 
@@ -158,11 +134,11 @@ angular.module('starter.controllers', [])
 		console.log(buttonBool2);
 		if(buttonBool2){
 			$scope.text2 = 'OFF';
-			$scope.type2='button button-assertive';
+			$scope.type2='button button-block button-assertive';
 		}
 		else{
 			$scope.text2='ON';
-			$scope.type2='button button-positive';
+			$scope.type2='button button-block button-positive';
 		};
 	};
 
@@ -171,11 +147,11 @@ angular.module('starter.controllers', [])
 		console.log(buttonBool3);
 		if(buttonBool3){
 			$scope.text3 = 'OFF';
-			$scope.type3='button button-assertive';
+			$scope.type3='button button-block button-assertive';
 		}
 		else{
 			$scope.text3='ON';
-			$scope.type3='button button-positive';
+			$scope.type3='button button-block button-positive';
 		};
 	};
 
@@ -184,13 +160,32 @@ angular.module('starter.controllers', [])
 		console.log(buttonBool4);
 		if(buttonBool4){
 			$scope.text4 = 'OFF';
-			$scope.type4='button button-assertive';
+			$scope.type4='button button-block button-assertive';
 		}
 		else{
 			$scope.text4='ON';
-			$scope.type4='button button-positive';
+			$scope.type4='button button-block button-positive';
 		};
 	};
+
+	$scope.sendSetpoint= function(){
+		//alert("Wysłano");
+		dataToSend=$scope.newSetpoint;
+		bluetoothSerial.write("t"+dataToSend+"\n", function (data){
+			console.log("Sending process was"+data+". This: "+dataToSend+" was send");
+		}, function (data){
+			console.log("Nothing was send");
+		});
+		//bluetoothSerial.readUntil('\n',$scope.currentSetpoint, console.log("dupa"));
+	}
+
+	$scope.Add= function(){
+		$scope.newSetpoint=$scope.newSetpoint+1;
+	}
+
+	$scope.Substract= function(){
+		$scope.newSetpoint=$scope.newSetpoint-1;
+	}
 
 })
 

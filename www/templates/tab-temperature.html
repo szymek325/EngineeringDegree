@@ -1,41 +1,40 @@
-
-
 <ion-view view-title="Temperature Control">
-  <ion-content class="padding" >
-    <button ng-click="Add()"  class='button button-block button-balanced'>
-      +
-    </button> 
-    <h2>{{newSetpoint}}</h2>
-    <button  ng-click="Substract()" class='button button-block button-assertive'>
-      -
-    </button> 
-    <button ng-click="sendSetpoint()" class="button button-block button-calm">
-      Confirm new setpoint
-    </button>
+  <ion-content class="padding" style="text-align:center">
+    <ion-item>
+      <h1>Temperature</h1>
+    </ion-item>
+    <ion-item>
+      <div class="row">
+        <div class="col">
+          <font size="5">Setpoint</font>
+        </div>
+        <div class="col">
+          <font size="5">{{currentSetpoint}}</font>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <font size="5">Current</font>
+        </div>
+        <div class="col">
+          <font size="5">{{currentTemperature}}</font>
+        </div>
+      </div>
+    </ion-item>
+    <ion-item>
+      <button class="{{type}}" ng-click="receiveButton()">
+        {{startStop}} receiving
+      </button>
 
-    <h2> Readings </h2>
-
-    <div class="list">
-     <label class="item item-input">
-      <span class="input-label">Setpoint Temperature</span>
-      {{currentSetpoint}}
-    </label> 
-    <label class="item item-input">
-      <span class="input-label">Current Temperature</span>
-      <span>{{currentTemperature}}</span>
-    </label> 
-    <button class="{{type}}" ng-click="receiveButton()">
-      {{startStop}} receiving
-    </button>
-  </div>
-  <div class="card">
-    <div class="item item-divider">
-      Line Chart
+    </ion-item>
+    <div class="card">
+      <div class="item item-divider">
+        Line Chart
+      </div>
+      <div class="item item-text-wrap">
+        <canvas id="line" class="chart chart-line" chart-data="data" chart-labels="labels" chart-legend="true" chart-series="series" chart-options="{showTooltips: true}" chart-options="{showXLabels: 10}"></canvas>
+      </div>
     </div>
-    <div class="item item-text-wrap">
-      <canvas id="line" class="chart chart-line" chart-data="data" chart-labels="labels" chart-legend="true" chart-series="series" chart-options="{showTooltips: true}" chart-options="{showXLabels: 10}"></canvas>
-    </div>
-  </div>
-</ion-content>
+  </ion-content>
 </ion-view>
 
