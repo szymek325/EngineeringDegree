@@ -1,6 +1,3 @@
-#include "Arduino.h"
-
-//PELTIER
 const int IN2 = 6;
 const int IN1 = 7;
 const int ENA = 5;
@@ -17,6 +14,9 @@ void Peltier_Brake();
 void Fan(int Speed);
 
 float absF(float value);
+
+//PELTIER
+
 
 
 

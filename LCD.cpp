@@ -1,9 +1,10 @@
 #include <LiquidCrystal.h>
 #include "LCD.h"
 
+
 //#include <ShiftLCD.h>
 
-LiquidCrystal lcd(8,9,10,11,12,13);
+LiquidCrystal lcd(22,24,26,28,30,32);
 
 void setLCD_start() {
   lcd.begin(16, 2);

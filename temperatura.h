@@ -1,4 +1,3 @@
-
 float TempRead();
 float SensorValue();
 

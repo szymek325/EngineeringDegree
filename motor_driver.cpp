@@ -1,7 +1,10 @@
+#include "Arduino.h"
 #include "motor_driver.h"
+
 
 //PELTIER OUT3=GROUND OUT4=VPP zeby sie zgadzalo
 // Speed to PWM- do 255 max
+
 int pred_zadana=0;
 
 void Motor_Control(int Speed)

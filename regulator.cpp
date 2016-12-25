@@ -19,11 +19,11 @@ float PID(float setpointTemperature, float currentTemperature,float actualTime, 
   dt=(float)(actualTime-previousTime);
   dt=dt/60000; //skalowanie 1 milisekunda = 1/60000 min
   integral= integral+(error*dt);
-  if(integral>20){
-    integral=20;
+  if(integral>50){
+    integral=50;
   }
-  else if(integral<-20){
-    integral=-20;
+  else if(integral<-50){
+    integral=-50;
   }
   derivative=(error-previousError)/dt;
   

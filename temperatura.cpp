@@ -1,7 +1,8 @@
-#include "temperatura.h"
 #include <OneWire.h>
+#include "temperatura.h"
 
-OneWire  ds(4);  // on pin 5 (a 4.7K resistor is necessary)
+
+OneWire  ds(34);  // on pin 5 (a 4.7K resistor is necessary)
 
 byte i;
 byte present = 0;
