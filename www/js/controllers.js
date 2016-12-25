@@ -15,11 +15,14 @@ angular.module('starter.controllers', [])
 	var tempWykres=[0];
 	var czasWykres=[0];
 	var zmienna=0;
+	//var maxX=0;
+	//var minX=0;
+	//var forLabels=22;
 
 	$scope.labels = czasWykres;
 	$scope.series = ['Actual Temperature'];
 	$scope.data =tempWykres;
-	$scope.colors = ['#45b7cd'];
+	$scope.colors = ['#ff6384'];
 
 	$scope.receiveButton= function(){
 		if(receiveButton)
@@ -46,6 +49,11 @@ angular.module('starter.controllers', [])
 			console.log("Raw data received: "+data);
 			temperatureReceived=data.substring(1, 6);
 			setpointReceived=data.substring(7, 12);
+			//forLabels=parseInt(setpointReceived);
+			//console.log(forLabels);
+			//maxX=forLabels+3;
+			//minX=forLabels-3;
+			//console.log(maxX);
 			//console.log("Temperature data: "+dataReceived);
 			$scope.currentSetpoint = setpointReceived;
 			$scope.currentTemperature = temperatureReceived;
@@ -60,6 +68,35 @@ angular.module('starter.controllers', [])
 
 		//bluetoothSerial.readUntil('/n',function (data) {console.log(data); dataReceived=data}, console.log("nic nie otrzymalem"));
 		//$scope.currentTemperature=dataReceived.substring(1, 5);
+	}
+
+
+	$scope.options = {
+		scales: {
+			yAxes: [
+			{
+				id: 'y-axis-1',
+				type: 'linear',
+				display: true,
+				position: 'left',
+			}],
+			xAxes: [{
+				//type: 'time',
+				ticks: {
+					autoSkip:true,
+					maxTicksLimit:20,
+				//afterTickToLabelConversion: function(data){
+				//	var xLabels = data.ticks;
+				//	xLabels.forEach(function (labels, i) {
+				//		if (i % 2 == 1){
+				//			xLabels[i] = '';
+				//		}
+				//	});
+				} 
+			}],	
+		},
+		animation:false,
+
 	}
 })
 
