@@ -12,23 +12,22 @@ angular.module('starter.controllers', [])
 	var interval1;
 	var dataReceived="    ";
 	var dataToSend;
-	var tempWykres=[0];
-	var czasWykres=[0];
-	var zmienna=0;
+
+	var timeX=0;
 	//var maxX=0;
 	//var minX=0;
 	//var forLabels=22;
 
-	$scope.labels = czasWykres;
+	$scope.labels = [20];
 	$scope.series = ['Actual Temperature'];
-	$scope.data =tempWykres;
-	$scope.colors = ['#ff6384'];
+	$scope.data=[[20],[20]];
+	$scope.colors = ['#ff6384','#ff6384'];
 
 	$scope.receiveButton= function(){
 		if(receiveButton)
 		{
 			console.log("Receiving process started");
-			interval1=$interval(receiveData, 2000);
+			interval1=$interval(receiveData, 3000);
 			receiveButton=!receiveButton;
 			$scope.type='button button-block button-assertive';
 			$scope.startStop="Stop"
@@ -55,13 +54,16 @@ angular.module('starter.controllers', [])
 			//minX=forLabels-3;
 			//console.log(maxX);
 			//console.log("Temperature data: "+dataReceived);
+
+
 			$scope.currentSetpoint = setpointReceived;
 			$scope.currentTemperature = temperatureReceived;
 			console.log("Temperature data: "+$scope.currentTemperature);
-			zmienna=zmienna+1;
-			$scope.labels.push(zmienna);
-			$scope.data.push($scope.currentTemperature);
-			console.log($scope.labels)
+			timeX=timeX+0.03;
+			$scope.labels.push(timeX);
+			$scope.data[0].push($scope.currentTemperature);
+			$scope.data[1].push($scope.currentSetpoint);
+			//console.log($scope.labels)
 		},console.log());
 		bluetoothSerial.clear(console.log(), console.log());
 
@@ -70,6 +72,10 @@ angular.module('starter.controllers', [])
 		//$scope.currentTemperature=dataReceived.substring(1, 5);
 	}
 
+	$scope.resetChart= function(){
+		$scope.data=[[$scope.currentTemperature],[$scope.currentSetpoint]];
+		$scope.labels=[0];
+	}
 
 	$scope.options = {
 		scales: {
@@ -92,12 +98,12 @@ angular.module('starter.controllers', [])
 				//			xLabels[i] = '';
 				//		}
 				//	});
-				} 
-			}],	
-		},
-		animation:false,
+			} 
+		}],	
+	},
+	animation:false,
 
-	}
+}
 })
 
 .controller('LightCtrl', function($scope) {
