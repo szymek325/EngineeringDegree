@@ -1,4 +1,5 @@
 #include "regulator.h"
+#include <Arduino.h>
 
 float output=0;
 float derivative=0;
@@ -14,16 +15,18 @@ float maximum=255;
 float minimum=-255;
 
 float PID(float setpointTemperature, float currentTemperature,float actualTime, float kp, float ki, float kd){
-  error=setpointTemperature-currentTemperature;
   
+  error=setpointTemperature-currentTemperature;
+  Serial.print("error: ");
+  Serial.println(error);
   dt=(float)(actualTime-previousTime);
   dt=dt/60000; //skalowanie 1 milisekunda = 1/60000 min
   integral= integral+(error*dt);
-  if(integral>50){
-    integral=50;
+  if(integral>10){
+    integral=10;
   }
-  else if(integral<-50){
-    integral=-50;
+  else if(integral<-10){
+    integral=-10;
   }
   derivative=(error-previousError)/dt;
   

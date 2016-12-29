@@ -10,6 +10,8 @@ String odebraneDane;
 String dTemp="000";
 int Temp;
 float temp;
+String lights="0000";
+float pwm;
 
 void bluetoothReceive(){
   odebraneDane = Serial1.readStringUntil('\n');
@@ -19,38 +21,58 @@ void bluetoothReceive(){
   {
     dTemp[i-1]=odebraneDane[i];
   }
-  Serial.println("przerobioneDane:");
+  Serial.print("przerobioneDane: ");
   Serial.println(dTemp);                
   Temp=dTemp.toInt();
-  Serial.println("w Incie:");
+  Serial.print("w Incie: ");
   Serial.println(Temp);
   temperatureSetpoint=Temp;
 }
 
 void bluetoothSend(){
-  float temp = TempRead();
+  temp = TempRead();
+  
   Serial1.print("t");
   Serial1.print(temp);
   Serial1.print("s");
   Serial1.print(temperatureSetpoint);
-  Serial1.println("0010/n");
-  setLCD(temperatureSetpoint,temp);
+  Serial1.print("p");
+  Serial1.print(pwm);
+  Serial1.print("l");
+  Serial1.print(lights);  
+  Serial1.println("/n");
+
+  Serial.print("I send: ");
+  Serial.print("t");
+  Serial.print(temp);
+  Serial.print("s");
+  Serial.print(temperatureSetpoint);
+  Serial.print("p");
+  Serial.print(pwm);
+  Serial.print("l");
+  Serial.print(lights);
+  Serial.println("/n");
+  
+  setLCD(temperatureSetpoint,temp,pwm);
+}
+
+void regulation(){
+  pwm=PID(temperatureSetpoint, temp,millis(), 15 , 5, 2); //  float pwm=PID(zadanaTemp, temp,millis(), 15 , 5, 2)
+  Serial.print("PWM calculated: ");
+  Serial.println(pwm);
 }
 
 void setup(void) {
   setLCD_start();
   Serial.begin(9600);
   Serial1.begin(9600);
+  timer.setInterval(500,regulation);
   timer.setInterval(1000,bluetoothSend);
-  timer.setInterval(3000,bluetoothReceive);
+  timer.setInterval(2000,bluetoothReceive);
 }
 
 void loop(void) {
   timer.run();
-  
-  
-  
-  float pwm=PID(temperatureSetpoint, temp,millis(), 15 , 5, 2); //  float pwm=PID(zadanaTemp, temp,millis(), 15 , 5, 2)
 
 }
 

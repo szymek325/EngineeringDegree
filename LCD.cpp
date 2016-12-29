@@ -22,11 +22,16 @@ void setLCD_start() {
   //lcd.print(millis()/1000);
 }
 
-void setLCD(float zadana, float temp){
+void setLCD(float zadana, float temp, float pulse){
   lcd.setCursor(2, 0);
   lcd.print(temp);
   lcd.setCursor(2, 1);
   lcd.print(zadana);
+  lcd.print("  ");
+  lcd.print(pulse);
+
+
+  /*
   int czas=(millis()/1000);
   if(czas<10)
   {
@@ -66,16 +71,8 @@ void setLCD(float zadana, float temp){
       }
       else
       lcd.print(sekundy);
-    }
-    
-    //lcd.print(minuty);
-    //lcd.print(":");
-    //lcd.print(sekundy);
-  }
-
-
-
-  //lcd.print(millis()/1000);
+    } 
+  }*/
 }
 
 
