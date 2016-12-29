@@ -5,6 +5,7 @@ angular.module('starter.controllers', [])
 .controller('TempCtrl', function($scope, $interval) {
 	$scope.currentSetpoint="value";
 	$scope.currentTemperature="value"
+	$scope.pwmSignal="value"
 	receiveButton=true;
 	$scope.type='button button-block button-positive';
 	$scope.startStop="Start"
@@ -27,7 +28,7 @@ angular.module('starter.controllers', [])
 		if(receiveButton)
 		{
 			console.log("Receiving process started");
-			interval1=$interval(receiveData, 3000);
+			interval1=$interval(receiveData, 1000);
 			receiveButton=!receiveButton;
 			$scope.type='button button-block button-assertive';
 			$scope.startStop="Stop"
@@ -46,8 +47,24 @@ angular.module('starter.controllers', [])
 		console.log("Receiving");
 		bluetoothSerial.readUntil("/n",function (data) {
 			console.log("Raw data received: "+data);
-			temperatureReceived=data.substring(1, 6);
-			setpointReceived=data.substring(7, 12);
+			if(data.length<12){
+
+			}
+			else{
+
+				var temperatureReceived=data.substring(data.indexOf('t')+1, data.indexOf('s'));
+				//temperatureReceived=data.substring(1, 6);
+				//setpointReceived=data.substring(7, 12);
+				console.log(temperatureReceived.length+2);
+				var setpointReceived=data.substring(data.indexOf('s')+1, data.indexOf('p'));
+				console.log(setpointReceived);
+				var pwmReceived=data.substring(data.indexOf('p')+1, data.indexOf('l'));
+				var lightsReceived=data.substring(data.indexOf('l')+1, data.indexOf('/'));
+				$scope.currentTemperature = temperatureReceived;
+				$scope.currentSetpoint = setpointReceived;
+				$scope.pwmSignal=pwmReceived;
+			}
+
 			//forLabels=parseInt(setpointReceived);
 			//console.log(forLabels);
 			//maxX=forLabels+3;
@@ -56,8 +73,7 @@ angular.module('starter.controllers', [])
 			//console.log("Temperature data: "+dataReceived);
 
 
-			$scope.currentSetpoint = setpointReceived;
-			$scope.currentTemperature = temperatureReceived;
+
 			console.log("Temperature data: "+$scope.currentTemperature);
 			timeX=timeX+0.03;
 			$scope.labels.push(timeX);
@@ -78,6 +94,7 @@ angular.module('starter.controllers', [])
 	}
 
 	$scope.options = {
+		animation:false,
 		scales: {
 			yAxes: [
 			{
@@ -98,12 +115,10 @@ angular.module('starter.controllers', [])
 				//			xLabels[i] = '';
 				//		}
 				//	});
-			} 
-		}],	
-	},
-	animation:false,
-
-}
+				} 
+			}],	
+		},
+	}
 })
 
 .controller('LightCtrl', function($scope) {
@@ -252,7 +267,7 @@ angular.module('starter.controllers', [])
 
 
 	$scope.checkConnection=function(){
-		bluetoothSerial.isConnected($scope.disButton(), $scope.conButton());
+		bluetoothSerial.isConnected(function(data){console.log("Connection is: "+data),$scope.$apply(function () {$scope.disButton()})}, function(){$scope.$apply(function () {$scope.conButton()})});
 	};
 
 	$scope.disButton=function(){
@@ -292,17 +307,20 @@ angular.module('starter.controllers', [])
 	};
 
 	$scope.connectMac = function(data){
-		console.log(data);
+		//console.log(data);
 		//console.log('ConnectButton state is: '+buttonConnect);
 		if(buttonConnect){
 			bluetoothSerial.connect(data.address, function (){
-				console.log("You have been connected to device:"); alert("You have been connected"); $scope.checkConnection()},function (){
+				console.log("You have been connected to device:"); alert("You have been connected"); $scope.checkConnection()}, function (){
 					console.log("Connection wasn't possible");alert("Connection wasn't possible")
 				});
 			//$timeout(function() { $scope.checkConnection()}, 3000);
 		}
 		else{
-			bluetoothSerial.disconnect(console.log('disconencted'),console.log('can not disconnect'));
+			bluetoothSerial.disconnect(function (){
+				console.log("You have been disconnected"); alert("You have been disconnected"); $scope.checkConnection()}, function (){
+					console.log("Disconnection wasn't possible");alert("Disconnection wasn't possible")
+				});
 			//$timeout(function() { $scope.checkConnection()}, 3000);
 		};
 	};

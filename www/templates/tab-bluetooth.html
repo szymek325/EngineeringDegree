@@ -9,13 +9,13 @@
 					<h2>Paired Devices</h2>
 				</ion-item>
 				<button ng-repeat="device in pairedDevices" ng-click="connectMac({{device}})" class='{{typeConnect}}'>
-					Connect {{device.name}}
+					{{textConnect}} {{device.name}}
 				</button>
 				<ion-item>
 					<h2>Discovered Devices</h2>
 				</ion-item>
 				<button ng-repeat="device in discoveredDevices" ng-click="connectMac({{device}})" class='{{typeConnect}}'>
-					Connect {{device.name}}
+					{{textConnect}} {{device.name}}
 				</button>			
 			</ion-item>
 		</ion-list>

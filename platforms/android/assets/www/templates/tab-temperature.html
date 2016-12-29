@@ -20,6 +20,14 @@
           <font size="5">{{currentTemperature}}</font>
         </div>
       </div>
+      <div class="row">
+        <div class="col">
+          <font size="5">PWM</font>
+        </div>
+        <div class="col">
+          <font size="5">{{pwmSignal}}</font>
+        </div>
+      </div>
     </ion-item>
     <ion-item>
       <button class="{{type}}" ng-click="receiveButton()">
@@ -37,7 +45,7 @@
     </div>
     <ion-item>
       <button class='button button-block button-assertive' ng-click="resetChart()">
-      reset chart
+        reset chart
       </button>
     </ion-item>
   </ion-content>
