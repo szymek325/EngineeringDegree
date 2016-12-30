@@ -2,7 +2,7 @@
 
 angular.module('starter.controllers', [])
 
-.controller('TempCtrl', function($scope, $interval) {
+.controller('TempCtrl', function($scope, $interval, $ionicModal) {
 	$scope.currentSetpoint="value";
 	$scope.currentTemperature="value"
 	$scope.pwmSignal="value"
@@ -87,6 +87,13 @@ angular.module('starter.controllers', [])
 		//bluetoothSerial.readUntil('/n',function (data) {console.log(data); dataReceived=data}, console.log("nic nie otrzymalem"));
 		//$scope.currentTemperature=dataReceived.substring(1, 5);
 	}
+
+	$ionicModal.fromTemplateUrl('templates/modal.html', {
+		scope: $scope
+	}).then(function(modal) {
+		$scope.modal = modal;
+	});
+
 
 	$scope.resetChart= function(){
 		$scope.data=[[$scope.currentTemperature],[$scope.currentSetpoint]];
