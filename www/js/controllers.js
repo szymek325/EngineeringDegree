@@ -16,6 +16,42 @@ angular.module('starter.controllers', [])
 	$scope.series = ['Actual Temperature'];
 	$scope.data=[[20],[20]];
 	$scope.colors = ['#ff6384','#ff6384'];
+	var logs=[0];
+	$scope.tempData=JSON.stringify(logs);
+
+	function receiveData(){
+		console.log("Receiving function");
+		bluetoothSerial.readUntil("/n",function (data) {
+			console.log("Raw data received: "+data);
+			timeX=timeX+1;
+			if(data.includes("t"))
+			{
+				if(data.includes("n"))
+				{
+					var temperatureReceived=data.substring(data.indexOf('t')+1, data.indexOf('s'));
+					var setpointReceived=data.substring(data.indexOf('s')+1, data.indexOf('p'));
+					console.log(setpointReceived);
+					var pwmReceived=data.substring(data.indexOf('p')+1, data.indexOf('l'));
+					var lightsReceived=data.substring(data.indexOf('l')+1, data.indexOf('/'));
+					$scope.currentTemperature = temperatureReceived;
+					$scope.currentSetpoint = setpointReceived;
+					$scope.pwmSignal=pwmReceived;
+
+					$scope.labels.push(timeX);
+					$scope.data[0].push($scope.currentTemperature);
+					$scope.data[1].push($scope.currentSetpoint);
+
+					bluetoothSerial.clear(console.log(),console.log());
+
+					logs.push($scope.currentTemperature);
+					console.log(logs);
+					$scope.tempData=JSON.stringify(logs);
+				}
+			}
+			else{bluetoothSerial.clear(console.log(),console.log())}
+			console.log("Temperature data: "+$scope.currentTemperature);
+		},function () {console.log("failure")});	
+	}
 
 	$scope.receiveButton= function(){
 		if(receiveButton)
@@ -34,54 +70,29 @@ angular.module('starter.controllers', [])
 			$scope.startStop="Start";
 		}
 		
-	},
+	}
 
-	function receiveData(){
-		console.log("Receiving");
-		bluetoothSerial.readUntil("/n",function (data) {
-			console.log("Raw data received: "+data);
-			if(data.length<12){
-			}
-			else{
-				var temperatureReceived=data.substring(data.indexOf('t')+1, data.indexOf('s'));
-				var setpointReceived=data.substring(data.indexOf('s')+1, data.indexOf('p'));
-				console.log(setpointReceived);
-				var pwmReceived=data.substring(data.indexOf('p')+1, data.indexOf('l'));
-				var lightsReceived=data.substring(data.indexOf('l')+1, data.indexOf('/'));
-				$scope.currentTemperature = temperatureReceived;
-				$scope.currentSetpoint = setpointReceived;
-				$scope.pwmSignal=pwmReceived;
-			}
-			console.log("Temperature data: "+$scope.currentTemperature);
-			timeX=timeX+1;
-			$scope.labels.push(timeX);
-			$scope.data[0].push($scope.currentTemperature);
-			$scope.data[1].push($scope.currentSetpoint);
-		},console.log());
-		bluetoothSerial.clear(console.log(), console.log());
-	},
 
 	$ionicModal.fromTemplateUrl('templates/modal.html', {
 		scope: $scope}).then(function(modal) {
-		$scope.modal = modal;
-	}),
+			$scope.modal = modal;})
 
-	$scope.resetChart= function(){
-		$scope.data=[[$scope.currentTemperature],[$scope.currentSetpoint]];
-		$scope.labels=[0];
-	},
+		$scope.resetChart= function(){
+			$scope.data=[[$scope.currentTemperature],[$scope.currentSetpoint]];
+			$scope.labels=[0];
+		}
 
-	$scope.options = {
-		animation:false,
-		scales: {
-			yAxes: [
-			{
-				id: 'y-axis-1',
-				type: 'linear',
-				display: true,
-				position: 'left',
-			}],
-			xAxes: [{
+		$scope.options = {
+			animation:false,
+			scales: {
+				yAxes: [
+				{
+					id: 'y-axis-1',
+					type: 'linear',
+					display: true,
+					position: 'left',
+				}],
+				xAxes: [{
 				//type: 'time',
 				ticks: {
 					autoSkip:true,
@@ -107,7 +118,7 @@ angular.module('starter.controllers', [])
 		dataToSend=$scope.newSetpoint;
 		bluetoothSerial.write("t"+dataToSend+"\n", function (data){
 			console.log("Sending process was"+data+". This: "+dataToSend+" was send");}, function (data){
-			console.log("Nothing was send");});
+				console.log("Nothing was send");});
 	}
 
 	$scope.Add= function(){
@@ -128,7 +139,7 @@ angular.module('starter.controllers', [])
 
 })
 
-.controller('BlueCtrl', function($scope, $timeout, $interval) {
+.controller('BlueCtrl', function($scope, $timeout, $interval, $ionicLoading) {
 
 	$scope.addresses = [];
 	$scope.textConnect='Connect';
@@ -141,25 +152,26 @@ angular.module('starter.controllers', [])
 				$scope.disButton()})}, function(){
 				$scope.$apply(function () {
 					$scope.conButton()})
-		});
-	};
+			});
+	}
 
 	$scope.disButton=function(){
 		console.log("You are connected to device");
 		$scope.textConnect = 'Disconnect';
 		$scope.typeConnect='button button-block button-assertive';
 		buttonConnect=!buttonConnect;
-	};
+	}
 
 	$scope.conButton=function(){
 		console.log("You are not connected");
 		$scope.textConnect = 'Connect';
 		$scope.typeConnect='button button-block button-calm';
 		buttonConnect=!buttonConnect;
-	};
+	}
 
 
 	$scope.findDevices = function(){
+		$ionicLoading.show();
 		bluetoothSerial.list(function (data) {
 			console.log("List: ");
 			console.log(data);
@@ -173,12 +185,14 @@ angular.module('starter.controllers', [])
 			console.log("Discover Unpaired: ");
 			console.log(data);
 			$scope.$apply(function () {
-				$scope.discoveredDevices=data})},function () {
+				$scope.discoveredDevices=data});$ionicLoading.hide();},function () {
 				console.log("No devices found");
+				$ionicLoading.hide();
 			//$scope.addresses.push(data);
 			//$scope.addresses.push(data);
 		});
-	};
+		
+	}
 
 	$scope.connectMac = function(data){
 		if(buttonConnect){
@@ -193,7 +207,7 @@ angular.module('starter.controllers', [])
 					console.log("Disconnection wasn't possible"),alert("Disconnection wasn't possible"),$scope.checkConnection()
 				});
 		};
-	};
+	}
 
 
 })
