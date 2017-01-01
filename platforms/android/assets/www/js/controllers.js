@@ -8,7 +8,7 @@ angular.module('starter.controllers', [])
 	receiveButton=true;
 	$scope.type='button button-block button-positive';
 	$scope.startStop="Start";
-	var interval1;
+	var interval1=$interval(receiveData, 1000);
 	var dataReceived="    ";
 	var dataToSend;
 	var timeX=0;
@@ -52,26 +52,6 @@ angular.module('starter.controllers', [])
 			console.log("Temperature data: "+$scope.currentTemperature);
 		},function () {console.log("failure")});	
 	}
-
-	$scope.receiveButton= function(){
-		if(receiveButton)
-		{
-			console.log("Receiving process started");
-			interval1=$interval(receiveData, 1000);
-			receiveButton=!receiveButton;
-			$scope.type='button button-block button-assertive';
-			$scope.startStop="Stop";
-		}
-		else{
-			console.log("Receiving process has been terminated");
-			$interval.cancel(interval1);
-			receiveButton=!receiveButton;
-			$scope.type='button button-block button-positive';
-			$scope.startStop="Start";
-		}
-		
-	}
-
 
 	$ionicModal.fromTemplateUrl('templates/modal.html', {
 		scope: $scope}).then(function(modal) {
