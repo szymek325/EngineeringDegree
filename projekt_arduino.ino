@@ -4,7 +4,7 @@
 #include "regulator.h"
 #include "SimpleTimer.h"
 
-float temperatureSetpoint = 28;
+float temperatureSetpoint = 24;
 SimpleTimer timer;
 String odebraneDane;
 String dTemp="000";
@@ -12,27 +12,32 @@ int Temp;
 float temp;
 String lights="0000";
 float pwm;
+int odczyt;
 
 void bluetoothReceive(){
-  odebraneDane = Serial1.readStringUntil('\n');
-  Serial.print("I received: ");
-  Serial.println(odebraneDane);
-  for(int i=1;i<odebraneDane.length()+1;i++)
+  odebraneDane = Serial.readStringUntil('\n');
+  //Serial.print("I received: ");
+  //Serial.println(odebraneDane);
+  if(odebraneDane.length()>=1)
   {
-    dTemp[i-1]=odebraneDane[i];
+    for(int i=1;i<odebraneDane.length()+1;i++)
+    {
+      dTemp[i-1]=odebraneDane[i];
+    }
+    //Serial.print("przerobioneDane: ");
+    //Serial.println(dTemp);                
+    Temp=dTemp.toInt();
+    //Serial.print("w Incie: ");
+    //Serial.println(Temp);
+    temperatureSetpoint=Temp;
   }
-  Serial.print("przerobioneDane: ");
-  Serial.println(dTemp);                
-  Temp=dTemp.toInt();
-  Serial.print("w Incie: ");
-  Serial.println(Temp);
-  temperatureSetpoint=Temp;
+  else {}
 }
 
 void bluetoothSend(){
   temp = TempRead();
-  
-  Serial1.print("t");
+
+  /*Serial1.print("t");
   Serial1.print(temp);
   Serial1.print("s");
   Serial1.print(temperatureSetpoint);
@@ -40,9 +45,9 @@ void bluetoothSend(){
   Serial1.print(pwm);
   Serial1.print("l");
   Serial1.print(lights);  
-  Serial1.println("/n");
+  Serial1.println("/n");*/
 
-  Serial.print("I send: ");
+  //Serial.print("I send: ");
   Serial.print("t");
   Serial.print(temp);
   Serial.print("s");
@@ -57,15 +62,22 @@ void bluetoothSend(){
 }
 
 void regulation(){
-  pwm=PID(temperatureSetpoint, temp,millis(), 15 , 5, 2); //  float pwm=PID(zadanaTemp, temp,millis(), 15 , 5, 2)
-  Serial.print("PWM calculated: ");
-  Serial.println(pwm);
+  pwm=PID(temperatureSetpoint, temp,millis(), 30 , 5, 0); //  float pwm=PID(zadanaTemp, temp,millis(), 15 , 5, 2)
+  Motor_Control(pwm);
+  //Serial.print("PWM calculated: ");
+  //Serial.println(pwm);
 }
+
 
 void setup(void) {
   setLCD_start();
   Serial.begin(9600);
-  Serial1.begin(9600);
+  //Serial1.begin(9600);
+  pinMode(9, OUTPUT);
+  pinMode(10, OUTPUT);
+  pinMode(11, OUTPUT);
+  pinMode(12, OUTPUT);
+  pinMode(13, OUTPUT);
   timer.setInterval(500,regulation);
   timer.setInterval(1000,bluetoothSend);
   timer.setInterval(2000,bluetoothReceive);
@@ -73,7 +85,12 @@ void setup(void) {
 
 void loop(void) {
   timer.run();
-
+  analogWrite(9, 255);
+  analogWrite(10, 255);
+  
+  //digitalWrite(12,LOW);
+  //digitalWrite(13,HIGH);
+  //analogWrite(11,255);
 }
 
 

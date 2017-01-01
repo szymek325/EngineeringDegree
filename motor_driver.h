@@ -1,7 +1,7 @@
-const int IN2 = 6;
-const int IN1 = 7;
-const int ENA = 5;
-const int ENB = 3;
+const int IN1 = 13;
+const int IN2 = 12;
+const int ENA = 11;
+const int ENB = 9;
 
 void Motor_Control(int Speed);
 

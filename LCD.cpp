@@ -4,7 +4,7 @@
 
 //#include <ShiftLCD.h>
 
-LiquidCrystal lcd(22,24,26,28,30,32);
+LiquidCrystal lcd(7,6,5,4,3,2);
 
 void setLCD_start() {
   lcd.begin(16, 2);
