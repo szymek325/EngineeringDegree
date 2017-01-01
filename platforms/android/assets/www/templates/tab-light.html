@@ -5,7 +5,7 @@
         <h1>Temperature Control</h1>
       </ion-item>
       <ion-item>
-        <button ng-click="Add()"  class='button button-block button-balanced'>
+        <button ng-click="Add2()"  class='button button-block button-balanced'>
           ++
         </button>
         <div class="row"> 
@@ -24,7 +24,7 @@
             </button>
           </div>
         </div>
-        <button  ng-click="Substract()" class='button button-block button-assertive'>
+        <button  ng-click="Substract2()" class='button button-block button-assertive'>
           --
         </button>
       </ion-item>
@@ -33,38 +33,6 @@
           Confirm new setpoint
         </button>
       </ion-item>
-      <ion-item>
-        <h1>Light Control</h1>
-      </ion-item>
-      <ion-item>
-        <div class="row">
-          <div class="col">
-            <button ng-click="Click1()" class='{{type1}}'>
-              Scene 1 {{text1}}
-            </button>
-          </div>
-          <div class="col">
-            <button ng-click="Click2()" class='{{type2}}'>
-              Scene 2 {{text2}}
-            </button>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col">
-            <button ng-click="Click3()" class='{{type3}}'>
-              Scene 3 {{text3}}
-            </button>
-          </div>
-          <div class="col">
-            <button ng-click="Click4()" class='{{type4}}'>
-              Scene 4 {{text4}}
-            </button>
-          </div>
-        </div>
-        <button ng-click="ClickAll()" class='{{typeAll}}'>
-         All {{textAll}}
-       </button>
-     </ion-item>
    </ion-list>
  </ion-content>
 </ion-view>

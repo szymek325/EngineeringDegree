@@ -1,51 +1,134 @@
-			<ion-row>
-				asd123
-			</ion-row>
-			<ion-row ng-repeat="element in addresses">
-					{{element.id}}      
-			</ion-row>
-						<ion-item>
-				<button ng-click="connectMac()" class='{{typeConnect}}'>
-					{{textConnect}} 
-				</button>
-			</ion-item>
+//WYCINEK KONTROLA ŚWIATŁA
+
+$scope.textAll='ON';
+	$scope.typeAll='button button-block button-positive';
+	buttonBoolAll=false;
+
+	$scope.text1='ON';
+	$scope.type1='button button-block button-positive';
+	buttonBool1=false;
+
+	$scope.text2='ON';
+	$scope.type2='button button-block button-positive';
+	buttonBool2=false;
+
+	$scope.text3='ON';
+	$scope.type3='button button-block button-positive';
+	buttonBool3=false;
+
+	$scope.text4='ON';
+	$scope.type4='button button-block button-positive';
+	buttonBool4=false;
+
+
+	$scope.ClickAll = function(){
+		buttonBool1=buttonBoolAll;
+		$scope.Click1();
+		buttonBool2=buttonBoolAll;
+		$scope.Click2();
+		buttonBool3=buttonBoolAll;
+		$scope.Click3();
+		buttonBool4=buttonBoolAll;
+		$scope.Click4();
+		buttonBoolAll=!buttonBoolAll;
+		console.log(buttonBoolAll);
+		if(buttonBoolAll){
+			$scope.textAll = 'OFF';
+			$scope.typeAll='button button-block button-assertive';
+		}
+		else{
+			$scope.textAll='ON';
+			$scope.typeAll='button button-block button-positive';
+		};
+	};
+
+	$scope.Click1 = function(){
+		buttonBool1=!buttonBool1;
+		console.log(buttonBool1);
+		if(buttonBool1){
+			$scope.text1 = 'OFF';
+			$scope.type1='button button-block button-assertive';
+		}
+		else{
+			$scope.text1='ON';
+			$scope.type1='button button-block button-positive';
+		};
+	};
+
+	$scope.Click2 = function(){
+		buttonBool2=!buttonBool2;
+		console.log(buttonBool2);
+		if(buttonBool2){
+			$scope.text2 = 'OFF';
+			$scope.type2='button button-block button-assertive';
+		}
+		else{
+			$scope.text2='ON';
+			$scope.type2='button button-block button-positive';
+		};
+	};
+
+	$scope.Click3 = function(){
+		buttonBool3=!buttonBool3;
+		console.log(buttonBool3);
+		if(buttonBool3){
+			$scope.text3 = 'OFF';
+			$scope.type3='button button-block button-assertive';
+		}
+		else{
+			$scope.text3='ON';
+			$scope.type3='button button-block button-positive';
+		};
+	};
+
+	$scope.Click4 = function(){
+		buttonBool4=!buttonBool4;
+		console.log(buttonBool4);
+		if(buttonBool4){
+			$scope.text4 = 'OFF';
+			$scope.type4='button button-block button-assertive';
+		}
+		else{
+			$scope.text4='ON';
+			$scope.type4='button button-block button-positive';
+		};
+	};
 
 
 
 
-			<ion-view view-title="Settings">
-	<ion-content>
-		<ion-list>
-			<ion-item>
-				<button ng-click="findDevices()" class='button button-block button-positive'>
-					Search devices
-				</button>
-				<ion-item class="row">
-					<h2>Paired Devices</h2>
-				</ion-item>
-				<ion-item class="row" ng-repeat="device in pairedDevices">
-					<button ng-click="connectMac({{device}})" class='{{typeConnect}}'>
-						Connect {{device.name}}
-					</button>
-					
-				</ion-item>
-				<ion-item class="row">
-					<h2>Discovered Devices</h2>
-				</ion-item>
-				<ion-item class="row" ng-repeat="device in discoveredDevices">
-					<button ng-click="connectMac({{device}})" class='{{typeConnect}}'>
-						Connect {{device.name}}
-					</button>			
-				</ion-item>
-			</ion-item>
-		</ion-list>
-	</ion-content>
-</ion-view>
 
+	\\HTML TAB LITGH
 
-
-
-        <label class="item item-input">
-          <span class="input-label">New Setpoint</span>
-          <input type="text" placeholder="22" id="setpointData">
-        </label>
+	<ion-item>
+        <h1>Light Control</h1>
+      </ion-item>
+      <ion-item>
+        <div class="row">
+          <div class="col">
+            <button ng-click="Click1()" class='{{type1}}'>
+              Scene 1 {{text1}}
+            </button>
+          </div>
+          <div class="col">
+            <button ng-click="Click2()" class='{{type2}}'>
+              Scene 2 {{text2}}
+            </button>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <button ng-click="Click3()" class='{{type3}}'>
+              Scene 3 {{text3}}
+            </button>
+          </div>
+          <div class="col">
+            <button ng-click="Click4()" class='{{type4}}'>
+              Scene 4 {{text4}}
+            </button>
+          </div>
+        </div>
+        <button ng-click="ClickAll()" class='{{typeAll}}'>
+         All {{textAll}}
+       </button>
+     </ion-item>

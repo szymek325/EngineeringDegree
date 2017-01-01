@@ -19,7 +19,7 @@ angular.module('starter.controllers', [])
 	//var minX=0;
 	//var forLabels=22;
 
-	$scope.labels = [20];
+	$scope.labels = [0];
 	$scope.series = ['Actual Temperature'];
 	$scope.data=[[20],[20]];
 	$scope.colors = ['#ff6384','#ff6384'];
@@ -53,9 +53,6 @@ angular.module('starter.controllers', [])
 			else{
 
 				var temperatureReceived=data.substring(data.indexOf('t')+1, data.indexOf('s'));
-				//temperatureReceived=data.substring(1, 6);
-				//setpointReceived=data.substring(7, 12);
-				console.log(temperatureReceived.length+2);
 				var setpointReceived=data.substring(data.indexOf('s')+1, data.indexOf('p'));
 				console.log(setpointReceived);
 				var pwmReceived=data.substring(data.indexOf('p')+1, data.indexOf('l'));
@@ -65,17 +62,8 @@ angular.module('starter.controllers', [])
 				$scope.pwmSignal=pwmReceived;
 			}
 
-			//forLabels=parseInt(setpointReceived);
-			//console.log(forLabels);
-			//maxX=forLabels+3;
-			//minX=forLabels-3;
-			//console.log(maxX);
-			//console.log("Temperature data: "+dataReceived);
-
-
-
 			console.log("Temperature data: "+$scope.currentTemperature);
-			timeX=timeX+0.03;
+			timeX=timeX+1;
 			$scope.labels.push(timeX);
 			$scope.data[0].push($scope.currentTemperature);
 			$scope.data[1].push($scope.currentSetpoint);
@@ -83,9 +71,6 @@ angular.module('starter.controllers', [])
 		},console.log());
 		bluetoothSerial.clear(console.log(), console.log());
 
-
-		//bluetoothSerial.readUntil('/n',function (data) {console.log(data); dataReceived=data}, console.log("nic nie otrzymalem"));
-		//$scope.currentTemperature=dataReceived.substring(1, 5);
 	}
 
 	$ionicModal.fromTemplateUrl('templates/modal.html', {
@@ -114,7 +99,7 @@ angular.module('starter.controllers', [])
 				//type: 'time',
 				ticks: {
 					autoSkip:true,
-					maxTicksLimit:20,
+					maxTicksLimit:5,
 				//afterTickToLabelConversion: function(data){
 				//	var xLabels = data.ticks;
 				//	xLabels.forEach(function (labels, i) {
@@ -122,10 +107,10 @@ angular.module('starter.controllers', [])
 				//			xLabels[i] = '';
 				//		}
 				//	});
-				} 
-			}],	
-		},
-	}
+			} 
+		}],	
+	},
+}
 })
 
 .controller('LightCtrl', function($scope) {
@@ -139,99 +124,7 @@ angular.module('starter.controllers', [])
 	$scope.newSetpoint=22;
 
 
-	$scope.textAll='ON';
-	$scope.typeAll='button button-block button-positive';
-	buttonBoolAll=false;
-
-	$scope.text1='ON';
-	$scope.type1='button button-block button-positive';
-	buttonBool1=false;
-
-	$scope.text2='ON';
-	$scope.type2='button button-block button-positive';
-	buttonBool2=false;
-
-	$scope.text3='ON';
-	$scope.type3='button button-block button-positive';
-	buttonBool3=false;
-
-	$scope.text4='ON';
-	$scope.type4='button button-block button-positive';
-	buttonBool4=false;
-
-
-	$scope.ClickAll = function(){
-		buttonBool1=buttonBoolAll;
-		$scope.Click1();
-		buttonBool2=buttonBoolAll;
-		$scope.Click2();
-		buttonBool3=buttonBoolAll;
-		$scope.Click3();
-		buttonBool4=buttonBoolAll;
-		$scope.Click4();
-		buttonBoolAll=!buttonBoolAll;
-		console.log(buttonBoolAll);
-		if(buttonBoolAll){
-			$scope.textAll = 'OFF';
-			$scope.typeAll='button button-block button-assertive';
-		}
-		else{
-			$scope.textAll='ON';
-			$scope.typeAll='button button-block button-positive';
-		};
-	};
-
-	$scope.Click1 = function(){
-		buttonBool1=!buttonBool1;
-		console.log(buttonBool1);
-		if(buttonBool1){
-			$scope.text1 = 'OFF';
-			$scope.type1='button button-block button-assertive';
-		}
-		else{
-			$scope.text1='ON';
-			$scope.type1='button button-block button-positive';
-		};
-	};
-
-	$scope.Click2 = function(){
-		buttonBool2=!buttonBool2;
-		console.log(buttonBool2);
-		if(buttonBool2){
-			$scope.text2 = 'OFF';
-			$scope.type2='button button-block button-assertive';
-		}
-		else{
-			$scope.text2='ON';
-			$scope.type2='button button-block button-positive';
-		};
-	};
-
-	$scope.Click3 = function(){
-		buttonBool3=!buttonBool3;
-		console.log(buttonBool3);
-		if(buttonBool3){
-			$scope.text3 = 'OFF';
-			$scope.type3='button button-block button-assertive';
-		}
-		else{
-			$scope.text3='ON';
-			$scope.type3='button button-block button-positive';
-		};
-	};
-
-	$scope.Click4 = function(){
-		buttonBool4=!buttonBool4;
-		console.log(buttonBool4);
-		if(buttonBool4){
-			$scope.text4 = 'OFF';
-			$scope.type4='button button-block button-assertive';
-		}
-		else{
-			$scope.text4='ON';
-			$scope.type4='button button-block button-positive';
-		};
-	};
+	
 
 	$scope.sendSetpoint= function(){
 		//alert("Wysłano");
@@ -252,9 +145,18 @@ angular.module('starter.controllers', [])
 		$scope.newSetpoint=$scope.newSetpoint-1;
 	}
 
+	$scope.Add2= function(){
+		$scope.newSetpoint=$scope.newSetpoint+2;
+	}
+
+	$scope.Substract2= function(){
+		$scope.newSetpoint=$scope.newSetpoint-2;
+	}
+
+
 })
 
-.controller('BlueCtrl', function($scope, $timeout) {
+.controller('BlueCtrl', function($scope, $timeout, $interval) {
 
 	$scope.addresses = [];
 	$scope.textConnect='Connect';
@@ -319,14 +221,14 @@ angular.module('starter.controllers', [])
 		if(buttonConnect){
 			bluetoothSerial.connect(data.address, function (){
 				console.log("You have been connected to device:"); alert("You have been connected"); $scope.checkConnection()}, function (){
-					console.log("Connection wasn't possible");alert("Connection wasn't possible")
+					console.log("Connection wasn't possible"),alert("Connection wasn't possible"),$scope.checkConnection()
 				});
 			//$timeout(function() { $scope.checkConnection()}, 3000);
 		}
 		else{
 			bluetoothSerial.disconnect(function (){
 				console.log("You have been disconnected"); alert("You have been disconnected"); $scope.checkConnection()}, function (){
-					console.log("Disconnection wasn't possible");alert("Disconnection wasn't possible")
+					console.log("Disconnection wasn't possible"),alert("Disconnection wasn't possible"),$scope.checkConnection()
 				});
 			//$timeout(function() { $scope.checkConnection()}, 3000);
 		};
