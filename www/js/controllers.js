@@ -5,57 +5,58 @@ angular.module('starter.controllers', [])
 	$scope.currentSetpoint="value";
 	$scope.currentTemperature="value"
 	$scope.pwmSignal="value"
-	receiveButton=true;
 	$scope.type='button button-block button-positive';
 	$scope.startStop="Start";
-	var interval1=$interval(receiveData, 1000);
-	var dataReceived="    ";
-	var dataToSend;
-	var timeX=0;
 	$scope.labels = [0];
 	$scope.series = ['Actual Temperature'];
 	$scope.data=[[20],[20]];
 	$scope.colors = ['#ff6384','#ff6384'];
-	var logs=[0];
+	
+
+	var logs=[0];	
+	receiveButton=true;
+	var interval1=$interval(receiveData, 1000);
+	var dataReceived="    ";
+	var dataToSend;
+	var timeX=0;
+	
 	$scope.tempData=JSON.stringify(logs);
 
 	function receiveData(){
 		receivedData.getData();
 		if(receivedData.getIsThereData())
 		{
-		$scope.currentTemperature = receivedData.getTemperature();
-		$scope.currentSetpoint = receivedData.getSetpoint();
-		$scope.pwmSignal=receivedData.getPwm();
+			$scope.currentTemperature = receivedData.getTemperature();
+			$scope.currentSetpoint = receivedData.getSetpoint();
+			$scope.pwmSignal=receivedData.getPwm();
 
-		timeX=timeX+1;
+			timeX=timeX+1;
 
-		$scope.labels.push(timeX);
-		$scope.data[0].push($scope.currentTemperature);
-		$scope.data[1].push($scope.currentSetpoint);
+			$scope.labels.push(timeX);
+			$scope.data[0].push($scope.currentTemperature);
+			$scope.data[1].push($scope.currentSetpoint);
+			$scope.logs.push($scope.currentTemperature);
 		}
 	}
 
-	$ionicModal.fromTemplateUrl('templates/modal.html', {
-		scope: $scope}).then(function(modal) {
-			$scope.modal = modal;
-		})
 
-		$scope.resetChart= function(){
-			$scope.data=[[$scope.currentTemperature],[$scope.currentSetpoint]];
-			$scope.labels=[0];
-		}
 
-		$scope.options = {
-			animation:false,
-			scales: {
-				yAxes: [
-				{
-					id: 'y-axis-1',
-					type: 'linear',
-					display: true,
-					position: 'left',
-				}],
-				xAxes: [{
+	$scope.resetChart= function(){
+		$scope.data=[[$scope.currentTemperature],[$scope.currentSetpoint]];
+		$scope.labels=[timeX];
+	}
+
+	$scope.options = {
+		animation:false,
+		scales: {
+			yAxes: [
+			{
+				id: 'y-axis-1',
+				type: 'linear',
+				display: true,
+				position: 'left',
+			}],
+			xAxes: [{
 				//type: 'time',
 				ticks: {
 					autoSkip:true,
@@ -65,16 +66,15 @@ angular.module('starter.controllers', [])
 		},
 	}
 
-})
+	$ionicModal.fromTemplateUrl('templates/modal.html', {
+		scope: $scope}).then(function(modal) {
+			$scope.modal = modal;
+		})
+
+	})
 
 .controller('LightCtrl', function($scope) {
-	// With the new view caching in Ionic, Controllers are only called
-	// when they are recreated or on app start, instead of every page change.
-	// To listen for when this page is active (for example, to refresh data),
-	// listen for the $ionicView.enter event:
-	//
-	//$scope.$on('$ionicView.enter', function(e) {
-	//});
+	// INITIAL VALUES
 	$scope.newSetpoint=22;
 
 	$scope.sendSetpoint= function(){
@@ -102,48 +102,31 @@ angular.module('starter.controllers', [])
 
 })
 
-.controller('BlueCtrl', function($scope, $timeout, $interval, $ionicLoading) {
-
+.controller('BlueCtrl', function($scope, $timeout, $interval, $ionicLoading, bluetoothInformation) {
+	// INITIAL VALUES
 	$scope.addresses = [];
 	$scope.textConnect='Connect';
 	$scope.typeConnect='button button-block button-calm';
-	buttonConnect=true;
 
-	bluetoothSerial.isEnabled(function (){
-		console.log("Bluetooth is ON")},function (){
-			console.log("Bluetooth is OFF. Please ENABLE");
-			bluetoothSerial.enable(function (){
-				console.log("Bluetooth was ENABLED")},function (){
-					console.log("Bluetooth wasn't ENABLED");
-					console.log("Application is closing now");
-					navigator.app.exitApp();
-				})
-		})
-
+	bluetoothInformation.isBluetoothON();
 
 	$scope.checkConnection=function(){
-		bluetoothSerial.isConnected(function(data){
-			console.log("Connection is: "+data),$scope.$apply(function () {
-				$scope.disButton()})}, function(){
-				$scope.$apply(function () {
-					$scope.conButton()})
-			});
+		if(!bluetoothInformation.connectionState()){
+			$scope.$apply(function () {
+				console.log("You are connected to device");
+				$scope.textConnect = 'Disconnect';
+				$scope.typeConnect='button button-block button-assertive';
+			})
+		}
+		else{
+			$scope.$apply(function () {
+				console.log("You are not connected");
+				$scope.textConnect = 'Connect';
+				$scope.typeConnect='button button-block button-calm';
+			})
+		}
+		
 	}
-
-	$scope.disButton=function(){
-		console.log("You are connected to device");
-		$scope.textConnect = 'Disconnect';
-		$scope.typeConnect='button button-block button-assertive';
-		buttonConnect=!buttonConnect;
-	}
-
-	$scope.conButton=function(){
-		console.log("You are not connected");
-		$scope.textConnect = 'Connect';
-		$scope.typeConnect='button button-block button-calm';
-		buttonConnect=!buttonConnect;
-	}
-
 
 	$scope.findDevices = function(){
 		$ionicLoading.show();
@@ -170,7 +153,7 @@ angular.module('starter.controllers', [])
 	}
 
 	$scope.connectMac = function(data){
-		if(buttonConnect){
+		if(!bluetoothInformation.connectionState()){
 			bluetoothSerial.connect(data.address, function (){
 				console.log("You have been connected to device:"); alert("You have been connected"); $scope.checkConnection()}, function (){
 					console.log("Connection wasn't possible"),alert("Connection wasn't possible"),$scope.checkConnection()

@@ -3,7 +3,7 @@
 angular.module('starter.services', [])
 
 .service('receivedData', function() {
-
+  // INITIAL VALUES
   var temperatureReceived;
   var setpointReceived;
   var pwmReceived;
@@ -50,6 +50,36 @@ angular.module('starter.services', [])
           bluetoothSerial.clear(console.log(),console.log())
         }
       },function () {console.log("failure")});
+    }
+  }
+})
+
+.service('bluetoothInformation', function() {
+  // INITIAL VALUES
+  var temperatureReceived;
+  var bluetoothOnOffStatus;
+  var bluetoothConnectionStatus;
+
+  return {
+    isBluetoothON: function () {
+      bluetoothSerial.isEnabled(function (){
+        console.log("Bluetooth is ON"), bluetoothOnOffStatus=1;},function (){
+          console.log("Bluetooth is OFF. Please ENABLE");
+          bluetoothOnOffStatus=0;
+          bluetoothSerial.enable(function (){
+            console.log("Bluetooth was ENABLED"); bluetoothOnOffStatus=1},function (){
+              console.log("Bluetooth wasn't ENABLED");
+              console.log("Application is closing now");
+              bluetoothOnOffStatus=0;
+              navigator.app.exitApp();
+            })
+        })
+      return bluetoothOnOffStatus;
+    },
+    connectionState: function () {
+      bluetoothSerial.isConnected(function(){bluetoothConnectionStatus=1}, function(){bluetoothConnectionStatus=0});
+
+      return bluetoothConnectionStatus;
     }
   }
 });
