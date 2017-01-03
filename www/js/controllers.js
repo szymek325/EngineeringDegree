@@ -49,13 +49,14 @@ angular.module('starter.controllers', [])
 				}
 			}
 			else{bluetoothSerial.clear(console.log(),console.log())}
-			console.log("Temperature data: "+$scope.currentTemperature);
+				console.log("Temperature data: "+$scope.currentTemperature);
 		},function () {console.log("failure")});	
 	}
 
 	$ionicModal.fromTemplateUrl('templates/modal.html', {
 		scope: $scope}).then(function(modal) {
-			$scope.modal = modal;})
+			$scope.modal = modal;
+		})
 
 		$scope.resetChart= function(){
 			$scope.data=[[$scope.currentTemperature],[$scope.currentSetpoint]];
@@ -125,6 +126,18 @@ angular.module('starter.controllers', [])
 	$scope.textConnect='Connect';
 	$scope.typeConnect='button button-block button-calm';
 	buttonConnect=true;
+
+	bluetoothSerial.isEnabled(function (){
+		console.log("Bluetooth is ON")},function (){
+			console.log("Bluetooth is OFF. Please ENABLE");
+			bluetoothSerial.enable(function (){
+				console.log("Bluetooth was ENABLED")},function (){
+					console.log("Bluetooth wasn't ENABLED");
+					console.log("Application is closing now");
+					navigator.app.exitApp();
+				})
+		})
+
 
 	$scope.checkConnection=function(){
 		bluetoothSerial.isConnected(function(data){

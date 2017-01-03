@@ -49,7 +49,7 @@ angular.module('starter.controllers', [])
 				}
 			}
 			else{bluetoothSerial.clear(console.log(),console.log())}
-			console.log("Temperature data: "+$scope.currentTemperature);
+				console.log("Temperature data: "+$scope.currentTemperature);
 		},function () {console.log("failure")});	
 	}
 
@@ -125,6 +125,18 @@ angular.module('starter.controllers', [])
 	$scope.textConnect='Connect';
 	$scope.typeConnect='button button-block button-calm';
 	buttonConnect=true;
+
+	bluetoothSerial.isEnabled(function (){
+		console.log("Bluetooth is ON")},function (){
+			console.log("Bluetooth is OFF. Please ENABLE");
+			bluetoothSerial.enable(function (){
+				console.log("Bluetooth was ENABLED")},function (){
+					console.log("Bluetooth wasn't ENABLED");
+					console.log("Application is closing now");
+					navigator.app.exitApp();
+				})
+		})
+
 
 	$scope.checkConnection=function(){
 		bluetoothSerial.isConnected(function(data){
