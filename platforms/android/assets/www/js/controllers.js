@@ -123,27 +123,22 @@ angular.module('starter.controllers', [])
 	}
 
 	$scope.findDevices = function(){
+		bluetoothInformation.isBluetoothON()
 		if(bluetoothInformation.isBluetoothON())
 		{
 			$ionicLoading.show();
 			bluetoothSerial.list(function (data) {
-				console.log("List: ");
-				console.log(data);
+				console.log("List: "+data);
 				$scope.$apply(function () {
 					$scope.pairedDevices=data})},function () {
 					console.log("No devices found");
-			//$scope.addresses.push(data);
-			//$scope.addresses.push(data);
 			});
 			bluetoothSerial.discoverUnpaired(function (data) {
-				console.log("Discover Unpaired: ");
-				console.log(data);
+				console.log("Discover Unpaired: "+data);
 				$scope.$apply(function () {
 					$scope.discoveredDevices=data});$ionicLoading.hide();},function () {
 					console.log("No devices found");
 					$ionicLoading.hide();
-			//$scope.addresses.push(data);
-			//$scope.addresses.push(data);
 			});
 		}	
 	}
