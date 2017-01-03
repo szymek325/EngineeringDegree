@@ -1,6 +1,6 @@
 angular.module('starter.controllers', [])
 
-.controller('TempCtrl', function($scope, $interval, $ionicModal) {
+.controller('TempCtrl', function($scope, $interval, $ionicModal, receivedData) {
 	// INITIAL VALUES
 	$scope.currentSetpoint="value";
 	$scope.currentTemperature="value"
@@ -20,42 +20,25 @@ angular.module('starter.controllers', [])
 	$scope.tempData=JSON.stringify(logs);
 
 	function receiveData(){
-		console.log("Receiving function");
-		bluetoothSerial.readUntil("/n",function (data) {
-			console.log("Raw data received: "+data);
-			timeX=timeX+1;
-			if(data.includes("t"))
-			{
-				if(data.includes("n"))
-				{
-					var temperatureReceived=data.substring(data.indexOf('t')+1, data.indexOf('s'));
-					var setpointReceived=data.substring(data.indexOf('s')+1, data.indexOf('p'));
-					console.log(setpointReceived);
-					var pwmReceived=data.substring(data.indexOf('p')+1, data.indexOf('l'));
-					var lightsReceived=data.substring(data.indexOf('l')+1, data.indexOf('/'));
-					$scope.currentTemperature = temperatureReceived;
-					$scope.currentSetpoint = setpointReceived;
-					$scope.pwmSignal=pwmReceived;
+		receivedData.getData();
+		if(receivedData.getIsThereData())
+		{
+		$scope.currentTemperature = receivedData.getTemperature();
+		$scope.currentSetpoint = receivedData.getSetpoint();
+		$scope.pwmSignal=receivedData.getPwm();
 
-					$scope.labels.push(timeX);
-					$scope.data[0].push($scope.currentTemperature);
-					$scope.data[1].push($scope.currentSetpoint);
+		timeX=timeX+1;
 
-					bluetoothSerial.clear(console.log(),console.log());
-
-					logs.push($scope.currentTemperature);
-					console.log(logs);
-					$scope.tempData=JSON.stringify(logs);
-				}
-			}
-			else{bluetoothSerial.clear(console.log(),console.log())}
-				console.log("Temperature data: "+$scope.currentTemperature);
-		},function () {console.log("failure")});	
+		$scope.labels.push(timeX);
+		$scope.data[0].push($scope.currentTemperature);
+		$scope.data[1].push($scope.currentSetpoint);
+		}
 	}
 
 	$ionicModal.fromTemplateUrl('templates/modal.html', {
 		scope: $scope}).then(function(modal) {
-			$scope.modal = modal;})
+			$scope.modal = modal;
+		})
 
 		$scope.resetChart= function(){
 			$scope.data=[[$scope.currentTemperature],[$scope.currentSetpoint]];

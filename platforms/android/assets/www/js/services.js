@@ -2,51 +2,54 @@
 
 angular.module('starter.services', [])
 
-.factory('Chats', function() {
-  // Might use a resource here that returns a JSON array
+.service('receivedData', function() {
 
-  // Some fake testing data
-  var chats = [{
-    id: 0,
-    name: 'Ben Sparrow',
-    lastText: 'You on your way?',
-    face: 'img/ben.png'
-  }, {
-    id: 1,
-    name: 'Max Lynx',
-    lastText: 'Hey, it\'s me',
-    face: 'img/max.png'
-  }, {
-    id: 2,
-    name: 'Adam Bradleyson',
-    lastText: 'I should buy a boat',
-    face: 'img/adam.jpg'
-  }, {
-    id: 3,
-    name: 'Perry Governor',
-    lastText: 'Look at my mukluks!',
-    face: 'img/perry.png'
-  }, {
-    id: 4,
-    name: 'Mike Harrington',
-    lastText: 'This is wicked good ice cream.',
-    face: 'img/mike.png'
-  }];
+  var temperatureReceived;
+  var setpointReceived;
+  var pwmReceived;
+  var lightsReceived;
+  var isThereData;
 
   return {
-    all: function() {
-      return chats;
+    getTemperature: function () {
+      return temperatureReceived;
     },
-    remove: function(chat) {
-      chats.splice(chats.indexOf(chat), 1);
+    getSetpoint: function () {
+      return setpointReceived;
     },
-    get: function(chatId) {
-      for (var i = 0; i < chats.length; i++) {
-        if (chats[i].id === parseInt(chatId)) {
-          return chats[i];
+    getPwm: function () {
+      return pwmReceived;
+    },
+    getlights: function () {
+      return lightsReceived;
+    },
+    getIsThereData: function () {
+      return isThereData;
+    },
+    getData: function () {
+      bluetoothSerial.readUntil("/n",function (data) {
+        if(data.includes("t"))
+        {
+          if(data.includes("n"))
+          {
+            isThereData=1;
+
+            temperatureReceived=data.substring(data.indexOf('t')+1, data.indexOf('s'));
+            setpointReceived=data.substring(data.indexOf('s')+1, data.indexOf('p'));
+            pwmReceived=data.substring(data.indexOf('p')+1, data.indexOf('l'));
+            lightsReceived=data.substring(data.indexOf('l')+1, data.indexOf('/'));
+
+            bluetoothSerial.clear(console.log(),console.log());
+          }
+          else{
+            isThereData=0;
+          }
         }
-      }
-      return null;
+        else{
+          isThereData=0;
+          bluetoothSerial.clear(console.log(),console.log())
+        }
+      },function () {console.log("failure")});
     }
-  };
+  }
 });
