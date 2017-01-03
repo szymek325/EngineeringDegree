@@ -1,6 +1,6 @@
 angular.module('starter.controllers', [])
 
-.controller('TempCtrl', function($scope, $interval, $ionicModal, receivedData) {
+.controller('TempCtrl', function($scope, $interval, $ionicModal, receivedData, bluetoothInformation) {
 	// INITIAL VALUES
 	$scope.currentSetpoint="value";
 	$scope.currentTemperature="value"
@@ -12,16 +12,11 @@ angular.module('starter.controllers', [])
 	$scope.data=[[20],[20]];
 	$scope.colors = ['#ff6384','#ff6384'];
 	
-
 	var logs=[0];	
 	receiveButton=true;
 	var interval1=$interval(receiveData, 1000);
-	var dataReceived="    ";
-	var dataToSend;
 	var timeX=0;
 	
-	$scope.tempData=JSON.stringify(logs);
-
 	function receiveData(){
 		receivedData.getData();
 		if(receivedData.getIsThereData())
@@ -35,11 +30,11 @@ angular.module('starter.controllers', [])
 			$scope.labels.push(timeX);
 			$scope.data[0].push($scope.currentTemperature);
 			$scope.data[1].push($scope.currentSetpoint);
-			$scope.logs.push($scope.currentTemperature);
+
+			logs.push($scope.currentTemperature);
+			$scope.tempData=JSON.stringify(logs);
 		}
 	}
-
-
 
 	$scope.resetChart= function(){
 		$scope.data=[[$scope.currentTemperature],[$scope.currentSetpoint]];
@@ -108,7 +103,7 @@ angular.module('starter.controllers', [])
 	$scope.textConnect='Connect';
 	$scope.typeConnect='button button-block button-calm';
 
-	bluetoothInformation.isBluetoothON();
+	//bluetoothInformation.isBluetoothON();
 
 	$scope.checkConnection=function(){
 		if(!bluetoothInformation.connectionState()){
@@ -125,31 +120,32 @@ angular.module('starter.controllers', [])
 				$scope.typeConnect='button button-block button-calm';
 			})
 		}
-		
 	}
 
 	$scope.findDevices = function(){
-		$ionicLoading.show();
-		bluetoothSerial.list(function (data) {
-			console.log("List: ");
-			console.log(data);
-			$scope.$apply(function () {
-				$scope.pairedDevices=data})},function () {
-				console.log("No devices found");
+		if(bluetoothInformation.isBluetoothON())
+		{
+			$ionicLoading.show();
+			bluetoothSerial.list(function (data) {
+				console.log("List: ");
+				console.log(data);
+				$scope.$apply(function () {
+					$scope.pairedDevices=data})},function () {
+					console.log("No devices found");
 			//$scope.addresses.push(data);
 			//$scope.addresses.push(data);
-		});
-		bluetoothSerial.discoverUnpaired(function (data) {
-			console.log("Discover Unpaired: ");
-			console.log(data);
-			$scope.$apply(function () {
-				$scope.discoveredDevices=data});$ionicLoading.hide();},function () {
-				console.log("No devices found");
-				$ionicLoading.hide();
+			});
+			bluetoothSerial.discoverUnpaired(function (data) {
+				console.log("Discover Unpaired: ");
+				console.log(data);
+				$scope.$apply(function () {
+					$scope.discoveredDevices=data});$ionicLoading.hide();},function () {
+					console.log("No devices found");
+					$ionicLoading.hide();
 			//$scope.addresses.push(data);
 			//$scope.addresses.push(data);
-		});
-		
+			});
+		}	
 	}
 
 	$scope.connectMac = function(data){
@@ -166,14 +162,5 @@ angular.module('starter.controllers', [])
 				});
 		};
 	}
-
-
-})
-
-.controller("ExampleController", function($scope) {
-
-	
-
-
 
 });
