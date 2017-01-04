@@ -17,8 +17,8 @@ float minimum=-255;
 float PID(float setpointTemperature, float currentTemperature,float actualTime, float kp, float ki, float kd){
   
   error=setpointTemperature-currentTemperature;
-  Serial.print("error: ");
-  Serial.println(error);
+  //Serial.print("error: ");
+  //Serial.println(error);
   dt=(float)(actualTime-previousTime);
   dt=dt/60000; //skalowanie 1 milisekunda = 1/60000 min
   integral= integral+(error*dt);

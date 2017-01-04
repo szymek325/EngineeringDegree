@@ -21,7 +21,7 @@ int j;
 int d;
 int r;
 // received data
-String receivedData="0";
+String receivedData;
 String receivedSetpointS="0";
 String receivedKiS="0";
 String receivedKpS="0";
@@ -35,9 +35,10 @@ int receivedKdInt;
 int receivedRegulatorTypeInt;
 
 
+
 void bluetoothReceive(){
   receivedData = Serial.readStringUntil('\n');
-  if(receivedData.length()>=10)
+  if(receivedData.length()>=5)
   {
 
     for(int i=0; i<receivedData.length();i++)
@@ -45,20 +46,25 @@ void bluetoothReceive(){
       if(receivedData[i]=='t'){
         t=i;
       }
-      else if(receivedData[i]='p'){
+      else if(receivedData[i]=='p'){
         p=i;
       }
-      else if(receivedData[i]='i'){
+      else if(receivedData[i]=='i'){
         j=i;
       }
-      else if(receivedData[i]='d'){
+      else if(receivedData[i]=='d'){
         d=i;
       }
-      else if(receivedData[i]='r'){
+      else if(receivedData[i]=='r'){
         r=i;
       }
     }
-        
+        /*Serial.println("Znaczniki");
+        Serial.println(t);
+        Serial.println(p);
+        Serial.println(j);
+        Serial.println(d);
+        Serial.println(r);*/
     /*for(int i=1;i<receivedData.length()+1;i++)
     {
       dtemperatureReading[i-1]=receivedData[i];
@@ -74,6 +80,14 @@ void bluetoothReceive(){
     receivedKiInt=receivedKiS.toInt();
     receivedKdInt=receivedKdS.toInt();
     receivedRegulatorTypeInt=receivedRegulatorTypeS.toInt();
+
+    /*Serial.println("przetworzonedane");
+    Serial.println(receivedSetpointS);
+    Serial.println(receivedKpS);
+    Serial.println(receivedKiS);
+    Serial.println(receivedKdS);
+    Serial.println(receivedRegulatorTypeS);*/
+    
     
     temperatureSetpoint=receivedSetpointInt;
     kp= receivedKpInt;
@@ -89,12 +103,13 @@ void bluetoothSend(){
   temperatureReading = TempRead();
 
   //Serial.print("I send: ");
-  Serial.print("t");
-  Serial.print(temperatureReading);
-  Serial.print("s");
-  Serial.print(temperatureSetpoint);
-  Serial.print("p");
-  Serial.print(pwm);
+  //Serial.print("t");
+  //Serial.print(temperatureReading);
+  //Serial.print("s");
+  //Serial.print(temperatureSetpoint);
+  //Serial.print("p");
+  //Serial.print(pwm);
+  Serial.print(receivedData);
   Serial.println("/n");
   
   setLCD(temperatureSetpoint,temperatureReading,pwm);
