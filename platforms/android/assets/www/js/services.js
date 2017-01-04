@@ -7,7 +7,7 @@ angular.module('starter.services', [])
   var temperatureReceived;
   var setpointReceived;
   var pwmReceived;
-  var lightsReceived;
+  //var lightsReceived;
   var isThereData;
 
   return {
@@ -20,14 +20,15 @@ angular.module('starter.services', [])
     getPwm: function () {
       return pwmReceived;
     },
-    getlights: function () {
-      return lightsReceived;
-    },
+    //getlights: function () {
+    //  return lightsReceived;
+    //},
     getIsThereData: function () {
       return isThereData;
     },
     getData: function () {
       bluetoothSerial.readUntil("/n",function (data) {
+        console.log(data);
         if(data.includes("t"))
         {
           if(data.includes("n"))
@@ -36,8 +37,8 @@ angular.module('starter.services', [])
 
             temperatureReceived=data.substring(data.indexOf('t')+1, data.indexOf('s'));
             setpointReceived=data.substring(data.indexOf('s')+1, data.indexOf('p'));
-            pwmReceived=data.substring(data.indexOf('p')+1, data.indexOf('l'));
-            lightsReceived=data.substring(data.indexOf('l')+1, data.indexOf('/'));
+            pwmReceived=data.substring(data.indexOf('p')+1, data.indexOf('/'));
+            //lightsReceived=data.substring(data.indexOf('l')+1, data.indexOf('/'));
 
             bluetoothSerial.clear(console.log(),console.log());
           }

@@ -97,21 +97,21 @@ angular.module('starter.controllers', [])
 
 .controller('LightCtrl', function($scope) {
 	// INITIAL VALUES
-	$scope.newSetpoint=22;
-	$scope.kpValue=15;
-	$scope.kiValue=5;
-	$scope.kdValue=2;
-	$scope.regulatorType="PID";
+	//$scope.newSetpoint=22;
+	//$scope.kpValue=15;
+	//$scope.kiValue=5;
+	//$scope.kdValue=2;
+	//$scope.regulatorType="PID";
 	var regulator;
 
 	$scope.sendSetpoint= function(){
-		if($scope.regulatorType=="PID"){
+		if(regulatorType.value=="PID"){
 			regulator=0;
 		}
 		else{
 			regulator=1;
 		}
-		bluetoothSerial.write("t"+$scope.newSetpoint+"p"+$scope.kpValue+"i"+$scope.kiValue+"d"+$scope.kdValue+"r"+regulator+"\n", function (data){
+		bluetoothSerial.write("t"+newSetpoint+"p"+kp.value+"i"+ki.value+"d"+kd.value+"r"+regulator+"\n", function (data){
 			console.log("Sending process was"+data+". This:  was send");alert("Temperature Setpoint was send")}, function (data){
 				console.log("Nothing was send");alert("Data was not send")});
 	}
