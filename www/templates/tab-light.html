@@ -1,38 +1,41 @@
 <ion-view view-title="Light Control">
   <ion-content>
-    <ion-list style="text-align:center">
-      <ion-item>
-        <h1>Temperature Control</h1>
-      </ion-item>
-      <ion-item>
-        <button ng-click="Add2()"  class='button button-block button-balanced'>
-          ++
-        </button>
-        <div class="row"> 
-          <div class="col">
-            <button  ng-click="Substract()" class='button button-block button-assertive'>
-              -
-            </button>
-          </div>
-          <div class="col">
-            <br>
-            <font size="5">{{newSetpoint}}</font>
-          </div>
-          <div class="col">
-            <button ng-click="Add()"  class='button button-block button-balanced'>
-              +
-            </button>
-          </div>
+    <ion-item>
+      <button ng-click="Add()"  class='button button-block button-balanced'>
+        +
+      </button>
+      <button ng-click="sendSetpoint()" class='button button-block button-light'>
+        {{newSetpoint}}
+      </button>
+      <button  ng-click="Substract()" class='button button-block button-assertive'>
+        -
+      </button>
+    </ion-item>
+    <ion-item>
+      <div class="row">
+        <div class="col">
+          <button ng-click="Click1()" class='{{type1}}'>
+            Scene 1 {{text1}}
+          </button>
         </div>
-        <button  ng-click="Substract2()" class='button button-block button-assertive'>
-          --
-        </button>
-      </ion-item>
-      <ion-item> 
-        <button ng-click="sendSetpoint()" class="button button-block button-positive">
-          Confirm new setpoint
-        </button>
-      </ion-item>
-   </ion-list>
- </ion-content>
+        <div class="col">
+          <button ng-click="Click2()" class='{{type2}}'>
+            Scene 2 {{text2}}
+          </button>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <button ng-click="Click3()" class='{{type3}}'>
+            Scene 3 {{text3}}
+          </button>
+        </div>
+        <div class="col">
+          <button ng-click="Click4()" class='{{type4}}'>
+            Scene 4 {{text4}}
+          </button>
+        </div>
+      </div>
+    </ion-item>
+  </ion-content>
 </ion-view>

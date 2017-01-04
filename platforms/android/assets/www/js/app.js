@@ -32,7 +32,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services','c
   $stateProvider
 
   // setup an abstract state for the tabs directive
-    .state('tab', {
+  .state('tab', {
     url: '/tab',
     abstract: true,
     templateUrl: 'templates/tabs.html'
@@ -49,16 +49,15 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services','c
       }
     }
   })
-
   .state('tab.light', {
-      url: '/light',
-      views: {
-        'tab-light': {
-          templateUrl: 'templates/tab-light.html',
-          controller: 'LightCtrl'
-        }
+    url: '/light',
+    views: {
+      'tab-light': {
+        templateUrl: 'templates/tab-light.html',
+        controller: 'LightCtrl'
       }
-    })
+    }
+  })
   .state('tab.bluetooth', {
     url: '/bluetooth',
     views: {

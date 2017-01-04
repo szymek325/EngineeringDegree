@@ -5,33 +5,36 @@ angular.module('starter.controllers', [])
 	$scope.currentSetpoint="value";
 	$scope.currentTemperature="value"
 	$scope.pwmSignal="value"
-	$scope.type='button button-block button-positive';
-	$scope.startStop="Start";
-	$scope.labels = [0];
-	$scope.series = ['Actual Temperature'];
-	$scope.data=[[20],[20],[0]];
+
+	$scope.labels1 = [0];
+	$scope.series1 = ['Actual Temperature'];
+	$scope.data1=[[20],[20]];
 	$scope.colors = ['#ff6384','#ff6384'];
-	
-	var logs=[0];	
-	receiveButton=true;
-	var interval1=$interval(receiveData, 1000);
+
+	$scope.labels2 = [0];
+	$scope.series2 = ['PWM'];
+	$scope.data2=[0];
+	$scope.color2 = ['#ff6384'];
+
+	var interval1=$interval(receiveData, 2000);
 	var timeX=0;
+	var logs=[0];	
 	
 	function receiveData(){
+		timeX=timeX+2;
 		receivedData.getData();
-		timeX=timeX+1;
 		if(receivedData.getIsThereData())
 		{
 			$scope.currentTemperature = receivedData.getTemperature();
 			$scope.currentSetpoint = receivedData.getSetpoint();
 			$scope.pwmSignal=receivedData.getPwm();
 
-			
+			$scope.labels1.push(timeX);
+			$scope.data1[0].push($scope.currentTemperature);
+			$scope.data1[1].push($scope.currentSetpoint);
 
-			$scope.labels.push(timeX);
-			$scope.data[0].push($scope.currentTemperature);
-			$scope.data[1].push($scope.currentSetpoint);
-			$scope.data[2].push($scope.pwmSignal);
+			$scope.labels2.push(timeX);
+			$scope.data2.push($scope.pwmSignal);
 
 			logs.push($scope.currentTemperature);
 			$scope.tempData=JSON.stringify(logs);
@@ -39,13 +42,13 @@ angular.module('starter.controllers', [])
 	}
 
 	$scope.resetChart= function(){
-		$scope.data=[[$scope.currentTemperature],[$scope.currentSetpoint],[$scope.pwmSignal]];
-		$scope.labels=[timeX];
+		$scope.data1=[[receivedData.getTemperature()],[receivedData.getSetpoint()]];
+		$scope.labels1=[timeX];
+		$scope.data2=[receivedData.getPwm()];
+		$scope.labels2=[timeX];
 	}
 
-	$scope.datasetOverride = [{ yAxisID: 'y-axis-1' }, { yAxisID: 'y-axis-3' }];
-
-	$scope.options = {
+	$scope.options1 = {
 		animation:false,
 		scales: {
 			yAxes: [
@@ -54,26 +57,27 @@ angular.module('starter.controllers', [])
 				type: 'linear',
 				display: true,
 				position: 'left',
-				alignTicks: false,
-				endOnTick: false,
-				title: {
-					text: 'Temperature'
-				},
-			},
+			}],
+			xAxes: [{
+				//type: 'time',
+				ticks: {
+					autoSkip:true,
+					maxTicksLimit:5,
+				} 
+			}],	
+		},
+	}
+
+	$scope.options2 = {
+		animation:false,
+		scales: {
+			yAxes: [
 			{
-				id: 'y-axis-3',
-				max: 255,
-				min: -255,
+				id: 'y-axis-1',
 				type: 'linear',
 				display: true,
-				position: 'right',
-				alignTicks: false,
-				endOnTick: false,
-				title: {
-					text: 'PWM'
-				},
-			}
-			],
+				position: 'left',
+			}],
 			xAxes: [{
 				//type: 'time',
 				ticks: {
@@ -87,19 +91,35 @@ angular.module('starter.controllers', [])
 	$ionicModal.fromTemplateUrl('templates/modal.html', {
 		scope: $scope}).then(function(modal) {
 			$scope.modal = modal;
-		})
-
 	})
+
+})
 
 .controller('LightCtrl', function($scope) {
 	// INITIAL VALUES
 	$scope.newSetpoint=22;
 
+	$scope.text1='ON';
+	$scope.type1='button button-block button-positive';
+	buttonBool1=false;
+
+	$scope.text2='ON';
+	$scope.type2='button button-block button-positive';
+	buttonBool2=false;
+
+	$scope.text3='ON';
+	$scope.type3='button button-block button-positive';
+	buttonBool3=false;
+
+	$scope.text4='ON';
+	$scope.type4='button button-block button-positive';
+	buttonBool4=false;
+
 	$scope.sendSetpoint= function(){
 		dataToSend=$scope.newSetpoint;
 		bluetoothSerial.write("t"+dataToSend+"\n", function (data){
-			console.log("Sending process was"+data+". This: "+dataToSend+" was send");}, function (data){
-				console.log("Nothing was send");});
+			console.log("Sending process was"+data+". This: "+dataToSend+" was send");alert("Temperature Setpoint was send")}, function (data){
+				console.log("Nothing was send");alert("Data was not send")});
 	}
 
 	$scope.Add= function(){
@@ -118,7 +138,11 @@ angular.module('starter.controllers', [])
 		$scope.newSetpoint=$scope.newSetpoint-2;
 	}
 
+
+
+
 })
+
 
 .controller('BlueCtrl', function($scope, $timeout, $interval, $ionicLoading, bluetoothInformation) {
 	// INITIAL VALUES

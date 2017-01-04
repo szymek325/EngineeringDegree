@@ -145,11 +145,61 @@ $scope.receiveButton= function(){
             </button>
           </div>
         </div>
-        <button ng-click="ClickAll()" class='{{typeAll}}'>
-         All {{textAll}}
-       </button>
      </ion-item>
 
            <button class="{{type}}" ng-click="receiveButton()">
         {{startStop}} receiving
       </button>
+
+
+      
+        <ion-list style="text-align:center">
+      <ion-item>
+        <h1>Temperature Control</h1>
+      </ion-item>
+      <ion-item>
+        <button ng-click="Add2()"  class='button button-block button-balanced'>
+          ++
+        </button>
+        <div class="row"> 
+          <div class="col">
+            <button  ng-click="Substract()" class='button button-block button-assertive'>
+              -
+            </button>
+          </div>
+          <div class="col">
+            <br>
+            <font size="5">{{newSetpoint}}</font>
+          </div>
+          <div class="col">
+            <button ng-click="Add()"  class='button button-block button-balanced'>
+              +
+            </button>
+          </div>
+        </div>
+        <button  ng-click="Substract2()" class='button button-block button-assertive'>
+          --
+        </button>
+      </ion-item>
+      <ion-item> 
+        <button ng-click="sendSetpoint()" class="button button-block button-positive">
+          Confirm new setpoint
+        </button>
+      </ion-item>
+   </ion-list>
+
+
+     <ion-tab title="Data" icon-off="ion-ios-lightbulb" icon-on="ion-ios-lightbulb" href="#/tab/data">
+    <ion-nav-view name="tab-data"></ion-nav-view>
+  </ion-tab>
+
+
+    .state('tab.data', {
+    url: '/data',
+    views: {
+      'tab-data': {
+        templateUrl: 'templates/tab-data.html',
+        controller: 'DataCtrl'
+      }
+    }
+  })

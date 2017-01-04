@@ -1,9 +1,6 @@
 <ion-view view-title="Temperature Control">
   <ion-content class="padding" style="text-align:center">
     <ion-item>
-      <h1>Temperature</h1>
-    </ion-item>
-    <ion-item>
       <div class="row">
         <div class="col">
           <font size="5">Setpoint</font>
@@ -29,24 +26,30 @@
         </div>
       </div>
     </ion-item>
+
     <div class="card">
       <div class="item item-divider">
-        Line Chart
+        Temperature Chart
       </div>
       <div class="item item-text-wrap">
-        <canvas id="line" class="chart chart-line" chart-data="data" chart-labels="labels" chart-legend="true" chart-series="series" chart-options="options"></canvas>
+        <canvas id="line1" class="chart chart-line" chart-data="data1" chart-labels="labels1" chart-legend="true" chart-series="series1" chart-options="options1"></canvas>
+      </div>
+      <div class="item item-divider">
+        PWM Chart
       </div>
       <div class="item item-text-wrap">
-        <button class='button button-block button-assertive' ng-click="resetChart()">
-          reset chart
-        </button>
+        <canvas id="line2" class="chart chart-line" chart-data="data2" chart-labels="labels2" chart-legend="true" chart-series="series2" chart-options="options2"></canvas>
       </div>
     </div>
-    <ion-item>
-      <button class="button button-block button-positive" ng-click="modal.show()">
-        Show received temperature data
-      </button>
-    </ion-item>
+
+
+    <button class="button button-block button-positive" ng-click="modal.show()">
+      Show received temperature data
+    </button>
+    <button class='button button-block button-assertive' ng-click="resetChart()">
+      reset chart
+    </button>
+    
   </ion-content>
 </ion-view>
 
