@@ -4,68 +4,105 @@
 #include "regulator.h"
 #include "SimpleTimer.h"
 
-float temperatureSetpoint = 24;
+
+//program variables
 SimpleTimer timer;
-String odebraneDane;
-String dTemp="000";
-int Temp;
-float temp;
-String lights="0000";
 float pwm;
-int odczyt;
+float temperatureReading;
+int temperatureSetpoint = 22;
+int kp=15;
+int ki=5;
+int kd=2;
+int regulatorType=0;
+// main points in string data
+int t;
+int p;
+int j;
+int d;
+int r;
+// received data
+String receivedData="0";
+String receivedSetpointS="0";
+String receivedKiS="0";
+String receivedKpS="0";
+String receivedKdS="0";
+String receivedRegulatorTypeS="0";
+//received data in INT
+int receivedSetpointInt;
+int receivedKiInt;
+int receivedKpInt;
+int receivedKdInt;
+int receivedRegulatorTypeInt;
+
 
 void bluetoothReceive(){
-  odebraneDane = Serial.readStringUntil('\n');
-  //Serial.print("I received: ");
-  //Serial.println(odebraneDane);
-  if(odebraneDane.length()>=1)
+  receivedData = Serial.readStringUntil('\n');
+  if(receivedData.length()>=10)
   {
-    for(int i=1;i<odebraneDane.length()+1;i++)
+
+    for(int i=0; i<receivedData.length();i++)
     {
-      dTemp[i-1]=odebraneDane[i];
+      if(receivedData[i]=='t'){
+        t=i;
+      }
+      else if(receivedData[i]='p'){
+        p=i;
+      }
+      else if(receivedData[i]='i'){
+        j=i;
+      }
+      else if(receivedData[i]='d'){
+        d=i;
+      }
+      else if(receivedData[i]='r'){
+        r=i;
+      }
     }
-    //Serial.print("przerobioneDane: ");
-    //Serial.println(dTemp);                
-    Temp=dTemp.toInt();
-    //Serial.print("w Incie: ");
-    //Serial.println(Temp);
-    temperatureSetpoint=Temp;
+        
+    /*for(int i=1;i<receivedData.length()+1;i++)
+    {
+      dtemperatureReading[i-1]=receivedData[i];
+    }*/
+    receivedSetpointS=receivedData.substring(t+1,p);
+    receivedKpS=receivedData.substring(p+1,j);
+    receivedKiS=receivedData.substring(j+1,d);
+    receivedKdS=receivedData.substring(d+1,r);
+    receivedRegulatorTypeS=receivedData.substring(r+1,receivedData.length()-1);
+
+    receivedSetpointInt=receivedSetpointS.toInt();
+    receivedKpInt=receivedKpS.toInt();
+    receivedKiInt=receivedKiS.toInt();
+    receivedKdInt=receivedKdS.toInt();
+    receivedRegulatorTypeInt=receivedRegulatorTypeS.toInt();
+    
+    temperatureSetpoint=receivedSetpointInt;
+    kp= receivedKpInt;
+    ki=receivedKiInt;
+    kd=receivedKdInt;
+    regulatorType=receivedRegulatorTypeInt;
+    
   }
   else {}
 }
 
 void bluetoothSend(){
-  temp = TempRead();
-
-  /*Serial1.print("t");
-  Serial1.print(temp);
-  Serial1.print("s");
-  Serial1.print(temperatureSetpoint);
-  Serial1.print("p");
-  Serial1.print(pwm);
-  Serial1.print("l");
-  Serial1.print(lights);  
-  Serial1.println("/n");*/
+  temperatureReading = TempRead();
 
   //Serial.print("I send: ");
   Serial.print("t");
-  Serial.print(temp);
+  Serial.print(temperatureReading);
   Serial.print("s");
   Serial.print(temperatureSetpoint);
   Serial.print("p");
   Serial.print(pwm);
-  Serial.print("l");
-  Serial.print(lights);
   Serial.println("/n");
   
-  setLCD(temperatureSetpoint,temp,pwm);
+  setLCD(temperatureSetpoint,temperatureReading,pwm);
 }
 
 void regulation(){
-  pwm=PID(temperatureSetpoint, temp,millis(), 30 , 5, 0); //  float pwm=PID(zadanaTemp, temp,millis(), 15 , 5, 2)
+  pwm=PID(temperatureSetpoint, temperatureReading,millis(), kp , ki, kd); //  float pwm=PID(zadanaTemp, temp,millis(), 15 , 5, 2)
   Motor_Control(pwm);
-  //Serial.print("PWM calculated: ");
-  //Serial.println(pwm);
 }
 
 
@@ -88,28 +125,7 @@ void loop(void) {
   analogWrite(9, 255);
   analogWrite(10, 255);
   
-  //digitalWrite(12,LOW);
-  //digitalWrite(13,HIGH);
-  //analogWrite(11,255);
 }
-
-
-
-  //Motor_Control(pwm); /////zmienione na POTRZEBY TESTU
-  //Fan(200);
-  
-  /*pinMode(IN1, OUTPUT);
-  pinMode(IN2, OUTPUT);
-  pinMode(ENA, OUTPUT);
-  pinMode(8, OUTPUT);
-  pinMode(9, OUTPUT);
-
-  pinMode(10, OUTPUT);
-  pinMode(11, OUTPUT);
-  pinMode(12, OUTPUT);
-  pinMode(13, OUTPUT);
-  pinMode(14, INPUT);
-  pinMode(15, INPUT);*/
 
   //Wykresy
   /*Serial.print(zadanaTemp);
