@@ -203,3 +203,33 @@ $scope.receiveButton= function(){
       }
     }
   })
+
+
+      <ion-item>
+      <button ng-click="Add()"  class='button button-block button-balanced'>
+        +
+      </button>
+      <button ng-click="sendSetpoint()" class='button button-block button-light'>
+        {{newSetpoint}}
+      </button>
+      <button  ng-click="Substract()" class='button button-block button-assertive'>
+        -
+      </button>
+    </ion-item>
+
+
+    	$scope.Add= function(){
+		$scope.newSetpoint=$scope.newSetpoint+1;
+	}
+
+	$scope.Substract= function(){
+		$scope.newSetpoint=$scope.newSetpoint-1;
+	}
+
+	$scope.Add2= function(){
+		$scope.newSetpoint=$scope.newSetpoint+2;
+	}
+
+	$scope.Substract2= function(){
+		$scope.newSetpoint=$scope.newSetpoint-2;
+	}

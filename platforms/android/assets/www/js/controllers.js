@@ -98,47 +98,23 @@ angular.module('starter.controllers', [])
 .controller('LightCtrl', function($scope) {
 	// INITIAL VALUES
 	$scope.newSetpoint=22;
-
-	$scope.text1='ON';
-	$scope.type1='button button-block button-positive';
-	buttonBool1=false;
-
-	$scope.text2='ON';
-	$scope.type2='button button-block button-positive';
-	buttonBool2=false;
-
-	$scope.text3='ON';
-	$scope.type3='button button-block button-positive';
-	buttonBool3=false;
-
-	$scope.text4='ON';
-	$scope.type4='button button-block button-positive';
-	buttonBool4=false;
+	$scope.kpValue=15;
+	$scope.kiValue=5;
+	$scope.kdValue=2;
+	$scope.regulatorType="PID";
+	var regulator;
 
 	$scope.sendSetpoint= function(){
-		dataToSend=$scope.newSetpoint;
-		bluetoothSerial.write("t"+dataToSend+"\n", function (data){
-			console.log("Sending process was"+data+". This: "+dataToSend+" was send");alert("Temperature Setpoint was send")}, function (data){
+		if($scope.regulatorType=="PID"){
+			regulator=0;
+		}
+		else{
+			regulator=1;
+		}
+		bluetoothSerial.write("t"+$scope.newSetpoint+"p"+$scope.kpValue+"i"+$scope.kiValue+"d"+$scope.kdValue+"r"+regulator+"\n", function (data){
+			console.log("Sending process was"+data+". This:  was send");alert("Temperature Setpoint was send")}, function (data){
 				console.log("Nothing was send");alert("Data was not send")});
 	}
-
-	$scope.Add= function(){
-		$scope.newSetpoint=$scope.newSetpoint+1;
-	}
-
-	$scope.Substract= function(){
-		$scope.newSetpoint=$scope.newSetpoint-1;
-	}
-
-	$scope.Add2= function(){
-		$scope.newSetpoint=$scope.newSetpoint+2;
-	}
-
-	$scope.Substract2= function(){
-		$scope.newSetpoint=$scope.newSetpoint-2;
-	}
-
-
 
 
 })

@@ -1,26 +1,29 @@
 <ion-view view-title="Control">
   <ion-content>
-    <ion-item>
-      <button ng-click="Add()"  class='button button-block button-balanced'>
-        +
-      </button>
-      <button ng-click="sendSetpoint()" class='button button-block button-light'>
-        {{newSetpoint}}
-      </button>
-      <button  ng-click="Substract()" class='button button-block button-assertive'>
-        -
-      </button>
-    </ion-item>
     <div class="list">
+      <button ng-click="sendSetpoint()" class="button button-block button-balanced">
+      Confirm new settings
+      </button>
       <label class="item item-input item-select">
         <div class="input-label">
           Regulator type
         </div>
-        <select>
+        <select ng-model="regulatorType">
           <option selected>PID</option>
           <option>Hysteresis</option>
         </select>
       </label>
+      
+      <div class="row">
+        <div class="col col-50" align="center">Temperature</div>
+        <div class="col col-50" align="center">{{newSetpoint}}</div>
+      </div>
+      <div class="item range range-positive">
+        <i class="icon ion-thermometer-outline"></i>
+        <input type="range" name="kp" min="10" max="30" value="24" ng-model="newSetpoint">
+        <i class="icon ion-thermometer"></i>
+      </div>
+
       <div class="row">
         <div class="col col-50" align="center">KP</div>
         <div class="col col-50" align="center">{{kpValue}}</div>
