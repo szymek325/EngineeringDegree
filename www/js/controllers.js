@@ -9,7 +9,7 @@ angular.module('starter.controllers', [])
 	$scope.startStop="Start";
 	$scope.labels = [0];
 	$scope.series = ['Actual Temperature'];
-	$scope.data=[[20],[20]];
+	$scope.data=[[20],[20],[0]];
 	$scope.colors = ['#ff6384','#ff6384'];
 	
 	var logs=[0];	
@@ -19,17 +19,19 @@ angular.module('starter.controllers', [])
 	
 	function receiveData(){
 		receivedData.getData();
+		timeX=timeX+1;
 		if(receivedData.getIsThereData())
 		{
 			$scope.currentTemperature = receivedData.getTemperature();
 			$scope.currentSetpoint = receivedData.getSetpoint();
 			$scope.pwmSignal=receivedData.getPwm();
 
-			timeX=timeX+1;
+			
 
 			$scope.labels.push(timeX);
 			$scope.data[0].push($scope.currentTemperature);
 			$scope.data[1].push($scope.currentSetpoint);
+			$scope.data[2].push($scope.pwmSignal);
 
 			logs.push($scope.currentTemperature);
 			$scope.tempData=JSON.stringify(logs);
@@ -37,9 +39,11 @@ angular.module('starter.controllers', [])
 	}
 
 	$scope.resetChart= function(){
-		$scope.data=[[$scope.currentTemperature],[$scope.currentSetpoint]];
+		$scope.data=[[$scope.currentTemperature],[$scope.currentSetpoint],[$scope.pwmSignal]];
 		$scope.labels=[timeX];
 	}
+
+	$scope.datasetOverride = [{ yAxisID: 'y-axis-1' }, { yAxisID: 'y-axis-3' }];
 
 	$scope.options = {
 		animation:false,
@@ -50,7 +54,26 @@ angular.module('starter.controllers', [])
 				type: 'linear',
 				display: true,
 				position: 'left',
-			}],
+				alignTicks: false,
+				endOnTick: false,
+				title: {
+					text: 'Temperature'
+				},
+			},
+			{
+				id: 'y-axis-3',
+				max: 255,
+				min: -255,
+				type: 'linear',
+				display: true,
+				position: 'right',
+				alignTicks: false,
+				endOnTick: false,
+				title: {
+					text: 'PWM'
+				},
+			}
+			],
 			xAxes: [{
 				//type: 'time',
 				ticks: {
@@ -123,7 +146,6 @@ angular.module('starter.controllers', [])
 	}
 
 	$scope.findDevices = function(){
-		bluetoothInformation.isBluetoothON()
 		if(bluetoothInformation.isBluetoothON())
 		{
 			$ionicLoading.show();
@@ -132,14 +154,14 @@ angular.module('starter.controllers', [])
 				$scope.$apply(function () {
 					$scope.pairedDevices=data})},function () {
 					console.log("No devices found");
-			});
+				});
 			bluetoothSerial.discoverUnpaired(function (data) {
 				console.log("Discover Unpaired: "+data);
 				$scope.$apply(function () {
 					$scope.discoveredDevices=data});$ionicLoading.hide();},function () {
 					console.log("No devices found");
 					$ionicLoading.hide();
-			});
+				});
 		}	
 	}
 
