@@ -11,31 +11,46 @@
         -
       </button>
     </ion-item>
+    <div class="list">
+      <label class="item item-input item-select">
+        <div class="input-label">
+          Regulator type
+        </div>
+        <select>
+          <option selected>PID</option>
+          <option>Hysteresis</option>
+        </select>
+      </label>
+      <div class="row">
+        <div class="col col-50" align="center">KP</div>
+        <div class="col col-50" align="center">{{kpValue}}</div>
+      </div>
+      <div class="item range range-positive">
+        <i>0</i>
+        <input type="range" name="kp" min="0" max="50" value="15" ng-model="kpValue">
+        <i>50</i>
+      </div>
+      <div class="row">
+        <div class="col col-50" align="center">KI</div>
+        <div class="col col-50" align="center">{{kiValue}}</div>
+      </div>
+      <div class="item range range-positive">
+        <i>0</i>
+        <input type="range" name="ki" min="0" max="10" value="2" ng-model="kiValue">
+
+        <i>10</i>
+      </div>
+      <div class="row">
+        <div class="col col-50" align="center">KD</div>
+        <div class="col col-50" align="center">{{kdValue}}</div>
+      </div>
+      <div class="item range range-positive">
+        <i>0</i>
+        <input type="range" name="kd" min="0" max="10" value="1" ng-model="kdValue">
+        <i>10</i>
+      </div>
+    </div>
     <ion-item>
-      <div class="row">
-        <div class="col">
-          <button ng-click="Click1()" class='{{type1}}'>
-            Scene 1 {{text1}}
-          </button>
-        </div>
-        <div class="col">
-          <button ng-click="Click2()" class='{{type2}}'>
-            Scene 2 {{text2}}
-          </button>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col">
-          <button ng-click="Click3()" class='{{type3}}'>
-            Scene 3 {{text3}}
-          </button>
-        </div>
-        <div class="col">
-          <button ng-click="Click4()" class='{{type4}}'>
-            Scene 4 {{text4}}
-          </button>
-        </div>
-      </div>
     </ion-item>
   </ion-content>
 </ion-view>
