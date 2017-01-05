@@ -20,6 +20,10 @@ angular.module('starter.controllers', [])
 	$scope.data2=[0];
 	$scope.color2 = ['#ff6384'];
 
+	chartPermission=1;
+	$scope.chartStartStop='Stop';
+	$scope.chartButtonStyle='button button-block button-assertive'
+
 	var interval1=$interval(receiveData, 2000);
 	var timeX=0;
 	var logs=[0];	
@@ -43,16 +47,18 @@ angular.module('starter.controllers', [])
 			}
 			
 
+			if(chartPermission){
+				$scope.labels1.push(timeX);
+				$scope.data1[0].push($scope.currentTemperature);
+				$scope.data1[1].push($scope.currentSetpoint);
 
-			$scope.labels1.push(timeX);
-			$scope.data1[0].push($scope.currentTemperature);
-			$scope.data1[1].push($scope.currentSetpoint);
+				$scope.labels2.push(timeX);
+				$scope.data2.push($scope.pwmSignal);
 
-			$scope.labels2.push(timeX);
-			$scope.data2.push($scope.pwmSignal);
+				logs.push($scope.currentTemperature);
+				$scope.tempData=JSON.stringify(logs);
+			}
 
-			logs.push($scope.currentTemperature);
-			$scope.tempData=JSON.stringify(logs);
 		}
 	}
 
@@ -61,6 +67,19 @@ angular.module('starter.controllers', [])
 		$scope.labels1=[timeX];
 		$scope.data2=[receivedData.getPwm()];
 		$scope.labels2=[timeX];
+	}
+
+	$scope.chartOnOff= function(){
+		if(chartPermission){
+			chartPermission=0;
+			$scope.chartStartStop='Start';
+			$scope.chartButtonStyle='button button-block button-positive';
+		}
+		else{
+			chartPermission=1;
+			$scope.chartStartStop='Stop';
+			$scope.chartButtonStyle='button button-block button-assertive';
+		}
 	}
 
 	$scope.options1 = {
