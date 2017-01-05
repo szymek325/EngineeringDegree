@@ -37,8 +37,8 @@ int receivedRegulatorTypeInt;
 
 
 void bluetoothReceive(){
-  receivedData = Serial.readStringUntil('\n');
-  if(receivedData.length()>=10)
+  receivedData = Serial.readStringUntil('/n');
+  if(receivedData.length()>=12)
   {
 
     for(int i=0; i<receivedData.length();i++)
