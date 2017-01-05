@@ -7,6 +7,10 @@ angular.module('starter.services', [])
   var temperatureReceived;
   var setpointReceived;
   var pwmReceived;
+  var kpReceived;
+  var kiReceived;
+  var kdReceived;
+  var regulatorReceived;
   //var lightsReceived;
   var isThereData;
 
@@ -19,6 +23,18 @@ angular.module('starter.services', [])
     },
     getPwm: function () {
       return pwmReceived;
+    },
+    getKp: function () {
+      return kpReceived;
+    },
+    getKi: function () {
+      return kiReceived;
+    },
+    getKd: function () {
+      return kdReceived;
+    },
+    getRegulator: function () {
+      return regulatorReceived;
     },
     //getlights: function () {
     //  return lightsReceived;
@@ -37,7 +53,11 @@ angular.module('starter.services', [])
 
             temperatureReceived=data.substring(data.indexOf('t')+1, data.indexOf('s'));
             setpointReceived=data.substring(data.indexOf('s')+1, data.indexOf('p'));
-            pwmReceived=data.substring(data.indexOf('p')+1, data.indexOf('/'));
+            pwmReceived=data.substring(data.indexOf('p')+1, data.indexOf('k'));
+            kpReceived=data.substring(data.indexOf('k')+1, data.indexOf('i'));
+            kiReceived=data.substring(data.indexOf('i')+1, data.indexOf('d'));
+            kdReceived=data.substring(data.indexOf('d')+1, data.indexOf('r'));
+            regulatorReceived=data.substring(data.indexOf('r')+1, data.indexOf('/'));
             //lightsReceived=data.substring(data.indexOf('l')+1, data.indexOf('/'));
 
             bluetoothSerial.clear(console.log(),console.log());

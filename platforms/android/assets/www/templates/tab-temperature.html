@@ -3,28 +3,63 @@
     <ion-item>
       <div class="row">
         <div class="col">
-          <font size="5">Setpoint</font>
+          <font size="5">Regulator</font>
         </div>
         <div class="col">
-          <font size="5">{{currentSetpoint}}</font>
+          <font size="5">{{regulatorType}}</font>
         </div>
       </div>
+
+
       <div class="row">
-        <div class="col">
-          <font size="5">Current</font>
+        <div class="col col-25">
+          <font size="4">Setpoint</font>
         </div>
-        <div class="col">
-          <font size="5">{{currentTemperature}}</font>
+        <div class="col col-25">
+          <font size="4">{{currentSetpoint}}</font>
+        </div>
+
+        <div class="col col-25">
+          <font size="4">Kp</font>
+        </div>
+        <div class="col col-25">
+          <font size="4">{{kpValue}}</font>
         </div>
       </div>
+
+
       <div class="row">
-        <div class="col">
-          <font size="5">PWM</font>
+        <div class="col col-25">
+          <font size="4">Current</font>
         </div>
-        <div class="col">
-          <font size="5">{{pwmSignal}}</font>
+        <div class="col col-25">
+          <font size="4">{{currentTemperature}}</font>
+        </div>
+        <div class="col col-25">
+          <font size="4">Ki</font>
+        </div>
+        <div class="col col-25">
+          <font size="4">{{kiValue}}</font>
         </div>
       </div>
+
+
+      <div class="row">
+        <div class="col col-25">
+          <font size="4">PWM</font>
+        </div>
+        <div class="col col-25">
+          <font size="4">{{pwmSignal}}</font>
+        </div>
+        <div class="col col-25">
+        <font size="4">Kd</font>
+        </div>
+        <div class="col col-25">
+          <font size="4">{{kdValue}}</font>
+        </div>
+      </div>
+
+
     </ion-item>
 
     <div class="card">
