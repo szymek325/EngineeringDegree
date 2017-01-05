@@ -38,7 +38,7 @@ int receivedRegulatorTypeInt;
 
 void bluetoothReceive(){
   receivedData = Serial.readStringUntil('\n');
-  if(receivedData.length()>=5)
+  if(receivedData.length()>=10)
   {
 
     for(int i=0; i<receivedData.length();i++)
@@ -103,13 +103,21 @@ void bluetoothSend(){
   temperatureReading = TempRead();
 
   //Serial.print("I send: ");
-  //Serial.print("t");
-  //Serial.print(temperatureReading);
-  //Serial.print("s");
-  //Serial.print(temperatureSetpoint);
-  //Serial.print("p");
-  //Serial.print(pwm);
-  Serial.print(receivedData);
+  Serial.print("t");
+  Serial.print(temperatureReading);
+  Serial.print("s");
+  Serial.print(temperatureSetpoint);
+  Serial.print("p");
+  Serial.print(pwm);
+  Serial.print("k");
+  Serial.print(kp);
+  Serial.print("i");
+  Serial.print(ki);
+  Serial.print("d");
+  Serial.print(kd);
+  Serial.print("r");
+  Serial.print(regulatorType);
+  //Serial.print(receivedData);
   Serial.println("/n");
   
   setLCD(temperatureSetpoint,temperatureReading,pwm);
