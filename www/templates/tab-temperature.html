@@ -52,7 +52,7 @@
           <font size="4">{{pwmSignal}}</font>
         </div>
         <div class="col col-25">
-        <font size="4">Kd</font>
+          <font size="4">Kd</font>
         </div>
         <div class="col col-25">
           <font size="4">{{kdValue}}</font>
@@ -86,16 +86,16 @@
     </button>
 
   </ion-content>
+  <script id="templates/modal.html" type="text/ng-template">
+    <ion-modal-view>
+      <ion-header-bar class="bar bar-header bar-positive">
+        <button class="button button-clear button-primary" ng-click="modal.hide()">HIDE</button>
+      </ion-header-bar>
+      <ion-content class="padding">
+        {{tempData}}
+      </ion-content>
+    </ion-modal-view>
+  </script>
 </ion-view>
 
 
-<script id="templates/modal.html" type="text/ng-template">
-  <ion-modal-view>
-    <ion-header-bar class="bar bar-header bar-positive">
-      <button class="button button-clear button-primary" ng-click="modal.hide()">HIDE</button>
-    </ion-header-bar>
-    <ion-content class="padding">
-      {{tempData}}
-    </ion-content>
-  </ion-modal-view>
-</script>
