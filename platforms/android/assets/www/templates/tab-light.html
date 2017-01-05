@@ -8,48 +8,47 @@
         <div class="input-label">
           Regulator type
         </div>
-        <select ng-model="regulatorType">
+        <select ng-model="input.regulatorType">
           <option selected>PID</option>
           <option>Hysteresis</option>
         </select>
       </label>
-      
+
       <div class="row">
         <div class="col col-50" align="center">Temperature</div>
-        <div class="col col-50" align="center">{{newSetpoint}}</div>
+        <div class="col col-50" align="center">{{data1.newSetpoint}}</div>
       </div>
       <div class="item range range-positive">
         <i class="icon ion-thermometer-outline"></i>
-        <input type="range" name="kp" min="10" max="30" value="24" ng-model="newSetpoint">
+        <input type="range" name="Temperature" min="10" max="30" value="22" ng-model="data1.newSetpoint">
         <i class="icon ion-thermometer"></i>
       </div>
 
       <div class="row">
         <div class="col col-50" align="center">KP</div>
-        <div class="col col-50" align="center">{{kpValue}}</div>
+        <div class="col col-50" align="center">{{data2.kp}}</div>
       </div>
       <div class="item range range-positive">
         <i>0</i>
-        <input type="range" name="kp" min="0" max="50" value="15" ng-model="kpValue">
+        <input type="range" name="kp" min="0" max="50" ng-model="data2.kp">
         <i>50</i>
       </div>
       <div class="row">
         <div class="col col-50" align="center">KI</div>
-        <div class="col col-50" align="center">{{kiValue}}</div>
+        <div class="col col-50" align="center">{{data3.ki}}</div>
       </div>
       <div class="item range range-positive">
         <i>0</i>
-        <input type="range" name="ki" min="0" max="10" value="2" ng-model="kiValue">
-
+        <input type="range" name="ki" min="0" max="10" ng-model="data3.ki">
         <i>10</i>
       </div>
       <div class="row">
         <div class="col col-50" align="center">KD</div>
-        <div class="col col-50" align="center">{{kdValue}}</div>
+        <div class="col col-50" align="center">{{data4.kd}}</div>
       </div>
       <div class="item range range-positive">
         <i>0</i>
-        <input type="range" name="kd" min="0" max="10" value="1" ng-model="kdValue">
+        <input type="range" name="kd" min="0" max="10" ng-model="data4.kd">
         <i>10</i>
       </div>
     </div>
