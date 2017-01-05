@@ -35,7 +35,13 @@ angular.module('starter.controllers', [])
 			$scope.kpValue=receivedData.getKp();
 			$scope.kiValue=receivedData.getKi();
 			$scope.kdValue=receivedData.getKd();
-			$scope.regulatorType=receivedData.getRegulator();
+			if(receivedData.getRegulator()=='1'){
+				$scope.regulatorType='Hysteresis';
+			}
+			else{
+				$scope.regulatorType='PID';
+			}
+			
 
 
 			$scope.labels1.push(timeX);
@@ -121,14 +127,15 @@ angular.module('starter.controllers', [])
 		else{
 			regulator=1;
 		}
-		bluetoothSerial.write("t"+$scope.data1.newSetpoint+"p"+$scope.data2.kp+"i"+$scope.data3.ki+"d"+$scope.data4.kd+"r"+$scope.data.regulatorType+"\n", function (data){
+		console.log(regulator);
+		bluetoothSerial.write("t"+$scope.data1.newSetpoint+"p"+$scope.data2.kp+"i"+$scope.data3.ki+"d"+$scope.data4.kd+"r"+regulator+"/n", function (data){
 			console.log("Sending process was"+data+". This:  was send");alert("Temperature Setpoint was send")}, function (data){
 				console.log("Nothing was send");alert("Data was not send")});
 		//console.log($scope.data1.newSetpoint);
 		//console.log($scope.data2.kp);
 		//console.log($scope.data3.ki);
 		//console.log($scope.data4.kd);
-		console.log(regulator);
+		
 	}
 
 
