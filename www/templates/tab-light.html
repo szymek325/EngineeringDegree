@@ -2,7 +2,7 @@
   <ion-content class="padding" style="text-align:center">
     <div class="list">
       <button ng-click="sendSetpoint()" class="button button-block button-balanced">
-      Confirm new settings
+        Confirm new settings
       </button>
       <label class="item item-input item-select">
         <div class="input-label">
@@ -24,33 +24,54 @@
         <i class="icon ion-thermometer"></i>
       </div>
 
-      <div class="row">
-        <div class="col col-50" align="center">KP</div>
-        <div class="col col-50" align="center">{{data2.kp}}</div>
-      </div>
-      <div class="item range range-positive">
-        <i>0</i>
-        <input type="range" name="kp" min="0" max="50" ng-model="data2.kp">
-        <i>50</i>
-      </div>
-      <div class="row">
-        <div class="col col-50" align="center">KI</div>
-        <div class="col col-50" align="center">{{data3.ki}}</div>
-      </div>
-      <div class="item range range-positive">
-        <i>0</i>
-        <input type="range" name="ki" min="0" max="10" ng-model="data3.ki">
-        <i>10</i>
-      </div>
-      <div class="row">
-        <div class="col col-50" align="center">KD</div>
-        <div class="col col-50" align="center">{{data4.kd}}</div>
-      </div>
-      <div class="item range range-positive">
-        <i>0</i>
-        <input type="range" name="kd" min="0" max="10" ng-model="data4.kd">
-        <i>10</i>
-      </div>
+      <button class="button button-block button-positive" ng-click="modal.show()">
+        more options
+      </button>
+
+
     </div>
   </ion-content>
+
+
+  <script id="templates/moreoptions.html" type="text/ng-template">
+    <ion-modal-view>
+      <ion-header-bar class="bar bar-header bar-positive">
+        <button class="button button-clear button-primary" ng-click="modal.hide()">HIDE</button>
+      </ion-header-bar>
+      <ion-content class="padding">
+        <div class="row">
+          <div class="col col-50" align="center">KP</div>
+          <div class="col col-50" align="center">{{data2.kp}}</div>
+        </div>
+        <div class="item range range-positive">
+          <i>0</i>
+          <input type="range" name="kp" min="0" max="50" ng-model="data2.kp">
+          <i>50</i>
+        </div>
+        <div class="row">
+          <div class="col col-50" align="center">KI</div>
+          <div class="col col-50" align="center">{{data3.ki}}</div>
+        </div>
+        <div class="item range range-positive">
+          <i>0</i>
+          <input type="range" name="ki" min="0" max="10" ng-model="data3.ki">
+          <i>10</i>
+        </div>
+        <div class="row">
+          <div class="col col-50" align="center">KD</div>
+          <div class="col col-50" align="center">{{data4.kd}}</div>
+        </div>
+        <div class="item range range-positive">
+          <i>0</i>
+          <input type="range" name="kd" min="0" max="10" ng-model="data4.kd">
+          <i>10</i>
+        </div>
+        <button ng-click="defaultSettings()" class="button button-block button-balanced">
+        Default regulator settings
+        </button>
+      </ion-content>
+    </ion-modal-view>
+  </script>
+
+
 </ion-view>

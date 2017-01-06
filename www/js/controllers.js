@@ -1,6 +1,6 @@
 angular.module('starter.controllers', [])
 
-.controller('TempCtrl', function($scope, $interval, $ionicModal, receivedData, bluetoothInformation) {
+.controller('TempCtrl', function($scope, $interval, $ionicModal, receivedData, bluetoothInformation, $ionicLoading) {
 	// INITIAL VALUES
 	$scope.currentSetpoint="value";
 	$scope.currentTemperature="value";
@@ -25,11 +25,13 @@ angular.module('starter.controllers', [])
 	$scope.chartButtonStyle='button button-block button-assertive'
 
 	var interval1=$interval(receiveData, 2000);
-	var timeX=0;
-	var logs=[0];	
-	
+	var timeX=new Date().toTimeString().split(" ")[0];
+
+	//$scope.currentDate=new Date();
+
 	function receiveData(){
-		timeX=timeX+2;
+		//timeX=timeX+2;
+		//timex=new Date();
 		receivedData.getData();
 		if(receivedData.getIsThereData())
 		{
@@ -48,6 +50,9 @@ angular.module('starter.controllers', [])
 			
 
 			if(chartPermission){
+
+				timeX=new Date().toTimeString().split(" ")[0];
+
 				$scope.labels1.push(timeX);
 				$scope.data1[0].push($scope.currentTemperature);
 				$scope.data1[1].push($scope.currentSetpoint);
@@ -55,8 +60,6 @@ angular.module('starter.controllers', [])
 				$scope.labels2.push(timeX);
 				$scope.data2.push($scope.pwmSignal);
 
-				logs.push($scope.currentTemperature);
-				$scope.tempData=JSON.stringify(logs);
 			}
 
 		}
@@ -122,14 +125,14 @@ angular.module('starter.controllers', [])
 		},
 	}
 
-	$ionicModal.fromTemplateUrl('templates/modal.html', {
+	$ionicModal.fromTemplateUrl('templates/charts.html', {
 		scope: $scope}).then(function(modal) {
 			$scope.modal = modal;
 	})
 
 })
 
-.controller('LightCtrl', function($scope) {
+.controller('LightCtrl', function($scope, $ionicModal) {
 	// INITIAL VALUES
 	var regulator=1;
 	$scope.data={'regulatorType':'PID'};
@@ -157,7 +160,17 @@ angular.module('starter.controllers', [])
 		
 	}
 
+	$scope.defaultSettings= function(){
+		$scope.data2={'kp':'15'};
+		$scope.data3={'ki':'5'};
+		$scope.data4={'kd':'2'};
+		$scope.sendSetpoint()
+	}
 
+	$ionicModal.fromTemplateUrl('templates/moreoptions.html', {
+		scope: $scope}).then(function(modal) {
+			$scope.modal = modal;
+	})
 })
 
 
