@@ -11,7 +11,7 @@ angular.module('starter.controllers', [])
 	$scope.regulatorType="value";
 
 	$scope.labels1 = [0];
-	$scope.series1 = ['Actual Temperature'];
+	$scope.series1 = [['Actual Temperature'],['Setpoint']];
 	$scope.data1=[[20],[20]];
 	$scope.colors = ['#ff6384','#ff6384'];
 
@@ -20,18 +20,17 @@ angular.module('starter.controllers', [])
 	$scope.data2=[0];
 	$scope.color2 = ['#ff6384'];
 
-	chartPermission=1;
-	$scope.chartStartStop='Stop';
-	$scope.chartButtonStyle='button button-block button-assertive'
+	chartPermission=0;
+	$scope.chartStartStop='Start';
+	$scope.chartButtonStyle='button button-block button-positive'
 
-	var interval1=$interval(receiveData, 2000);
+	var interval1=$interval(receiveData, 1000);
 	var timeX=new Date().toTimeString().split(" ")[0];
+	var oneTimeOnly=0;
+	var interval2;
 
-	//$scope.currentDate=new Date();
 
 	function receiveData(){
-		//timeX=timeX+2;
-		//timex=new Date();
 		receivedData.getData();
 		if(receivedData.getIsThereData())
 		{
@@ -46,24 +45,23 @@ angular.module('starter.controllers', [])
 			}
 			else{
 				$scope.regulatorType='PID';
-			}
-			
-
-			if(chartPermission){
-
-				timeX=new Date().toTimeString().split(" ")[0];
-
-				$scope.labels1.push(timeX);
-				$scope.data1[0].push($scope.currentTemperature);
-				$scope.data1[1].push($scope.currentSetpoint);
-
-				$scope.labels2.push(timeX);
-				$scope.data2.push($scope.pwmSignal);
-
-			}
-
+			}		
 		}
 	}
+
+	function updateCharts(){
+		timeX=new Date().toTimeString().split(" ")[0];
+		if(receivedData.getIsThereData()){
+
+			$scope.labels1.push(timeX);
+			$scope.data1[0].push($scope.currentTemperature);
+			$scope.data1[1].push($scope.currentSetpoint);
+
+			$scope.labels2.push(timeX);
+			$scope.data2.push($scope.pwmSignal);
+		}
+	}
+
 
 	$scope.resetChart= function(){
 		$scope.data1=[[receivedData.getTemperature()],[receivedData.getSetpoint()]];
@@ -77,16 +75,23 @@ angular.module('starter.controllers', [])
 			chartPermission=0;
 			$scope.chartStartStop='Start';
 			$scope.chartButtonStyle='button button-block button-positive';
+			$interval.cancel(interval2);
 		}
 		else{
+			if(oneTimeOnly==0){
+				$scope.resetChart();
+				oneTimeOnly=1;
+			}
 			chartPermission=1;
 			$scope.chartStartStop='Stop';
 			$scope.chartButtonStyle='button button-block button-assertive';
+			interval2=$interval(updateCharts, 5000);
 		}
 	}
 
 	$scope.options1 = {
 		animation:false,
+		//legend: {display: true},
 		scales: {
 			yAxes: [
 			{
@@ -99,7 +104,7 @@ angular.module('starter.controllers', [])
 				//type: 'time',
 				ticks: {
 					autoSkip:true,
-					maxTicksLimit:5,
+					maxTicksLimit:4,
 				} 
 			}],	
 		},
@@ -107,6 +112,7 @@ angular.module('starter.controllers', [])
 
 	$scope.options2 = {
 		animation:false,
+		//legend: {display: true},
 		scales: {
 			yAxes: [
 			{
@@ -119,7 +125,7 @@ angular.module('starter.controllers', [])
 				//type: 'time',
 				ticks: {
 					autoSkip:true,
-					maxTicksLimit:5,
+					maxTicksLimit:4,
 				} 
 			}],	
 		},
@@ -164,7 +170,7 @@ angular.module('starter.controllers', [])
 		$scope.data2={'kp':'15'};
 		$scope.data3={'ki':'5'};
 		$scope.data4={'kd':'2'};
-		
+		$scope.sendSetpoint()
 	}
 
 	$ionicModal.fromTemplateUrl('templates/moreoptions.html', {
