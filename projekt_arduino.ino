@@ -22,6 +22,10 @@ const int ENA = 11;
 const int IN2 = 12;
 const int IN1 = 13;
 
+//regulator variables
+float static integral=0;
+float static previousTime=0;
+float static previousError=0;
 
 /////FUNCTIONS DECLARATIONS////
 void bluetoothReceive();
@@ -32,6 +36,7 @@ int PID(int setpoint, float currentTemperature ,float actualTime, int kp, int ki
 float TempRead();
 void setLCD(float zadana, float temp);
 void setLCD_start();
+int HIST(int setpointTemperature, float currentTemperature);
 
 ////PROGRAM
 void setup(void) {
@@ -81,6 +86,7 @@ void bluetoothReceive(){
   int receivedKpInt;
   int receivedKdInt;
   int receivedRegulatorTypeInt;
+  
   receivedData = Serial.readStringUntil('/n');
   if(receivedData.length()>=12)
   {
@@ -148,7 +154,13 @@ void bluetoothSend(){
 }
 
 void regulation(){
-  pwm=PID(temperatureSetpoint, temperatureReading,millis(), kp , ki, kd); //  float pwm=PID(zadanaTemp, temp,millis(), 15 , 5, 2)
+  if(regulatorType==0){
+    pwm=PID(temperatureSetpoint, temperatureReading,millis(), kp , ki, kd); //  float pwm=PID(zadanaTemp, temp,millis(), 15 , 5, 2)
+  }
+  else{
+    pwm=HIST(temperatureSetpoint, temperatureReading);
+  }
+  
   Motor_Control(pwm);
 }
 
@@ -174,6 +186,19 @@ void Motor_Control(int Speed)
   }
 }
 
+int HIST(int setpointTemperature, float currentTemperature){
+  float error=setpointTemperature-currentTemperature;
+  if(error>0.25){
+    return 255;
+  }
+  else if(error<-0.25){
+    return -5;
+  }
+  else{
+    return 0;
+  }
+}
+
 int PID(int setpointTemperature, float currentTemperature,float actualTime, int kp, int ki, int kd){
   
   //variable declarations
@@ -183,11 +208,6 @@ int PID(int setpointTemperature, float currentTemperature,float actualTime, int 
   float derivative=0;
   float error=0;
   float dt=0;
-  
-  float static integral=0;
-  float static previousTime=0;
-  float static previousError=0;
-  
 
   error=setpointTemperature-currentTemperature;
   dt=(float)(actualTime-previousTime);
