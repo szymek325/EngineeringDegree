@@ -77,13 +77,27 @@
 
     </ion-item>
   </ion-item>
-
-
-
-
-  <button class="button button-block button-positive" ng-click="modal.show()">
-    Show Charts
+  <div class="card">
+    <div class="item item-divider">
+      Temperature Chart
+    </div>
+    <div class="item item-text-wrap">
+      <canvas id="line1" class="chart chart-line" chart-data="data1" chart-labels="labels1" chart-legend="true" chart-series="series1" chart-options="options1"></canvas>
+    </div>
+    <div class="item item-divider">
+      PWM Chart
+    </div>
+    <div class="item item-text-wrap">
+      <canvas id="line2" class="chart chart-line" chart-data="data2" chart-labels="labels2" chart-legend="true" chart-series="series2" chart-options="options2"></canvas>
+    </div>
+  </div>
+  <button class='button button-block button-assertive' ng-click="resetChart()">
+    Reset charts
   </button>
+
+
+
+
   <button class="{{chartButtonStyle}}" ng-click="chartOnOff()">
     {{chartStartStop}} updating charts
   </button>
@@ -97,23 +111,7 @@
     </ion-header-bar>
     <ion-content class="padding" style="text-align:center">
 
-      <div class="card">
-        <div class="item item-divider">
-          Temperature Chart
-        </div>
-        <div class="item item-text-wrap">
-          <canvas id="line1" class="chart chart-line" chart-data="data1" chart-labels="labels1" chart-legend="true" chart-series="series1" chart-options="options1"></canvas>
-        </div>
-        <div class="item item-divider">
-          PWM Chart
-        </div>
-        <div class="item item-text-wrap">
-          <canvas id="line2" class="chart chart-line" chart-data="data2" chart-labels="labels2" chart-legend="true" chart-series="series2" chart-options="options2"></canvas>
-        </div>
-      </div>
-      <button class='button button-block button-assertive' ng-click="resetChart()">
-        Reset charts
-      </button>
+      
     </ion-content>
   </ion-modal-view>
 </script>
