@@ -175,7 +175,7 @@ void Motor_Control(int Speed)
   }
   else if(Speed<0)
   {
-    Speed=Speed*(-1);
+    Speed=Speed*(-1); /// jeśli wartośc jest na minusie to podaje oszukaną wartość
     digitalWrite(IN2, HIGH);
     digitalWrite(IN1, LOW);
     analogWrite(ENA, Speed);
@@ -211,8 +211,15 @@ int PID(int setpointTemperature, float currentTemperature,float actualTime, int 
 
   error=setpointTemperature-currentTemperature;
   dt=(float)(actualTime-previousTime);
-  dt=dt/60000; //skalowanie 1 milisekunda = 1/60000 min
+  //dt=dt/60000; //skalowanie 1 milisekunda = 1/60000 min
+  dt=dt/6000;
   integral= integral+(error*dt);
+  if(integral>30){
+    integral=60;
+  }
+  else if(integral<-30){
+    integral=-60;
+  }
   derivative=(error-previousError)/dt;
   previousError=error;
   previousTime=actualTime;
