@@ -186,23 +186,41 @@ angular.module('starter.controllers', [])
 	$scope.textConnect='Connect';
 	$scope.typeConnect='button button-block button-calm';
 
-	//bluetoothInformation.isBluetoothON();
+
+	$timeout(function() {
+		bluetoothInformation.isBluetoothON();
+	}, 1000);
+
+
 
 	$scope.checkConnection=function(){
-		if(!bluetoothInformation.connectionState()){
+		bluetoothInformation.checkConnectionState();
+		var bluetoothState=bluetoothInformation.getConnectionState();
+		console.log("connectionstate "+bluetoothState);
+		if(bluetoothState){
+			$scope.$apply(function () {
+				console.log("You are not connected");
+				$scope.textConnect = 'Connect';
+				$scope.typeConnect='button button-block button-calm';
+
+			})
+		}
+		else{
 			$scope.$apply(function () {
 				console.log("You are connected to device");
 				$scope.textConnect = 'Disconnect';
 				$scope.typeConnect='button button-block button-assertive';
 			})
+
 		}
-		else{
-			$scope.$apply(function () {
-				console.log("You are not connected");
-				$scope.textConnect = 'Connect';
-				$scope.typeConnect='button button-block button-calm';
-			})
-		}
+	}
+
+	$scope.checkConnection1=function(){
+		$scope.$apply(function () {
+			console.log("You are not connected");
+			$scope.textConnect = 'Connect';
+			$scope.typeConnect='button button-block button-calm';
+		})
 	}
 
 	$scope.findDevices = function(){
@@ -226,18 +244,22 @@ angular.module('starter.controllers', [])
 	}
 
 	$scope.connectMac = function(data){
-		if(!bluetoothInformation.connectionState()){
-			bluetoothSerial.connect(data.address, function (){
-				console.log("You have been connected to device:"); alert("You have been connected"); $scope.checkConnection()}, function (){
-					console.log("Connection wasn't possible"),alert("Connection wasn't possible"),$scope.checkConnection()
+		$ionicLoading.show();
+		bluetoothInformation.checkConnectionState();
+		if(bluetoothInformation.getConnectionState()){
+			bluetoothSerial.disconnect(function (){
+				console.log("You have been disconnected"); alert("You have been disconnected"); $scope.checkConnection1();$ionicLoading.hide()}, function (){
+					console.log("Disconnection wasn't possible");alert("Disconnection wasn't possible");$scope.checkConnection();$ionicLoading.hide()
 				});
 		}
 		else{
-			bluetoothSerial.disconnect(function (){
-				console.log("You have been disconnected"); alert("You have been disconnected"); $scope.checkConnection()}, function (){
-					console.log("Disconnection wasn't possible"),alert("Disconnection wasn't possible"),$scope.checkConnection()
+			bluetoothSerial.connect(data.address, function (){
+				console.log("You have been connected to device:"); alert("You have been connected");$scope.checkConnection();$ionicLoading.hide()}, function (){
+					console.log("Connection wasn't possible");alert("Connection wasn't possible");$scope.checkConnection1();$ionicLoading.hide()
 				});
+
 		};
+		bluetoothInformation.checkConnectionState();
 	}
 
 });

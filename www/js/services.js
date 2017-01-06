@@ -75,9 +75,8 @@ angular.module('starter.services', [])
   }
 })
 
-.service('bluetoothInformation', function() {
+.service('bluetoothInformation', function($timeout) {
   // INITIAL VALUES
-  var temperatureReceived;
   var bluetoothOnOffStatus;
   var bluetoothConnectionStatus;
 
@@ -97,9 +96,10 @@ angular.module('starter.services', [])
         })
       return bluetoothOnOffStatus;
     },
-    connectionState: function () {
-      bluetoothSerial.isConnected(function(){bluetoothConnectionStatus=1}, function(){bluetoothConnectionStatus=0});
-
+    checkConnectionState: function () {
+      bluetoothSerial.isConnected(function(){bluetoothConnectionStatus=1},function(){bluetoothConnectionStatus=0});
+    },
+    getConnectionState: function () {
       return bluetoothConnectionStatus;
     }
   }
