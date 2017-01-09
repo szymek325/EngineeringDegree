@@ -9,6 +9,8 @@ angular.module('starter.controllers', [])
 	$scope.kiValue="value";
 	$scope.kdValue="value";
 	$scope.regulatorType="value";
+	$scope.hysteresisValue="value";
+	$scope.powerValue="Value";
 
 	$scope.labels1 = [0];
 	$scope.series1 = [['Actual Temperature'],['Setpoint']];
@@ -40,6 +42,8 @@ angular.module('starter.controllers', [])
 			$scope.kpValue=receivedData.getKp();
 			$scope.kiValue=receivedData.getKi();
 			$scope.kdValue=receivedData.getKd();
+			$scope.hysteresisValue=receivedData.getHysteresis();
+			$scope.powerValue=receivedData.getPower()
 			if(receivedData.getRegulator()=='1'){
 				$scope.regulatorType='Hysteresis';
 			}
@@ -131,10 +135,6 @@ angular.module('starter.controllers', [])
 		},
 	}
 
-	$ionicModal.fromTemplateUrl('templates/charts.html', {
-		scope: $scope}).then(function(modal) {
-			$scope.modal = modal;
-	})
 
 })
 
@@ -146,6 +146,8 @@ angular.module('starter.controllers', [])
 	$scope.data2={'kp':'15'};
 	$scope.data3={'ki':'5'};
 	$scope.data4={'kd':'2'};
+	$scope.data5={'hyst':'0.25'}
+	$scope.data6={'power':'255'}
 
 	$scope.sendSetpoint= function(){
 		console.log($scope.data.regulatorType);
@@ -156,7 +158,7 @@ angular.module('starter.controllers', [])
 			regulator=1;
 		}
 		console.log(regulator);
-		bluetoothSerial.write("t"+$scope.data1.newSetpoint+"p"+$scope.data2.kp+"i"+$scope.data3.ki+"d"+$scope.data4.kd+"r"+regulator+"/n", function (data){
+		bluetoothSerial.write("t"+$scope.data1.newSetpoint+"p"+$scope.data2.kp+"i"+$scope.data3.ki+"d"+$scope.data4.kd+"r"+regulator+"h"+$scope.data5.hyst+"m"+$scope.data6.power+"/n", function (data){
 			console.log("Sending process was"+data+". This:  was send");alert("Temperature Setpoint was send")}, function (data){
 				console.log("Nothing was send");alert("Data was not send")});
 		//console.log($scope.data1.newSetpoint);
@@ -166,16 +168,39 @@ angular.module('starter.controllers', [])
 		
 	}
 
-	$scope.defaultSettings= function(){
+	$scope.defaultSettings1= function(){
 		$scope.data2={'kp':'15'};
 		$scope.data3={'ki':'5'};
 		$scope.data4={'kd':'2'};
-		$scope.sendSetpoint()
+		//$scope.sendSetpoint()
 	}
 
-	$ionicModal.fromTemplateUrl('templates/moreoptions.html', {
+	$scope.defaultSettings2= function(){
+		$scope.data5={'hist':'0.25'}
+		$scope.data6={'power':'255'}
+		//$scope.sendSetpoint()
+	}
+
+	$scope.openModal = function(index) {
+		if (index == 1) $scope.oModal1.show();
+		else $scope.oModal2.show();
+	}
+
+	$scope.closeModal = function(index) {
+		if (index == 1) $scope.oModal1.hide();
+		else $scope.oModal2.hide();
+	}
+
+	$ionicModal.fromTemplateUrl('templates/pidsettings.html', {
+		id: '1',
 		scope: $scope}).then(function(modal) {
-			$scope.modal = modal;
+			$scope.oModal1 = modal;
+	})
+
+	$ionicModal.fromTemplateUrl('templates/hysteresissettings.html', {
+		id: '2',
+		scope: $scope}).then(function(modal) {
+			$scope.oModal2 = modal;
 	})
 })
 

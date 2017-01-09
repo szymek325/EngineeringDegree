@@ -11,6 +11,8 @@ angular.module('starter.services', [])
   var kiReceived;
   var kdReceived;
   var regulatorReceived;
+  var hysteresisReceived;
+  var powerReceived;
   //var lightsReceived;
   var isThereData;
 
@@ -36,6 +38,12 @@ angular.module('starter.services', [])
     getRegulator: function () {
       return regulatorReceived;
     },
+    getHysteresis: function () {
+      return hysteresisReceived;
+    },
+    getPower: function () {
+      return powerReceived;
+    },
     //getlights: function () {
     //  return lightsReceived;
     //},
@@ -57,7 +65,9 @@ angular.module('starter.services', [])
             kpReceived=data.substring(data.indexOf('k')+1, data.indexOf('i'));
             kiReceived=data.substring(data.indexOf('i')+1, data.indexOf('d'));
             kdReceived=data.substring(data.indexOf('d')+1, data.indexOf('r'));
-            regulatorReceived=data.substring(data.indexOf('r')+1, data.indexOf('/'));
+            regulatorReceived=data.substring(data.indexOf('r')+1, data.indexOf('h'));
+            hysteresisReceived=data.substring(data.indexOf('h')+1, data.indexOf('m'));
+            powerReceived=data.substring(data.indexOf('m')+1, data.indexOf('/'));
             //lightsReceived=data.substring(data.indexOf('l')+1, data.indexOf('/'));
 
             bluetoothSerial.clear(console.log(),console.log());

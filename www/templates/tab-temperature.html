@@ -3,15 +3,13 @@
     <ion-item>
       <div class="row">
         <div class="col">
-          <font size="5">Regulator</font>
+          <font size="4"><b>Regulator</font>
         </div>
         <div class="col">
-          <font size="5">{{regulatorType}}</font>
+          <font size="4">{{regulatorType}}</b></font>
         </div>
       </div>
-    </ion-item>
 
-    <ion-item>
       <div class="row">
         <div class="col">
           <font size="4">Setpoint</font>
@@ -21,7 +19,6 @@
         </div>
       </div>
 
-
       <div class="row">
         <div class="col">
           <font size="4">Temperature</font>
@@ -30,7 +27,6 @@
           <font size="4">{{currentTemperature}}</font>
         </div>
       </div>
-
 
       <div class="row">
         <div class="col">
@@ -42,41 +38,62 @@
       </div>
     </ion-item>
 
-
-
     <ion-item>
       <div class="row">
-        <div class="col">
+        <div class="col col-50">
+          <font size="4"><b>PID Settings</font>
+        </div>
+        <div class="col col-50">
+          <font size="4">Hysteresis Settings</b></font>
+        </div>
+      </div>
+
+
+      <div class="row">
+        <div class="col col-25">
           <font size="4">Kp</font>
         </div>
-        <div class="col">
+        <div class="col col-25">
           <font size="4">{{kpValue}}</font>
         </div>
+
+        <div class="col col-25">
+          <font size="4">Hysteresis</font>
+        </div>
+        <div class="col col-25">
+          <font size="4">{{hysteresisValue}}</font>
+        </div>
       </div>
 
-
       <div class="row">
-        <div class="col">
+        <div class="col col-25">
           <font size="4">Ki</font>
         </div>
-        <div class="col">
+        <div class="col col-25">
           <font size="4">{{kiValue}}</font>
+        </div>
+
+        <div class="col col-25">
+          <font size="4">Power</font>
+        </div>
+        <div class="col col-25">
+          <font size="4">{{powerValue}}</font>
         </div>
       </div>
 
-
-
       <div class="row">
-        <div class="col">
+        <div class="col col-25">
           <font size="4">Kd</font>
         </div>
-        <div class="col">
+        <div class="col col-25">
           <font size="4">{{kdValue}}</font>
         </div>
       </div>
-
     </ion-item>
   </ion-item>
+  <button class="{{chartButtonStyle}}" ng-click="chartOnOff()">
+    {{chartStartStop}} updating charts
+  </button>
   <div class="card">
     <div class="item item-divider">
       Temperature Chart
@@ -95,26 +112,7 @@
     Reset charts
   </button>
 
-
-
-
-  <button class="{{chartButtonStyle}}" ng-click="chartOnOff()">
-    {{chartStartStop}} updating charts
-  </button>
-
-
 </ion-content>
-<script id="templates/charts.html" type="text/ng-template">
-  <ion-modal-view>
-    <ion-header-bar class="bar bar-header bar-positive">
-      <button class="button button-clear button-primary" ng-click="modal.hide()">HIDE</button>
-    </ion-header-bar>
-    <ion-content class="padding" style="text-align:center">
-
-      
-    </ion-content>
-  </ion-modal-view>
-</script>
 </ion-view>
 
 

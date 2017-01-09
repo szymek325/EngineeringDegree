@@ -24,8 +24,11 @@
         </div>
       </font>
 
-      <button class="button button-block button-positive" ng-click="modal.show()">
-        More options
+      <button class="button button-block button-positive" ng-click="openModal(1)">
+        PID settings
+      </button>
+      <button class="button button-block button-positive" ng-click="openModal(2)">
+        Hysteresis settings
       </button>
 
       <button ng-click="sendSetpoint()" class="button button-block button-balanced">
@@ -36,10 +39,10 @@
   </ion-content>
 
 
-  <script id="templates/moreoptions.html" type="text/ng-template">
+  <script id="templates/pidsettings.html" type="text/ng-template">
     <ion-modal-view>
       <ion-header-bar class="bar bar-header bar-positive">
-        <button class="button button-clear button-primary" ng-click="modal.hide()">HIDE</button>
+        <button class="button button-clear button-primary" ng-click="closeModal(1)">HIDE</button>
       </ion-header-bar>
       <ion-content class="padding" style="text-align:center">
         <h3>PID settings</h4>
@@ -72,12 +75,48 @@
               <i>10</i>
             </div>
           </font>
-          <button ng-click="defaultSettings()" class="button button-block button-balanced">
+          <button ng-click="defaultSettings1()" class="button button-block button-balanced">
             Default regulator settings
           </button>
         </ion-content>
       </ion-modal-view>
     </script>
 
+
+      <script id="templates/hysteresissettings.html" type="text/ng-template">
+    <ion-modal-view>
+      <ion-header-bar class="bar bar-header bar-positive">
+        <button class="button button-clear button-primary" ng-click="closeModal(2)">HIDE</button>
+      </ion-header-bar>
+      <ion-content class="padding" style="text-align:center">
+
+            <h3>Hysteresis settings</h4>
+            <div class="row">
+            <div class="col col-50" >Hysteresis</div>
+              <div class="col col-50" >{{data5.hyst}}</div>
+            </div>
+            <div class="item range range-positive">
+              <i>0</i>
+              <input type="range" name="kd" min="0" max="1" step="0.25" ng-model="data5.hyst">
+              <i>1</i>
+            </div>
+
+            <div class="row">
+            <div class="col col-50" >Power</div>
+              <div class="col col-50" >{{data6.power}}</div>
+            </div>
+            <div class="item range range-positive">
+              <i>0</i>
+              <input type="range" name="kd" min="0" max="255" ng-model="data6.power">
+              <i>255</i>
+            </div>
+
+          </font>
+          <button ng-click="defaultSettings2()" class="button button-block button-balanced">
+            Default regulator settings
+          </button>
+        </ion-content>
+      </ion-modal-view>
+    </script>
 
   </ion-view>
