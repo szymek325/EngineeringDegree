@@ -10,9 +10,9 @@ SimpleTimer timer;
 int pwm;
 float temperatureReading;
 int temperatureSetpoint = 22;
-int kp = 15;
-int ki = 5;
-int kd = 2;
+int kp = 0;
+int ki = 1;
+int kd = 0;
 int regulatorType = 0;
 float hysteresis=0.5;
 int power=255;
@@ -238,18 +238,18 @@ int PID(int setpointTemperature, float currentTemperature, float actualTime, int
   error = setpointTemperature - currentTemperature;
   dt = (float)(actualTime - previousTime);
   dt=dt/1000;
-  integral = integral + (error * dt)*ki;
-  if (integral > 60) {
-    integral = 60;
+  integral = integral + (error * dt);
+  if (integral > 40) {
+    integral = 40;
   }
-  else if (integral < -60) {
-    integral = -60;
+  else if (integral < -40) {
+    integral = -40;
   }
   derivative = (error - previousError) / dt;
   previousError = error;
   previousTime = actualTime;
 
-  output = kp * error + integral + kd * derivative;
+  output = kp * error + ki*integral + kd * derivative;
   if (output >= maximum)
   {
     output = maximum;
@@ -344,12 +344,6 @@ float TempRead()
     //// default is 12 bit resolution, 750 ms conversion time
   }
   celsius = (float)raw / 16.0;
-  int calkowita=celsius;
-  if(celsius-calkowita>0,5){
-    celsius=celsius+0,5;
-  }
-  else{
-    celsius=calkowita;
-  }
+
   return celsius;
 }
