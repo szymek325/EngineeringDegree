@@ -22,7 +22,7 @@ angular.module('starter.controllers', [])
 	$scope.data2=[0];
 	$scope.color2 = ['#ff6384'];
 
-	chartPermission=0;
+	chartPermission=1;
 	$scope.chartStartStop='Start';
 	$scope.chartButtonStyle='button button-block button-positive'
 
@@ -30,12 +30,14 @@ angular.module('starter.controllers', [])
 	var timeX=new Date().toTimeString().split(" ")[0];
 	var oneTimeOnly=0;
 	var interval2;
-
+	var counter=0;
+	var table = document.getElementById("dataLog");
 
 	function receiveData(){
 		receivedData.getData();
 		if(receivedData.getIsThereData())
 		{
+			counter=counter+1;
 			$scope.currentTemperature = receivedData.getTemperature();
 			$scope.currentSetpoint = receivedData.getSetpoint();
 			$scope.pwmSignal=receivedData.getPwm();
@@ -49,13 +51,29 @@ angular.module('starter.controllers', [])
 			}
 			else{
 				$scope.regulatorType='PID';
-			}		
+			}
+
+			if(counter==3){
+				updateCharts();
+				counter=0;
+			}
+			$scope.updateDataLog();
 		}
 	}
 
 	function updateCharts(){
 		timeX=new Date().toTimeString().split(" ")[0];
 		if(receivedData.getIsThereData()){
+
+			if($scope.labels1.length>=60){
+				console.log($scope.labels1.length);
+				$scope.labels1=$scope.labels1.slice(1,60);
+				$scope.data1[0]=$scope.data1[0].slice(1,60);
+				$scope.data1[1]=$scope.data1[1].slice(1,60);
+
+				$scope.labels2=$scope.labels2.slice(1,60);
+				$scope.data2=$scope.data2.slice(1,60);
+			}
 
 			$scope.labels1.push(timeX);
 			$scope.data1[0].push($scope.currentTemperature);
@@ -66,12 +84,24 @@ angular.module('starter.controllers', [])
 		}
 	}
 
-
 	$scope.resetChart= function(){
 		$scope.data1=[[receivedData.getTemperature()],[receivedData.getSetpoint()]];
 		$scope.labels1=[timeX];
 		$scope.data2=[receivedData.getPwm()];
 		$scope.labels2=[timeX];
+	}
+
+	$scope.updateDataLog= function(){
+		//if(table.rows.length>=61){
+		//	table.deleteRow(60);
+		//}
+		var row = table.insertRow(1);
+		var cell1 = row.insertCell(0);
+		var cell2 = row.insertCell(1);
+		var cell3 = row.insertCell(2);
+		cell1.innerHTML = timeX;
+		cell2.innerHTML = $scope.currentSetpoint;
+		cell3.innerHTML = $scope.currentTemperature;
 	}
 
 	$scope.chartOnOff= function(){
@@ -89,12 +119,28 @@ angular.module('starter.controllers', [])
 			chartPermission=1;
 			$scope.chartStartStop='Stop';
 			$scope.chartButtonStyle='button button-block button-assertive';
-			interval2=$interval(updateCharts, 5000);
+			interval2=$interval(updateCharts, 3000);
 		}
 	}
 
-	$scope.options1 = {
-		animation:false,
+	$scope.openModal = function(index) {
+		if (index == 1) $scope.oModal1.show();
+		else $scope.oModal2.show();
+	}
+
+	$scope.closeModal = function(index) {
+		if (index == 1) $scope.oModal1.hide();
+		else $scope.oModal2.hide();
+	}
+
+	$ionicModal.fromTemplateUrl('templates/datalog.html', {
+		id: '1',
+		scope: $scope}).then(function(modal) {
+			$scope.oModal1 = modal;
+		})
+
+		$scope.options1 = {
+			animation:false,
 		//legend: {display: true},
 		scales: {
 			yAxes: [
@@ -195,14 +241,14 @@ angular.module('starter.controllers', [])
 		id: '1',
 		scope: $scope}).then(function(modal) {
 			$scope.oModal1 = modal;
-	})
+		})
 
-	$ionicModal.fromTemplateUrl('templates/hysteresissettings.html', {
-		id: '2',
-		scope: $scope}).then(function(modal) {
-			$scope.oModal2 = modal;
-	})
-})
+		$ionicModal.fromTemplateUrl('templates/hysteresissettings.html', {
+			id: '2',
+			scope: $scope}).then(function(modal) {
+				$scope.oModal2 = modal;
+			})
+		})
 
 
 .controller('BlueCtrl', function($scope, $timeout, $interval, $ionicLoading, bluetoothInformation) {
