@@ -3,7 +3,7 @@
 #include <LiquidCrystal.h>
 
 OneWire  ds(8);  // on pin 5 (a 4.7K resistor is necessary)
-LiquidCrystal lcd(7, 6, 5, 4, 3, 2);
+LiquidCrystal lcd(2,3,4,5,6,7);
 
 //program variables
 SimpleTimer timer;
@@ -14,7 +14,7 @@ int kp = 15;
 int ki = 5;
 int kd = 2;
 int regulatorType = 0;
-float hysteresis=0.25;
+float hysteresis=0.5;
 int power=255;
 
 //PIN DECLARATIONS
@@ -153,7 +153,6 @@ void bluetoothReceive() {
 }
 
 void bluetoothSend() {
-  temperatureReading = TempRead();
   Serial.print("t");
   Serial.print(temperatureReading);
   Serial.print("s");
@@ -178,13 +177,13 @@ void bluetoothSend() {
 }
 
 void regulation() {
+  temperatureReading = TempRead();
   if (regulatorType == 0) {
     pwm = PID(temperatureSetpoint, temperatureReading, millis(), kp , ki, kd); //  float pwm=PID(zadanaTemp, temp,millis(), 15 , 5, 2)
   }
   else {
     pwm = HIST(temperatureSetpoint, temperatureReading, hysteresis, power);
   }
-
   Motor_Control(pwm);
 }
 
@@ -232,23 +231,25 @@ int PID(int setpointTemperature, float currentTemperature, float actualTime, int
   float derivative = 0;
   float error = 0;
   float dt = 0;
+  float static integral = 0;
+  float static previousTime = 0;
+  float static previousError = 0;
 
   error = setpointTemperature - currentTemperature;
   dt = (float)(actualTime - previousTime);
-  //dt=dt/60000; //skalowanie 1 milisekunda = 1/60000 min
-  dt = dt / 6000;
-  integral = integral + (error * dt);
-  if (integral > 30) {
+  dt=dt/1000;
+  integral = integral + (error * dt)*ki;
+  if (integral > 60) {
     integral = 60;
   }
-  else if (integral < -30) {
+  else if (integral < -60) {
     integral = -60;
   }
   derivative = (error - previousError) / dt;
   previousError = error;
   previousTime = actualTime;
 
-  output = kp * error + ki * integral + kd * derivative;
+  output = kp * error + integral + kd * derivative;
   if (output >= maximum)
   {
     output = maximum;
@@ -343,6 +344,12 @@ float TempRead()
     //// default is 12 bit resolution, 750 ms conversion time
   }
   celsius = (float)raw / 16.0;
-
+  int calkowita=celsius;
+  if(celsius-calkowita>0,5){
+    celsius=celsius+0,5;
+  }
+  else{
+    celsius=calkowita;
+  }
   return celsius;
 }
