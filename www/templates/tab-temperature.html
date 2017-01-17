@@ -91,9 +91,6 @@
       </div>
     </ion-item>
   </ion-item>
-  <button class="{{chartButtonStyle}}" ng-click="openModal(1)">
-    {{chartStartStop}} updating charts\open modal
-  </button>
   <div class="card">
     <div class="item item-divider">
       Temperature Chart
@@ -108,32 +105,8 @@
       <canvas id="line2" class="chart chart-line" chart-data="data2" chart-labels="labels2" chart-legend="true" chart-series="series2" chart-options="options2"></canvas>
     </div>
   </div>
-
+  <button class='button button-block button-assertive' ng-click="resetChart()">
+    Reset charts
+  </button>
 </ion-content>
-
-<script id="templates/datalog.html" type="text/ng-template">
-  <ion-modal-view>
-    <ion-header-bar class="bar bar-header bar-positive">
-      <button class="button button-clear button-primary" ng-click="closeModal(1)">HIDE</button>
-    </ion-header-bar>
-    <ion-content class="padding" style="text-align:center">
-      <button class='button button-block button-assertive' ng-click="resetChart()">
-        Reset charts
-      </button>
-      <table class="table" id="dataLog">
-      <tr class="row"> 
-          <td class="col">Time</td>
-          <td class="col">Setpoint</td>
-          <td class="col">Temperature</td>
-        </tr>
-      </table>
-    </ion-content>
-  </ion-modal-view>
-</script>
-
-
-
-
 </ion-view>
-
-

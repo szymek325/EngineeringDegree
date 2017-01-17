@@ -31,7 +31,6 @@ angular.module('starter.controllers', [])
 	var oneTimeOnly=0;
 	var interval2;
 	var counter=0;
-	var table = document.getElementById("dataLog");
 
 	function receiveData(){
 		receivedData.getData();
@@ -57,7 +56,6 @@ angular.module('starter.controllers', [])
 				updateCharts();
 				counter=0;
 			}
-			$scope.updateDataLog();
 		}
 	}
 
@@ -65,14 +63,14 @@ angular.module('starter.controllers', [])
 		timeX=new Date().toTimeString().split(" ")[0];
 		if(receivedData.getIsThereData()){
 
-			if($scope.labels1.length>=60){
+			if($scope.labels1.length>=300){
 				console.log($scope.labels1.length);
-				$scope.labels1=$scope.labels1.slice(1,60);
-				$scope.data1[0]=$scope.data1[0].slice(1,60);
-				$scope.data1[1]=$scope.data1[1].slice(1,60);
+				$scope.labels1=$scope.labels1.slice(1,300);
+				$scope.data1[0]=$scope.data1[0].slice(1,300);
+				$scope.data1[1]=$scope.data1[1].slice(1,300);
 
-				$scope.labels2=$scope.labels2.slice(1,60);
-				$scope.data2=$scope.data2.slice(1,60);
+				$scope.labels2=$scope.labels2.slice(1,300);
+				$scope.data2=$scope.data2.slice(1,300);
 			}
 
 			$scope.labels1.push(timeX);
@@ -91,37 +89,6 @@ angular.module('starter.controllers', [])
 		$scope.labels2=[timeX];
 	}
 
-	$scope.updateDataLog= function(){
-		//if(table.rows.length>=61){
-		//	table.deleteRow(60);
-		//}
-		var row = table.insertRow(1);
-		var cell1 = row.insertCell(0);
-		var cell2 = row.insertCell(1);
-		var cell3 = row.insertCell(2);
-		cell1.innerHTML = timeX;
-		cell2.innerHTML = $scope.currentSetpoint;
-		cell3.innerHTML = $scope.currentTemperature;
-	}
-
-	$scope.chartOnOff= function(){
-		if(chartPermission){
-			chartPermission=0;
-			$scope.chartStartStop='Start';
-			$scope.chartButtonStyle='button button-block button-positive';
-			$interval.cancel(interval2);
-		}
-		else{
-			if(oneTimeOnly==0){
-				$scope.resetChart();
-				oneTimeOnly=1;
-			}
-			chartPermission=1;
-			$scope.chartStartStop='Stop';
-			$scope.chartButtonStyle='button button-block button-assertive';
-			interval2=$interval(updateCharts, 3000);
-		}
-	}
 
 	$scope.openModal = function(index) {
 		if (index == 1) $scope.oModal1.show();
@@ -141,7 +108,6 @@ angular.module('starter.controllers', [])
 
 		$scope.options1 = {
 			animation:false,
-		//legend: {display: true},
 		scales: {
 			yAxes: [
 			{
@@ -151,7 +117,6 @@ angular.module('starter.controllers', [])
 				position: 'left',
 			}],
 			xAxes: [{
-				//type: 'time',
 				ticks: {
 					autoSkip:true,
 					maxTicksLimit:4,
@@ -162,7 +127,6 @@ angular.module('starter.controllers', [])
 
 	$scope.options2 = {
 		animation:false,
-		//legend: {display: true},
 		scales: {
 			yAxes: [
 			{
@@ -172,7 +136,6 @@ angular.module('starter.controllers', [])
 				position: 'left',
 			}],
 			xAxes: [{
-				//type: 'time',
 				ticks: {
 					autoSkip:true,
 					maxTicksLimit:4,
@@ -207,10 +170,6 @@ angular.module('starter.controllers', [])
 		bluetoothSerial.write("t"+$scope.data1.newSetpoint+"p"+$scope.data2.kp+"i"+$scope.data3.ki+"d"+$scope.data4.kd+"r"+regulator+"h"+$scope.data5.hyst+"m"+$scope.data6.power+"/n", function (data){
 			console.log("Sending process was"+data+". This:  was send");alert("Temperature Setpoint was send")}, function (data){
 				console.log("Nothing was send");alert("Data was not send")});
-		//console.log($scope.data1.newSetpoint);
-		//console.log($scope.data2.kp);
-		//console.log($scope.data3.ki);
-		//console.log($scope.data4.kd);
 		
 	}
 
@@ -218,13 +177,11 @@ angular.module('starter.controllers', [])
 		$scope.data2={'kp':'15'};
 		$scope.data3={'ki':'5'};
 		$scope.data4={'kd':'2'};
-		//$scope.sendSetpoint()
 	}
 
 	$scope.defaultSettings2= function(){
 		$scope.data5={'hist':'0.25'}
 		$scope.data6={'power':'255'}
-		//$scope.sendSetpoint()
 	}
 
 	$scope.openModal = function(index) {
@@ -260,7 +217,7 @@ angular.module('starter.controllers', [])
 
 	$timeout(function() {
 		bluetoothInformation.isBluetoothON();
-	}, 1000);
+	}, 500);
 
 
 
@@ -333,4 +290,4 @@ angular.module('starter.controllers', [])
 		bluetoothInformation.checkConnectionState();
 	}
 
-});
+})

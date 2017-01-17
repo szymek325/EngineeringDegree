@@ -13,7 +13,6 @@ angular.module('starter.services', [])
   var regulatorReceived;
   var hysteresisReceived;
   var powerReceived;
-  //var lightsReceived;
   var isThereData;
 
   return {
@@ -44,9 +43,6 @@ angular.module('starter.services', [])
     getPower: function () {
       return powerReceived;
     },
-    //getlights: function () {
-    //  return lightsReceived;
-    //},
     getIsThereData: function () {
       return isThereData;
     },
@@ -68,7 +64,6 @@ angular.module('starter.services', [])
             regulatorReceived=data.substring(data.indexOf('r')+1, data.indexOf('h'));
             hysteresisReceived=data.substring(data.indexOf('h')+1, data.indexOf('m'));
             powerReceived=data.substring(data.indexOf('m')+1, data.indexOf('/'));
-            //lightsReceived=data.substring(data.indexOf('l')+1, data.indexOf('/'));
 
             bluetoothSerial.clear(console.log(),console.log());
           }
@@ -99,9 +94,10 @@ angular.module('starter.services', [])
           bluetoothSerial.enable(function (){
             console.log("Bluetooth was ENABLED"); bluetoothOnOffStatus=1},function (){
               console.log("Bluetooth wasn't ENABLED");
-              console.log("Application is closing now");
+              console.log("Please enable bluetooth");
+              alert("Application is not going to work correctly without Bluetooth Connection")
               bluetoothOnOffStatus=0;
-              navigator.app.exitApp();
+              //navigator.app.exitApp();
             })
         })
       return bluetoothOnOffStatus;
