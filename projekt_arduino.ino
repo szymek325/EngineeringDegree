@@ -2,7 +2,7 @@
 #include <OneWire.h>
 #include <LiquidCrystal.h>
 
-OneWire  ds(8);  // on pin 5 (a 4.7K resistor is necessary)
+OneWire  ds(8); 
 LiquidCrystal lcd(2,3,4,5,6,7);
 
 //program variables
@@ -29,15 +29,16 @@ float static integral = 0;
 float static previousTime = 0;
 float static previousError = 0;
 
-/////FUNCTIONS DECLARATIONS////
+/////FUNCTIONS executed with timers////
 void bluetoothReceive();
 void bluetoothSend();
 void regulation();
+///// other functions
 void Motor_Control(int Speed);
 int PID(int setpoint, float currentTemperature , float actualTime, int kp, int ki, int kd);
 float TempRead();
-void setLCD(float zadana, float temp);
 void setLCD_start();
+void setLCD(int setpoint, float temp);
 int HIST(int setpointTemperature, float currentTemperature);
 
 ////PROGRAM
@@ -173,7 +174,7 @@ void bluetoothSend() {
   Serial.print(power);
   Serial.println("/n");
 
-  setLCD(temperatureSetpoint, temperatureReading, pwm);
+  setLCD(temperatureSetpoint, temperatureReading);
 }
 
 void regulation() {
@@ -190,20 +191,20 @@ void regulation() {
 /////OTHER FUNCTIONS/////
 void Motor_Control(int Speed)
 {
-  if (Speed > 0)
+  if (Speed > 0)//heating
   {
     digitalWrite(IN2, LOW);
     digitalWrite(IN1,  HIGH);
     analogWrite(ENA, Speed);
   }
-  else if (Speed < 0)
+  else if (Speed < 0)//cooling
   {
-    Speed = Speed * (-1); /// jeśli wartośc jest na minusie to podaje oszukaną wartość
+    Speed = Speed * (-1);
     digitalWrite(IN2, HIGH);
     digitalWrite(IN1, LOW);
     analogWrite(ENA, Speed);
   }
-  else {
+  else {//stop
     digitalWrite(IN1, LOW);
     digitalWrite(IN2, LOW);
   }
@@ -211,11 +212,11 @@ void Motor_Control(int Speed)
 
 int HIST(int setpointTemperature, float currentTemperature, float hystValue, int powerValue) {
   float error = setpointTemperature - currentTemperature;
-  if (error > 0.25) {
-    return 255;
+  if (error > hystValue) {
+    return powerValue;
   }
-  else if (error < -0.25) {
-    return -255;
+  else if (error < -hystValue) {
+    return -powerValue;
   }
   else {
     return 0;
@@ -273,13 +274,11 @@ void setLCD_start() {
   lcd.print("C ");
 }
 
-void setLCD(int setpoint, float temp, int pwmSignal) {
+void setLCD(int setpoint, float temp) {
   lcd.setCursor(9, 0);
   lcd.print(temp);
   lcd.setCursor(9, 1);
   lcd.print((float)setpoint);
-  //lcd.print("  ");
-  //lcd.print(pwmSignal);
 }
 
 float TempRead()
