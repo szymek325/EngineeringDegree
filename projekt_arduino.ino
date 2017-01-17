@@ -9,9 +9,9 @@ LiquidCrystal lcd(2,3,4,5,6,7);
 SimpleTimer timer;
 int pwm;
 float temperatureReading;
-int temperatureSetpoint = 22;
-int kp = 0;
-int ki = 1;
+int temperatureSetpoint = 24;
+int kp = 250;
+int ki = 0;
 int kd = 0;
 int regulatorType = 0;
 float hysteresis=0.5;
@@ -24,10 +24,6 @@ const int ENA = 11;
 const int IN2 = 12;
 const int IN1 = 13;
 
-//regulator variables
-float static integral = 0;
-float static previousTime = 0;
-float static previousError = 0;
 
 /////FUNCTIONS executed with timers////
 void bluetoothReceive();
@@ -43,7 +39,6 @@ int HIST(int setpointTemperature, float currentTemperature);
 
 ////PROGRAM
 void setup(void) {
-  setLCD_start();
   Serial.begin(9600);
   pinMode(2, OUTPUT);
   pinMode(3, OUTPUT);
@@ -56,6 +51,7 @@ void setup(void) {
   pinMode(ENA, OUTPUT);
   pinMode(IN2, OUTPUT);
   pinMode(IN1, OUTPUT);
+  setLCD_start();
   timer.setInterval(500, regulation);
   timer.setInterval(1000, bluetoothSend);
   timer.setInterval(2000, bluetoothReceive);
@@ -155,9 +151,9 @@ void bluetoothReceive() {
 
 void bluetoothSend() {
   Serial.print("t");
-  Serial.print(temperatureReading);
+  Serial.print(temperatureReading,1);
   Serial.print("s");
-  Serial.print(temperatureSetpoint);
+  Serial.print(temperatureSetpoint,1);
   Serial.print("p");
   Serial.print(pwm);
   Serial.print("k");
@@ -228,29 +224,30 @@ int PID(int setpointTemperature, float currentTemperature, float actualTime, int
   //variable declarations
   float maximum = 255;
   float minimum = -255;
-  int output;
-  float derivative = 0;
-  float error = 0;
-  float dt = 0;
+  
   float static integral = 0;
   float static previousTime = 0;
   float static previousError = 0;
+  float static previousOutput=0;
 
-  error = setpointTemperature - currentTemperature;
-  dt = (float)(actualTime - previousTime);
+  float error = setpointTemperature - currentTemperature;
+  float dt = (float)(actualTime - previousTime);
   dt=dt/1000;
-  integral = integral + (error * dt);
-  if (integral > 40) {
-    integral = 40;
+  if(previousOutput>-255&&previousOutput<255){
+    integral = integral + (error * dt);
   }
-  else if (integral < -40) {
-    integral = -40;
+  if (integral > 10) {
+    integral = 10;
   }
-  derivative = (error - previousError) / dt;
+  else if (integral < -10) {
+    integral = -10;
+  }
+  float derivative = (error - previousError) / dt;
   previousError = error;
   previousTime = actualTime;
 
-  output = kp * error + ki*integral + kd * derivative;
+  int output = kp * error + ki*integral + kd * derivative;
+  previousOutput=output;
   if (output >= maximum)
   {
     output = maximum;
@@ -276,9 +273,9 @@ void setLCD_start() {
 
 void setLCD(int setpoint, float temp) {
   lcd.setCursor(9, 0);
-  lcd.print(temp);
+  lcd.print(temp,1);
   lcd.setCursor(9, 1);
-  lcd.print((float)setpoint);
+  lcd.print((float)setpoint,1);
 }
 
 float TempRead()
