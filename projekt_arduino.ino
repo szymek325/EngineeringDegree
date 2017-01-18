@@ -10,9 +10,9 @@ SimpleTimer timer;
 int pwm;
 float temperatureReading;
 int temperatureSetpoint = 24;
-int kp = 250;
-int ki = 0;
-int kd = 0;
+int kp = 125;
+int ki = 60;
+int kd = 100;
 int regulatorType = 0;
 float hysteresis=0.5;
 int power=255;
@@ -52,7 +52,7 @@ void setup(void) {
   pinMode(IN2, OUTPUT);
   pinMode(IN1, OUTPUT);
   setLCD_start();
-  timer.setInterval(500, regulation);
+  timer.setInterval(1000, regulation);
   timer.setInterval(1000, bluetoothSend);
   timer.setInterval(2000, bluetoothReceive);
 }
@@ -232,15 +232,15 @@ int PID(int setpointTemperature, float currentTemperature, float actualTime, int
 
   float error = setpointTemperature - currentTemperature;
   float dt = (float)(actualTime - previousTime);
-  dt=dt/1000;
+  dt=dt/60000;
   if(previousOutput>-255&&previousOutput<255){
     integral = integral + (error * dt);
   }
-  if (integral > 10) {
-    integral = 10;
+  if (integral > 1) {
+    integral = 1;
   }
-  else if (integral < -10) {
-    integral = -10;
+  else if (integral < -1) {
+    integral = -1;
   }
   float derivative = (error - previousError) / dt;
   previousError = error;
@@ -286,30 +286,10 @@ float TempRead()
   byte data[12];
   byte addr[8];
   float celsius;
-  float fahrenheit;
 
   if ( !ds.search(addr)) {
     ds.reset_search();
     delay(250);
-  }
-
-  if (OneWire::crc8(addr, 7) != addr[7]) {
-    //Serial.println("CRC is not valid!");
-  }
-
-  switch (addr[0]) {
-    case 0x10:
-      type_s = 1;
-      break;
-    case 0x28:
-      type_s = 0;
-      break;
-    case 0x22:
-      type_s = 0;
-      break;
-    default:
-      //Serial.println("Device is not a DS18x20 family device.");
-      present = 0;
   }
 
   ds.reset();
@@ -320,25 +300,23 @@ float TempRead()
   ds.select(addr);
   ds.write(0xBE);         // Read Scratchpad
 
-  for ( i = 0; i < 9; i++) {           // we need 9 bytes
+  for ( i = 0; i < 12; i++) {           // we need 12 bytes
     data[i] = ds.read();
   }
 
   int16_t raw = (data[1] << 8) | data[0];
+  
   if (type_s) {
     raw = raw << 3; // 9 bit resolution default
     if (data[7] == 0x10) {
       // "count remain" gives full 12 bit resolution
       raw = (raw & 0xFFF0) + 12 - data[6];
     }
-  } else {
-    byte cfg = (data[4] & 0x60);
-    // at lower res, the low bits are undefined, so let's zero them
-    if (cfg == 0x00) raw = raw & ~7;  // 9 bit resolution, 93.75 ms
-    else if (cfg == 0x20) raw = raw & ~3; // 10 bit res, 187.5 ms
-    else if (cfg == 0x40) raw = raw & ~1; // 11 bit res, 375 ms
-    //// default is 12 bit resolution, 750 ms conversion time
+  } 
+  else {
+    
   }
+
   celsius = (float)raw / 16.0;
 
   return celsius;
