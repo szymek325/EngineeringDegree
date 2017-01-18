@@ -12,31 +12,25 @@ angular.module('starter.controllers', [])
 	$scope.hysteresisValue="value";
 	$scope.powerValue="Value";
 
-	$scope.labels1 = [0];
+	var interval1=$interval(receiveData, 1000);
+	var timeX=new Date().toTimeString().split(" ")[0];
+	var counter=0;
+
+	$scope.labels1 = [timeX];
 	$scope.series1 = [['Actual Temperature'],['Setpoint']];
-	$scope.data1=[[20],[20]];
+	$scope.data1=[[22],[22]];
 	$scope.colors = ['#ff6384','#ff6384'];
 
-	$scope.labels2 = [0];
+	$scope.labels2 = [timeX];
 	$scope.series2 = ['PWM'];
 	$scope.data2=[0];
 	$scope.color2 = ['#ff6384'];
 
-	chartPermission=1;
-	$scope.chartStartStop='Start';
-	$scope.chartButtonStyle='button button-block button-positive'
-
-	var interval1=$interval(receiveData, 1000);
-	var timeX=new Date().toTimeString().split(" ")[0];
-	var oneTimeOnly=0;
-	var interval2;
-	var counter=0;
-
 	function receiveData(){
+		counter=counter+1;
 		receivedData.getData();
 		if(receivedData.getIsThereData())
 		{
-			counter=counter+1;
 			$scope.currentTemperature = receivedData.getTemperature();
 			$scope.currentSetpoint = receivedData.getSetpoint();
 			$scope.pwmSignal=receivedData.getPwm();
@@ -52,7 +46,7 @@ angular.module('starter.controllers', [])
 				$scope.regulatorType='PID';
 			}
 
-			if(counter==3){
+			if(counter>=3){
 				updateCharts();
 				counter=0;
 			}
@@ -61,25 +55,22 @@ angular.module('starter.controllers', [])
 
 	function updateCharts(){
 		timeX=new Date().toTimeString().split(" ")[0];
-		if(receivedData.getIsThereData()){
+		if($scope.labels1.length>=150){
+			console.log($scope.labels1.length);
+			$scope.labels1=$scope.labels1.slice(1,150);
+			$scope.data1[0]=$scope.data1[0].slice(1,150);
+			$scope.data1[1]=$scope.data1[1].slice(1,150);
 
-			if($scope.labels1.length>=150){
-				console.log($scope.labels1.length);
-				$scope.labels1=$scope.labels1.slice(1,150);
-				$scope.data1[0]=$scope.data1[0].slice(1,150);
-				$scope.data1[1]=$scope.data1[1].slice(1,150);
-
-				$scope.labels2=$scope.labels2.slice(1,150);
-				$scope.data2=$scope.data2.slice(1,150);
-			}
-
-			$scope.labels1.push(timeX);
-			$scope.data1[0].push($scope.currentTemperature);
-			$scope.data1[1].push($scope.currentSetpoint);
-
-			$scope.labels2.push(timeX);
-			$scope.data2.push($scope.pwmSignal);
+			$scope.labels2=$scope.labels2.slice(1,150);
+			$scope.data2=$scope.data2.slice(1,150);
 		}
+
+		$scope.labels1.push(timeX);
+		$scope.data1[0].push($scope.currentTemperature);
+		$scope.data1[1].push($scope.currentSetpoint);
+
+		$scope.labels2.push(timeX);
+		$scope.data2.push($scope.pwmSignal);
 	}
 
 	$scope.resetChart= function(){
@@ -90,24 +81,9 @@ angular.module('starter.controllers', [])
 	}
 
 
-	$scope.openModal = function(index) {
-		if (index == 1) $scope.oModal1.show();
-		else $scope.oModal2.show();
-	}
 
-	$scope.closeModal = function(index) {
-		if (index == 1) $scope.oModal1.hide();
-		else $scope.oModal2.hide();
-	}
-
-	$ionicModal.fromTemplateUrl('templates/datalog.html', {
-		id: '1',
-		scope: $scope}).then(function(modal) {
-			$scope.oModal1 = modal;
-		})
-
-		$scope.options1 = {
-			animation:false,
+	$scope.options1 = {
+		animation:false,
 		scales: {
 			yAxes: [
 			{
@@ -152,9 +128,9 @@ angular.module('starter.controllers', [])
 	var regulator=1;
 	$scope.data={'regulatorType':'PID'};
 	$scope.data1={'newSetpoint':'22'};
-	$scope.data2={'kp':'15'};
-	$scope.data3={'ki':'5'};
-	$scope.data4={'kd':'2'};
+	$scope.data2={'kp':'125'};
+	$scope.data3={'ki':'60'};
+	$scope.data4={'kd':'50'};
 	$scope.data5={'hyst':'0.25'}
 	$scope.data6={'power':'255'}
 
