@@ -63,14 +63,14 @@ angular.module('starter.controllers', [])
 		timeX=new Date().toTimeString().split(" ")[0];
 		if(receivedData.getIsThereData()){
 
-			if($scope.labels1.length>=300){
+			if($scope.labels1.length>=150){
 				console.log($scope.labels1.length);
-				$scope.labels1=$scope.labels1.slice(1,300);
-				$scope.data1[0]=$scope.data1[0].slice(1,300);
-				$scope.data1[1]=$scope.data1[1].slice(1,300);
+				$scope.labels1=$scope.labels1.slice(1,150);
+				$scope.data1[0]=$scope.data1[0].slice(1,150);
+				$scope.data1[1]=$scope.data1[1].slice(1,150);
 
-				$scope.labels2=$scope.labels2.slice(1,300);
-				$scope.data2=$scope.data2.slice(1,300);
+				$scope.labels2=$scope.labels2.slice(1,150);
+				$scope.data2=$scope.data2.slice(1,150);
 			}
 
 			$scope.labels1.push(timeX);
@@ -147,7 +147,7 @@ angular.module('starter.controllers', [])
 
 })
 
-.controller('LightCtrl', function($scope, $ionicModal) {
+.controller('ControlCtrl', function($scope, $ionicModal) {
 	// INITIAL VALUES
 	var regulator=1;
 	$scope.data={'regulatorType':'PID'};

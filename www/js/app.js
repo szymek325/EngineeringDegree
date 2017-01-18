@@ -49,12 +49,12 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services','c
       }
     }
   })
-  .state('tab.light', {
-    url: '/light',
+  .state('tab.control', {
+    url: '/control',
     views: {
-      'tab-light': {
-        templateUrl: 'templates/tab-light.html',
-        controller: 'LightCtrl'
+      'tab-control': {
+        templateUrl: 'templates/tab-control.html',
+        controller: 'ControlCtrl'
       }
     }
   })
