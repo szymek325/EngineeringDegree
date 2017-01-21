@@ -9,10 +9,10 @@ LiquidCrystal lcd(2,3,4,5,6,7);
 SimpleTimer timer;
 int pwm;
 float temperatureReading;
-int temperatureSetpoint = 24;
-int kp = 125;
-int ki = 60;
-int kd = 100;
+int temperatureSetpoint = 22;
+int kp = 250;
+int ki = 65;
+int kd = 80;
 int regulatorType = 0;
 float hysteresis=0.5;
 int power=255;
@@ -300,7 +300,7 @@ float TempRead()
   ds.select(addr);
   ds.write(0xBE);         // Read Scratchpad
 
-  for ( i = 0; i < 12; i++) {           // we need 12 bytes
+  for ( i = 0; i < 9; i++) {           // we need 12 bytes
     data[i] = ds.read();
   }
 
