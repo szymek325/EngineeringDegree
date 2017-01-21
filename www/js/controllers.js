@@ -123,40 +123,44 @@ angular.module('starter.controllers', [])
 
 })
 
-.controller('ControlCtrl', function($scope, $ionicModal) {
+.controller('ControlCtrl', function($scope, $ionicModal, bluetoothInformation) {
 	// INITIAL VALUES
 	var regulator=1;
 	$scope.data={'regulatorType':'PID'};
 	$scope.data1={'newSetpoint':'22'};
-	$scope.data2={'kp':'125'};
-	$scope.data3={'ki':'60'};
-	$scope.data4={'kd':'50'};
+	$scope.data2={'kp':'250'};
+	$scope.data3={'ki':'65'};
+	$scope.data4={'kd':'80'};
 	$scope.data5={'hyst':'0.25'}
 	$scope.data6={'power':'255'}
 
 	$scope.sendSetpoint= function(){
-		console.log($scope.data.regulatorType);
-		if($scope.data.regulatorType=='PID'){
-			regulator=0;
+		if(bluetoothInformation.getConnectionState()){
+			console.log($scope.data.regulatorType);
+			if($scope.data.regulatorType=='PID'){
+				regulator=0;
+			}
+			else{
+				regulator=1;
+			}
+			console.log(regulator);
+			bluetoothSerial.write("t"+$scope.data1.newSetpoint+"p"+$scope.data2.kp+"i"+$scope.data3.ki+"d"+$scope.data4.kd+"r"+regulator+"h"+$scope.data5.hyst+"m"+$scope.data6.power+"/n", function (data){
+				console.log("Sending process was"+data+". This:  was send");alert("Temperature Setpoint was send")}, function (data){
+					console.log("Nothing was send");alert("Data was not send")});
 		}
 		else{
-			regulator=1;
+			alert('You should connect to a device first');
 		}
-		console.log(regulator);
-		bluetoothSerial.write("t"+$scope.data1.newSetpoint+"p"+$scope.data2.kp+"i"+$scope.data3.ki+"d"+$scope.data4.kd+"r"+regulator+"h"+$scope.data5.hyst+"m"+$scope.data6.power+"/n", function (data){
-			console.log("Sending process was"+data+". This:  was send");alert("Temperature Setpoint was send")}, function (data){
-				console.log("Nothing was send");alert("Data was not send")});
-		
 	}
 
 	$scope.defaultSettings1= function(){
-		$scope.data2={'kp':'15'};
-		$scope.data3={'ki':'5'};
-		$scope.data4={'kd':'2'};
+		$scope.data2={'kp':'250'};
+		$scope.data3={'ki':'60'};
+		$scope.data4={'kd':'80'};
 	}
 
 	$scope.defaultSettings2= function(){
-		$scope.data5={'hist':'0.25'}
+		$scope.data5={'hist':'0.2'}
 		$scope.data6={'power':'255'}
 	}
 
@@ -248,22 +252,27 @@ angular.module('starter.controllers', [])
 	}
 
 	$scope.connectMac = function(data){
-		$ionicLoading.show();
-		bluetoothInformation.checkConnectionState();
-		if(bluetoothInformation.getConnectionState()){
-			bluetoothSerial.disconnect(function (){
-				console.log("You have been disconnected"); alert("You have been disconnected"); $scope.checkConnection1();$ionicLoading.hide()}, function (){
-					console.log("Disconnection wasn't possible");alert("Disconnection wasn't possible");$scope.checkConnection();$ionicLoading.hide()
-				});
+		if(bluetoothInformation.isBluetoothON()){
+			$ionicLoading.show();
+			bluetoothInformation.checkConnectionState();
+			if(bluetoothInformation.getConnectionState()){
+				bluetoothSerial.disconnect(function (){
+					console.log("You have been disconnected"); alert("You have been disconnected"); $scope.checkConnection1();$ionicLoading.hide()}, function (){
+						console.log("Disconnection wasn't possible");alert("Disconnection wasn't possible");$scope.checkConnection();$ionicLoading.hide()
+					});
+			}
+			else{
+				bluetoothSerial.connect(data.address, function (){
+					console.log("You have been connected to device:"); alert("You have been connected");$scope.checkConnection();$ionicLoading.hide()}, function (){
+						console.log("Connection wasn't possible");alert("Connection wasn't possible");$scope.checkConnection1();bluetoothInformation.checkConnectionState();$ionicLoading.hide()
+					});
+
+			};
+			bluetoothInformation.checkConnectionState();
 		}
 		else{
-			bluetoothSerial.connect(data.address, function (){
-				console.log("You have been connected to device:"); alert("You have been connected");$scope.checkConnection();$ionicLoading.hide()}, function (){
-					console.log("Connection wasn't possible");alert("Connection wasn't possible");$scope.checkConnection1();$ionicLoading.hide()
-				});
 
-		};
-		bluetoothInformation.checkConnectionState();
+		}
 	}
 
 })
