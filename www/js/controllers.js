@@ -131,7 +131,7 @@ angular.module('starter.controllers', [])
 	$scope.data2={'kp':'250'};
 	$scope.data3={'ki':'65'};
 	$scope.data4={'kd':'80'};
-	$scope.data5={'hyst':'0.25'}
+	$scope.data5={'hyst':'0.2'}
 	$scope.data6={'power':'255'}
 
 	$scope.sendSetpoint= function(){
