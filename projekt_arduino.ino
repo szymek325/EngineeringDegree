@@ -1,6 +1,6 @@
 #include "SimpleTimer.h"
-#include <OneWire.h>
-#include <LiquidCrystal.h>
+#include "OneWire.h"
+#include "LiquidCrystal.h"
 
 OneWire  ds(8); 
 LiquidCrystal lcd(2,3,4,5,6,7);
