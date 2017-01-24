@@ -22,7 +22,7 @@
     <feature name="BluetoothSerial">
         <param name="android-package" value="com.megster.cordova.BluetoothSerial" />
     </feature>
-    <name>Temperature Control System</name>
+    <name>Temperature Control</name>
     <description>
         With this app, you can control temperature regulation system, built on Arduino Uno.
 		Engineering project by Mateusz Szymkowiak

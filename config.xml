@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <widget id="com.ionicframework.projekt397832" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
-  <name>Temperature Control System</name>
+  <name>Temperature Control</name>
   <description>
         With this app, you can control temperature regulation system, built on Arduino Uno.
 		Engineering project by Mateusz Szymkowiak

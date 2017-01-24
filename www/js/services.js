@@ -95,7 +95,7 @@ angular.module('starter.services', [])
             console.log("Bluetooth was ENABLED"); bluetoothOnOffStatus=1},function (){
               console.log("Bluetooth wasn't ENABLED");
               console.log("Please enable bluetooth");
-              alert("Application is not going to work correctly without Bluetooth Connection")
+              alert("Application is not going to work correctly without Bluetooth turned ON")
               bluetoothOnOffStatus=0;
               //navigator.app.exitApp();
             })
