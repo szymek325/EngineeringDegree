@@ -5,7 +5,7 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
+angular.module('starter', ['ionic', 'starter.controllers', 'starter.services','chart.js'])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -32,7 +32,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
   $stateProvider
 
   // setup an abstract state for the tabs directive
-    .state('tab', {
+  .state('tab', {
     url: '/tab',
     abstract: true,
     templateUrl: 'templates/tabs.html'
@@ -49,16 +49,15 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
       }
     }
   })
-
-  .state('tab.light', {
-      url: '/light',
-      views: {
-        'tab-light': {
-          templateUrl: 'templates/tab-light.html',
-          controller: 'LightCtrl'
-        }
+  .state('tab.control', {
+    url: '/control',
+    views: {
+      'tab-control': {
+        templateUrl: 'templates/tab-control.html',
+        controller: 'ControlCtrl'
       }
-    })
+    }
+  })
   .state('tab.bluetooth', {
     url: '/bluetooth',
     views: {
@@ -71,6 +70,6 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
   
 
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/tab/temperature');
+  $urlRouterProvider.otherwise('/tab/bluetooth');
 
 });

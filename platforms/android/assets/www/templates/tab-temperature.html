@@ -1,41 +1,112 @@
+<ion-view view-title="Temperature">
+  <ion-content class="padding" style="text-align:center">
+    <ion-item>
+      <div class="row">
+        <div class="col">
+          <font size="4"><b>Regulator</font>
+        </div>
+        <div class="col">
+          <font size="4">{{regulatorType}}</b></font>
+        </div>
+      </div>
 
+      <div class="row">
+        <div class="col">
+          <font size="4">Setpoint</font>
+        </div>
+        <div class="col">
+          <font size="4">{{currentSetpoint}}</font>
+        </div>
+      </div>
 
+      <div class="row">
+        <div class="col">
+          <font size="4">Temperature</font>
+        </div>
+        <div class="col">
+          <font size="4">{{currentTemperature}}</font>
+        </div>
+      </div>
 
-
-<ion-view view-title="Temperature Control">
-  <ion-content class="padding" >
-    <p>
-        <button ng-click="Add()"  class='button button-block button-balanced'>
-          +
-        </button> 
-        <h2>{{newSetpoint}}</h2>
-        <button  ng-click="Substract()" class='button button-block button-assertive'>
-          -
-        </button> 
-
-
-
-      <button ng-click="sendSetpoint()" class="button button-block button-calm">
-        Confirm new setpoint
-      </button>
+      <div class="row">
+        <div class="col">
+          <font size="4">PWM</font>
+        </div>
+        <div class="col">
+          <font size="4">{{pwmSignal}}</font>
+        </div>
+      </div>
     </ion-item>
 
-    <h2> Readings </h2>
+    <ion-item>
+      <div class="row">
+        <div class="col col-50">
+          <font size="4"><b>PID Settings</font>
+        </div>
+        <div class="col col-50">
+          <font size="4">Hysteresis Settings</b></font>
+        </div>
+      </div>
 
-    <div class="list">
-     <label class="item item-input">
-      <span class="input-label">Setpoint Temperature</span>
-      {{currentSetpoint}}
-    </label> 
-    <label class="item item-input">
-      <span class="input-label">Current Temperature</span>
-      <span>{{currentTemperature}}</span>
-    </label> 
-    <button class="{{type}}" ng-click="receiveButton()">
-      {{startStop}} receiving
-    </button>
+
+      <div class="row">
+        <div class="col col-25">
+          <font size="4">Kp</font>
+        </div>
+        <div class="col col-25">
+          <font size="4">{{kpValue}}</font>
+        </div>
+
+        <div class="col col-25">
+          <font size="4">Hysteresis</font>
+        </div>
+        <div class="col col-25">
+          <font size="4">{{hysteresisValue}}</font>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col col-25">
+          <font size="4">Ki</font>
+        </div>
+        <div class="col col-25">
+          <font size="4">{{kiValue}}</font>
+        </div>
+
+        <div class="col col-25">
+          <font size="4">Power</font>
+        </div>
+        <div class="col col-25">
+          <font size="4">{{powerValue}}</font>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col col-25">
+          <font size="4">Kd</font>
+        </div>
+        <div class="col col-25">
+          <font size="4">{{kdValue}}</font>
+        </div>
+      </div>
+    </ion-item>
+  </ion-item>
+  <div class="card">
+    <div class="item item-divider">
+      Temperature Chart
+    </div>
+    <div class="item item-text-wrap">
+      <canvas id="line1" class="chart chart-line" chart-data="data1" chart-labels="labels1" chart-legend="true" chart-series="series1" chart-options="options1"></canvas>
+    </div>
+    <div class="item item-divider">
+      PWM Chart
+    </div>
+    <div class="item item-text-wrap">
+      <canvas id="line2" class="chart chart-line" chart-data="data2" chart-labels="labels2" chart-legend="true" chart-series="series2" chart-options="options2"></canvas>
+    </div>
   </div>
-</p>
+  <button class='button button-block button-assertive' ng-click="resetChart()">
+    Reset charts
+  </button>
 </ion-content>
 </ion-view>
-

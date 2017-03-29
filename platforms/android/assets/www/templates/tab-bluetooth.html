@@ -1,7 +1,6 @@
 <ion-view view-title="Settings">
-	<ion-content>
+	<ion-content class="padding" style="text-align:center">
 		<ion-list>
-			<ion-item>
 				<button ng-click="findDevices()" class='button button-block button-positive'>
 					Search devices
 				</button>
@@ -9,15 +8,14 @@
 					<h2>Paired Devices</h2>
 				</ion-item>
 				<button ng-repeat="device in pairedDevices" ng-click="connectMac({{device}})" class='{{typeConnect}}'>
-					Connect {{device.name}}
+					{{textConnect}} {{device.name}}
 				</button>
 				<ion-item>
 					<h2>Discovered Devices</h2>
 				</ion-item>
 				<button ng-repeat="device in discoveredDevices" ng-click="connectMac({{device}})" class='{{typeConnect}}'>
-					Connect {{device.name}}
+					{{textConnect}} {{device.name}}
 				</button>			
-			</ion-item>
 		</ion-list>
 	</ion-content>
 </ion-view>
