@@ -1,9 +1,0 @@
-
-float TempRead();
-float SensorValue();
-
-
-
-
-
-
