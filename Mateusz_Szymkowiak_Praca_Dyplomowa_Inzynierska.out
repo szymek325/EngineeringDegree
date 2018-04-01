@@ -1,0 +1,32 @@
+\BOOKMARK [0][-]{chapter.1}{Wstep}{}% 1
+\BOOKMARK [0][-]{chapter.2}{Cel i zakres prac}{}% 2
+\BOOKMARK [0][-]{chapter.3}{Podstawy teoretyczne}{}% 3
+\BOOKMARK [1][-]{section.3.1}{Ogniwo Peltiera}{chapter.3}% 4
+\BOOKMARK [1][-]{section.3.2}{Arduino}{chapter.3}% 5
+\BOOKMARK [1][-]{section.3.3}{Technologie internetowe}{chapter.3}% 6
+\BOOKMARK [1][-]{section.3.4}{Komunikacja}{chapter.3}% 7
+\BOOKMARK [0][-]{chapter.4}{Konstrukcja obiektu i uk\233adu regulacji}{}% 8
+\BOOKMARK [1][-]{section.4.1}{Wykorzystane podzespo\233y}{chapter.4}% 9
+\BOOKMARK [1][-]{section.4.2}{Obiekt pomiarowy}{chapter.4}% 10
+\BOOKMARK [1][-]{section.4.3}{Uk\233ad wykonawczy}{chapter.4}% 11
+\BOOKMARK [0][-]{chapter.5}{Sterowanie uk\233adem regulacji temperatury- Arduino}{}% 12
+\BOOKMARK [1][-]{section.5.1}{G\233\363wna petla programu}{chapter.5}% 13
+\BOOKMARK [1][-]{section.5.2}{Odbi\363r danych}{chapter.5}% 14
+\BOOKMARK [1][-]{section.5.3}{Regulacja temperatury}{chapter.5}% 15
+\BOOKMARK [1][-]{section.5.4}{Wysy\233anie danych}{chapter.5}% 16
+\BOOKMARK [0][-]{chapter.6}{Aplikacja mobilna}{}% 17
+\BOOKMARK [1][-]{section.6.1}{Aplikacja}{chapter.6}% 18
+\BOOKMARK [1][-]{section.6.2}{Niestandardowe us\233ugi aplikacji}{chapter.6}% 19
+\BOOKMARK [1][-]{section.6.3}{Interfejs}{chapter.6}% 20
+\BOOKMARK [1][-]{section.6.4}{Strona pomiarowa}{chapter.6}% 21
+\BOOKMARK [1][-]{section.6.5}{Zak\233adka konfiguracyjna}{chapter.6}% 22
+\BOOKMARK [1][-]{section.6.6}{Bluetooth}{chapter.6}% 23
+\BOOKMARK [0][-]{chapter.7}{Przeprowadzone testy}{}% 24
+\BOOKMARK [1][-]{section.7.1}{Regulator histerezowy}{chapter.7}% 25
+\BOOKMARK [1][-]{section.7.2}{Regulator PID}{chapter.7}% 26
+\BOOKMARK [1][-]{section.7.3}{Aplikacja mobilna}{chapter.7}% 27
+\BOOKMARK [0][-]{chapter.8}{Podsumowanie}{}% 28
+\BOOKMARK [0][-]{chapter.8}{Bibliografia}{}% 29
+\BOOKMARK [0][-]{chapter*.3}{Dodatki}{}% 30
+\BOOKMARK [1][-]{section*.4}{Spis rysunk\363w}{chapter*.3}% 31
+\BOOKMARK [1][-]{chapter*.5}{Spis tablic}{chapter*.3}% 32
