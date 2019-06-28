@@ -1,0 +1,168 @@
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.58]{schemat_dzialania.png}
+	\caption{System pomiarowo-wykonawczy}
+\end{figure}
+System opisany w tym raporcie został oparty o trzy podstawowe urządzenia:
+\begin{itemize}
+\item urządzenie mobilne z oprogramowaniem Android,
+\item Arduino Uno,
+\item ogniwo Peltiera.
+\end{itemize}
+Za pomocą telefonu lub tabletu z modułem Bluetooth, użytkownik łączy się z system regulacji temperatury zbudowanym wokół Arduino. Aplikacja pozwala na wybór opcji związanych z regulacją, które zostają przesłane do Arduino za pomocą, komunikacji Bluetooth. Płytka Arduino interpretuje odczytane dane, następnie dokonuje pomiaru temperatury oraz oblicza sygnał sterujący PWM, za pomocą, którego zostaje wysterowane ogniwo Peltiera.
+
+Podstawowe informacje na temat każdego z elementów przedstawiono w kolejnych sekcjach. Dokładny sposób działania wszystkich składowych opisano w poświęconych im rozdziałach.
+
+
+
+\section{Ogniwo Peltiera} %%jest OK
+Ogniwo Peltiera jest półprzewodnikowym elementem termoelektrycznym, wykorzystującym zjawisko Peltiera do przekazywania ciepła, dzięki czemu może pełnić funkcje grzejące i chłodzące.
+\subsection{Efekt Peltiera} %%jest OK
+Efekt Peltiera to zjawisko termoelektryczne polegające na bezpośrednim oddziaływaniu różnicy napięć na temperaturę oraz różnicy temperatury na pojawienie się napięcia. Efekt Peltiera opisuje zjawisko pojawienia się 
+obiektu grzejącego i chłodzącego podczas zasilenia połączonych ze sobą różnych rodzajów przewodników, półprzewodników. Jego nazwa pochodzi od francuskiego naukowca. Zjawisko zaobserwowano po utworzeniu obwody z dwóch różnych przewodów, miedzianego i bizmutowego, które zostało następnie zasilone. Jeden z drutów nagrzewał się, a drugi ochładzał. Zimny pręt został umieszczony w odizolowanym obiekcie, w wyniku czego powstała lodówka o niskiej wydajności.
+
+Kolejne eksperymenty Peltiera potwierdziły, że różne metale i półprzewodniki podłączone do zasilanego obwodu uzyskują właściwości przyjmowania lub oddawania energii cieplnej, co skutkuje ochładzaniem się elementu przyjmującego ciepło oraz ogrzewaniem materiału, który oddaje energię przyjętą przez element pochłaniający. Badania wykazały, że ilość przekazywanej w procesie energii, zależy od materiałów, z których wykonano części, natężenia przepływającego prądu oraz czasu jaki przepływał przez obwód. Na różnicę temperatur bezpośredni wpływ ma różnica zdolności termoelektrycznych miedzy materiałami oraz wartość natężenia prądu.
+
+W określonej jednostce czasu, ilość pochłanianego i wydzielanego ciepła można opisać następującym wzorem:
+
+\begin{equation}
+	\Delta Q / \Delta T= \Pi _{AB} I
+\end{equation}
+\begin{math}
+	\Pi _{AB} 
+\end{math} 
+-współczynnik Peltiera obwodu,	\\
+\begin{math}
+	\Delta Q
+\end{math} 
+-ciepło,	\\
+\begin{math}
+	\Delta T
+\end{math}  
+-czas,	\\
+\begin{math}
+	I
+\end{math} 
+-prąd.\\
+
+W wyniku odwrócenia kierunku przepływu prądu przez układ, dochodzi do odwrócenia właściwości pochłaniania i oddawania energii materiałów.
+Odkryte przez Peltiera właściwości pozwoliły na powstanie półprzewodnikowego modułu termoelektrycznego wykorzystanego w tej pracy, nazywanego ogniwem Peltiera. Odkrycie to zapoczątkowało późniejsze powstanie lodówek turystycznych, w których wykorzystuje się ogniwo Peltiera. Znajduje ono zastosowanie również w chłodnictwie przemysłowym i laboratoryjnym.
+
+\subsection{Budowa ogniwa} %%jest OK
+Ogniwo Peltiera zbudowane jest z dwóch równolegle położonych płytek ceramicznych, pomiędzy którymi rozłożone są naprzemiennie przewodniki typu ,,n'' oraz ,,p''. 
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.8]{budowaPeltier.jpg}
+	\caption{Budowa modułu Peltiera}
+\end{figure}
+Półprzewodnikami wykorzystanymi do budowy ogniwa są tellurk oraz bizmut, które połączono ze sobą miedzianymi blaszkami. Istotą działania modułów Peltiera są zachodzące zmiany temperatur na połączeniach półprzewodników n-p, p-n, w wyniku przepływu prądu elektrycznego, którego wartość ma wpływ na ilość ciepła, które może zostać przetransportowana między stronami. Półprzewodnik typu n charakteryzuje się nadmiarową ilością elektronów, a typu p ich niewystarczalną ilością do wejścia na wyższy poziom energetyczny. Podczas przepływu prądu, elektrony przemieszczają się między poziomami energetycznymi, co w zależności od typu półprzewodnika oznacza zapotrzebowanie na dostarczenie energii (strona zimna) lub powoduje jej wydzielanie (strona ciepła). Niestety moduł nie jest idealny i część energii zostaje utracona w wyniku czego dochodzi również do ogrzania komponentów ogniwa.
+
+Przydatną cechą modułów Peltiera jest możliwość połączenia ich kaskadowo tak by strona ciepła kolejnego ogniwa stykała się ze stroną zimną poprzedniego, co może pozwolić na wzrost wydajności układu. Ze względu na dużą ilość wydzielanego ciepła, zaleca się wykorzystanie pasty termoprzewodzącej oraz radiatorów po stronie ciepłej ogniwa.
+
+
+
+\section{Arduino} %%jest OK
+Arduino to sprzęt komputerowy i oprogramowanie stworzone przez firmę o tej samej nazwie, skupiające się na tworzenie zestawów uruchomieniowych opartych o mikrokontrolery z rodziny ATmega. Układ umieszczany jest na pojedynczej płytce drukowanej, z wyprowadzonymi wejściami i wyjściami układu. Język programowania  również nazywa się Arduino i został oparty o język C i C++. Najpopularniejszym ich produktem jest Arduino Uno. Wszystkie produkty wydawane są z otwartą licencją sprzętową i oprogramowania, dlatego na to na rynku dostępne są liczne klony płytek, zgodne z jej oryginalną specyfikacją. Urządzenia Arduino
+może zostać wykorzystane jako samodzielny obiekt lub może być podłączone do komputera użytkownika.
+\subsection{Hardware}%%jest OK
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.4]{ArduinoUno_pinout.png}
+	\caption{Rozmieszczenie pinów dostępnych w Arduino Uno}
+\end{figure}
+Typowa płytka Arduino składa sie z mikrokontrolera, cyfrowych wejść/wyjść oraz wejść analogowych. Poza tym można na niej znaleźć takie interfejsy jak UART oraz USB do połączenia z komputerem, SPI i I2C do komunikacji z urządzeniami elektronicznymi.
+
+W tej pracy wykorzystano płytkę Arduino Uno. Arduino Uno oparte jest o 8-bitowy mikrokontroler ATmega328, który uzupełniono elementami pozwalającymi na łatwiejsze programowanie wykorzystując port RS232 oraz sterowanie wyjściami mikrokontrolera. Płytka zawiera 5V regulator napięcia oraz rezonator kwarcowy o częstotliwości oscylacji 16MHz. Wyjścia mikrokontrolera zostały opisane i wyprowadzone jako żeńskie piny na obrzeżach płytki. Zastosowane rozwiązanie pozwala na łatwe podpięcie modułów rozszerzających funkcjonalność Arduino, nazywanych \textit{shieldami}. 
+
+Arduino Uno posiada 6 wejść analogowych, 14 cyfrowych pinów wejścia/wyjścia, gdzie aż 6 z nich może zostać wykorzystane do generowania sygnału PWM. Oprócz tego można na niej znaleźć wyprowadzenia zasilania 3.3V i 5V. Piny analogowe zostały oznaczone literką A.
+\newpage
+\subsection{Programowanie}%%jest OK
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.8]{arduinoIDE.png}
+	\caption{Arduino IDE- przykładowy program}
+	\label{ArduinoPodstawoweFunkcje}
+\end{figure}
+Do programowania płytek Arduino wykorzystuje się dedykowane oprogramowania Arduino IDE, które powstało na podstawie projektu Wiring oraz interfejs szeregowy RS232. Proces ten został ułatwiony poprzez wcześniejsze zaprogramowanie mikrokontrolera programem rozruchowym, zwalniającym z potrzeby używania zewnętrznego programatora. Oprogramowanie zawiera tak przydatne funkcje jak: kolorowanie składni kodu, automatyczne formatowanie, kompilację oraz wgrywanie programu na urządzenie docelowe. Zaletą Arduino IDE są dostępne opcje monitorowania portu szeregowego komputera w formie tekstowej, wykorzystując narzędzie ,,Monitor portu szeregowe'' oraz w postaci wykresu używając ,,Kreślarki''. Zawarta w programie biblioteka Wiring, będąca biblioteką C/C++, pozwala na ułatwienie wykonywania podstawowych operacji wejścia/wyjścia.
+
+Aby stworzyć działający projekt należy zdefiniować dwie podstawowe funkcje:
+\begin{itemize}
+\item setup()- funkcja wykonywana tylko raz, wywoływana na początku programu w celu załadowania ustawień,
+\item loop()- główne ciało programu, funkcja wykonywana jest wielokrotnie przez cały czas działania programu.
+\end{itemize}
+
+
+\section{Technologie internetowe}
+\subsection{Cordova} %%jest OK
+Apache Cordova to popularny framework służący do tworzenia aplikacji mobilnych w językach znanych deweloperom webowym. Cordova pozwala na utworzenie aplikacji na urządzenia mobilne wykorzystując HTML5, CSS3 oraz JavaScript. Jest to ciekawe rozwiązanie pozwalające na uniezależnienie się od środowisk programistycznych, specyficznych dla danej platformy jak np. Android Studio dla urządzeń z oprogramowaniem Android.
+
+Cordova pozwala na napisanie jednej aplikacji, która następnie zostanie odpowiednio przetworzona, tak by działała na odpowiedniej platformie dystrybucji- urządzeniu Android lub iOS. W ten sposób uzyskuje się aplikację hybrydową, która nie jest w pełni natywna ze względu na interfejs użytkownika, który jest generowany w powłoce przeglądarki oraz nie w pełni webowa, bo zostaje skompilowana w paczkę dystrybucyjną, np. o rozszerzeniu app. Aplikacja ma dostęp do podzespołów telefonu, między innymi Bluetooth, WiFi, akcelerometr, GPS. 
+
+\subsection{Ionic Framework}%%jest OK
+Ionic to framework służący do tworzenia hybrydowych aplikacji mobilnych wykorzystujących HTML5, CSS i JavaScript. Został zbudowany z wykorzystaniem AngularJS oraz Apache Cordova. Takie rozwiązanie pozwala na dystrybucję aplikacji na różne platformy. Ionic mozna określić jako paczkę narzędzi, usług i stylów odpowiadającą za kreowanie przyjaznego interfejsu użytkownika. Jest ona odpowiednikiem wzbogaconego Bootstrapa w wersji dla aplikacji mobilnych.
+
+Ionic zapewnia wszystkie funkcje dostępne w podstawowych SDK (zestaw narzędzi dla programistów, niezbędny w tworzeniu aplikacji na dany system) dla danej platformy. Interakcja z niestandardowymi komponentami i metodami udostępnionymi przez Ionic, możliwa jest poprzez wykorzystanie języka AngularJS.
+
+\subsection{HTML}%%jest OK
+HTML (HyperText Markup Language) to hipertekstowy język znaczników służący do tworzenia stron i aplikacji internetowych. W tej pracy wykorzystano HTML 5, który wywodzi się z języka HTML 4 i XHTML 1. Został on przyjęty za aktualny standard i jest wspierany przez wszystkie środowiska i producentów przeglądarek internetowych. Wraz z kaskadowymi arkuszami stylów i JavaScriptem tworzy on grupę najpopularniejszych technologii internetowych. HTML opisuje strukturę strony w sposób semantyczny, nadając treści dokumentu odpowiednie właściwości i funkcje, takie jak formowanie hiperłącza, list, nagłówków i akapitów. Do pozostałych funkcji tego języka należy możliwość załączania plików, plików graficznych i innych multimediów. Uzupełnieniem HTML jest CSS, który został opisany w kolejnym punkcie.
+
+\subsection{Kaskadowe arkusze stylów}%%jest OK
+Kaskadowe arkusze stylów (z ang. Cascading Style Sheets, w skrócie CSS) to język arkuszy stylów służący  do opisywania sposobu prezentacji zawartości dokumentu HTML, stron www. 
+Arkusz stylów pozwala na opisanie wszystkich elementów dokumentu internetowego, takich jak: czcionka, kolor i rozmiar czcionki, interlinie, skalowanie elementów w zależności od rozmiarów otwartego okna oraz pozycjonowanie ich.
+
+CSS został stworzony przez organizację W3C w 1996 roku w celu rozdzielenia warstwy prezentacji od warstwy danych. Uzyskane rozwiązanie pozwoliło na zwiększenie przejrzystości dokumentów HTML oraz ograniczyło ilość zmian wymaganych do wprowadzania podczas zmieniania stylu, który został wykorzystany na licznych podstronach.
+
+\subsection{JavaScript}%%jest OK
+JavaScript to dynamiczny, skryptowy język programowania wysokiego poziomu. Należy do grupy trzech najważniejszych języków, których musi się nauczyć każdy deweloper serwisów internetowych. Jest obsługiwany przez wszystkie nowoczesne przeglądarki internetowe bez potrzeby instalowania dodatkowych wtyczek. Mimo dużego podobieństwa w nazwie, języki Java i JavaScript znacznie różnią się składnią i dostępnymi bibliotekami. Język ten był wzorowany na C i przejął po nim między innymi funkcje warunkowe i pętle. W odróżnieniu od C jest to język prawie w pełni obiektowy.
+
+Głównym zadaniem JavaScriptu jest zapewnienie interaktywności interfejsu użytkownika, czyli reakcja na wydarzenia takie jak wciśnięcie przycisku, wyświetlanie okien dialogowych, wywoływanie cyklicznych funkcji oraz aktualizowanie danych wyświetlanych na stronie. Poza tym pozwala na tworzenie ciasteczek i pobieranie informacji o przeglądarce użytkownika. JavaScript ma ograniczony dostęp do zasobów komputera użytkownika.
+
+Do rozszerzenia funkcjonalności JavaScriptu wykorzystuje się lekkie biblioteki programistyczne takie jak jQuery, AngularJS ułatwiające manipulację obiektowym modelem dokumentu (z ang.DOM- Document Object Model), wykonywanie zapytań AJAX oraz dodawanie animacji na wyświetlanej stronie.
+
+Skrypt JavaScript może zostać umieszczony na końcu dokumentu HTML, którego dotyczy, jednak ze względu na czytelność kodu i wymagany dostęp do niego dla wszystkich podstron, najczęściej zostaje umieszczony w osobnym pliku dodanym do projektu.
+
+\subsection{AngularJS}%%jest OK
+AngularJS to oparty na JavaScripcie, utworzony na otwartej licencji framework do tworzenia aplikacji internetowych, którego deweloperem jest Google. Głównym celem frameworka jest ułatwienie procesu deweloperskiego i testowania aplikacji poprzez wprowadzenie MVC (kontroler modelu widoku) po stronie użytkownika oraz MVVM (z ang. Model--viev--view-Model) w celu rozdzielenia kodu interfejsu od części logicznej.
+
+AngularJS zaczyna pracę od przeszukania strony HTML w poszukiwaniu niestandardowych znaczników, które interpretuje i przypisuje do wejścia/wyjścia zmiennych wykorzystanych w JavaScipcie. Framework dopasowuje się do dokumentu HTML i rozszerza jego funkcjonalność o możliwość dynamicznego wyświetlania danych i aktualizowania widoku aplikacji, dzięki zaimplementowanemu dwukierunkowemu połączeniu między modelem i widokiem. Takie rozwiązanie pozwala znacznie ograniczyć ilość wymaganych do wykonania operacji w DOM.
+
+Struktura programu w AngularJS składa się między innymi na zadeklarowany moduł aplikacji, kontroler i serwis.
+\lstset{language=Java}
+\begin{lstlisting} 
+var app = angular.module('myApp', []);
+app.controller('myController', function($scope) {
+    $scope.firstName = "John";
+    $scope.lastName = "Doe";
+    $scope.personAge=myService.getAge();
+})
+app.service('myService', function() {
+	var age=15;
+    this.getAge = function () {
+        return age;
+    }
+});
+\end{lstlisting}
+Zadaniem kontrolerów jest ingerowanie w interfejs użytkownika, reagowanie na wciśnięcia guzików oraz dokonywania zmian w wyświetlanych informacjach. \textit{Scope} to obiekt łączący ze sobą dane modelu i widoku. Serwisy tworzy się w celu zapewnienia funkcjonalności nie wpływającej bezpośrednio na interfejs, takiej jak np. pobieranie danych otrzymanych przez moduł Bluetooth, a następnie udostępnienie ich kontrolerowi poprzez funkcje zwracające wybrane dane.
+
+
+\section{Komunikacja}
+\subsection{Bluetooth}%%jest OK
+Bluetooth to standard bezprzewodowej technologii wymiany danych na krótkim dystansie, pomiędzy urządzeniami typu klawiatura, komputer, bezprzewodowy głośnik, urządzenie mobilne, a w tym przypadku również Arduino. Został wymyślony przez firmę Ericsson w 1994 roku i został uznany za bezprzewodową alternatywę dla popularnego interfejsu RS232. Specyfikacja standardu Bluetooth obejmuje trzy klasy mocy nadawczej, 1-3 o zasięgu odpowiednio 100m, 10m i 1 metra w otwartej przestrzeni. W tej pracy wykorzystano moduł klasy 2, o zasięgu do 10 metrów.
+
+Bluetooth pracuje na częstotliwości od 2402 do 2480 MHz, która jest globalnym standardem pasma częstotliwości krótkiego zasięgu dla zastosowań przemysłowych, naukowych i medycznych. Bluetooth dzieli wymieniane dane na pakiety. Każdy z nich zostaje wysłany na jeden z 79 wyznaczonych kanałów Bluetooth, których przepustowość wynosi 1 MHz. W przypadku modułów Bluetooth Low Energy o niższym poborze energii, kanałów jest jedynie 40, bo odstępy między nimi wynoszą aż 2 MHz. Protokół ten został oparty na strukturze Master-Slave. Zainicjować połączenie miedzy modułami może jedynie Master (w tym przypadku urządzenie mobilne), a Slave (moduł Bluetooth podłączony do Arduino) jedynie je zaakceptować. W tym protokole nie występuje problem z synchronizowaniem danych, dlatego że połączone ze sobą urządzenia otrzymują wspólny zegar, do którego działania zostaje dopasowany proces wysyłania i odbierania danych.
+
+\subsection{UART}%%jest OK
+UART ( z ang. Universal Asynchronous Receiver and Transmitter) to interfejs komunikacji szeregowej, szeroko wykorzystywany do przesyłania i odbierania danych asynchronicznie. Asynchroniczność oznacza, że dane są wysyłane nieregularnie. Ich początek i koniec jest oznaczony specjalnym symbolem. Interfejs UART został wykorzystany w tym projekcie do komunikacji między Arduino i modułem Bluetooth.
+Procesor ATmega 328 znajdujący się na płytce Arduino Uno posiada specjalnie wyprowadzone piny portu szeregowego:
+\begin{itemize}
+\item{RXD- wejście szeregowe (,,Receive Data''),}
+\item{TXD- wyjście szeregowe (,,Transmit Data'').}
+\end{itemize}
+Zaletą interfejsu UART jest posiadany przez niego bufor danych przeznaczony do tymczasowego przechowywania informacji w sytuacji, gdy są one szybko transmitowane.
+Ten rodzaj transmisji danych charakteryzuje się również tym, że nadajnik i odbiornik nie posiada wspólnego sygnału zegarowego. W tym przypadku każde z urządzeń działa w takt własnego zegara. Podczas połączenia urządzeń należy pamiętać, aby oba miały ustawioną taką samą częstotliwość taktowania zegara.
+
+\subsection{1-Wire}%%jest OK
+One Wire to systemowa magistrala komunikacji elektronicznej pomiędzy urządzeniami, zapewniająca przesyłanie danych oraz zasilanie urządzenia przez pojedynczy kabel. Proces ten jest możliwy dzięki stopniowemu ładowaniu kondensatora znajdującego się w odbiorniku, a następnie wykorzystanie zgromadzonej energii do zasilenia urządzenia. Do magistrali może zostać podłączonych wiele urządzeń. Każdemu z nich przydzielany jest indywidualny adres 64-bitowy. Komunikację z urządzeniami inicjuje master, w tym przypadku mikrokontroler.
+
+Przedstawiony protokół jest bardzo podobny do I2C, ale ze względu na wykorzystanie jedynie jednej linii danych, charakteryzuje się niższą prędkością przesyłania. Układ zazwyczaj zasilany jest napięciem o wartości 5V i służy do komunikacji pomiędzy niewielkimi urządzeniami, takimi jak np. termometr cyfrowy i mikrokontroler.
+

@@ -1,0 +1,846 @@
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9.6100 64-bit) (preloaded format=pdflatex 2016.12.6)  31 DEC 2016 09:42
+entering extended mode
+**./stronaTytulowa.tex
+(stronaTytulowa.tex
+LaTeX2e <2016/03/31> patch level 3
+Babel <3.9r> and hyphenation patterns for 76 language(s) loaded.
+
+! LaTeX Error: Environment titlepage undefined.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.1 \begin{titlepage}
+                     
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+! LaTeX Error: Missing \begin{document}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.2 	\begin{center}
+                   
+You're in trouble here.  Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+Overfull \hbox (20.0pt too wide) in paragraph at lines 2--2
+[] 
+ []
+
+! Undefined control sequence.
+<recently read> \LARGE 
+                       
+l.3 		\textsc{\LARGE Politechnika Pozna≈Ñska}
+                                             \\[0.3cm]
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+Missing character: There is no ≈ in font cmcsc10!
+Missing character: There is no Ñ in font cmcsc10!
+
+Overfull \hbox (67.10518pt too wide) in paragraph at lines 3--3
+ \OT1/cmr/m/sc/10 Politechnika 
+ []
+
+
+Overfull \hbox (22.57205pt too wide) in paragraph at lines 3--3
+ \OT1/cmr/m/sc/10 Poz- 
+ []
+
+
+Overfull \hbox (29.33324pt too wide) in paragraph at lines 3--3
+ \OT1/cmr/m/sc/10 naska 
+ []
+
+! Undefined control sequence.
+<recently read> \large 
+                       
+l.4 		\textsc{\large Wydzia≈Ç Elektryczny}
+                                          \\[0.3cm]
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+Missing character: There is no ≈ in font cmcsc10!
+Missing character: There is no Ç in font cmcsc10!
+
+Overfull \hbox (37.61092pt too wide) in paragraph at lines 4--4
+ []\OT1/cmr/m/sc/10 Wydzia 
+ []
+
+
+Overfull \hbox (28.2609pt too wide) in paragraph at lines 4--4
+ \OT1/cmr/m/sc/10 Elek- 
+ []
+
+
+Overfull \hbox (40.79979pt too wide) in paragraph at lines 4--4
+ \OT1/cmr/m/sc/10 tryczny 
+ []
+
+! Undefined control sequence.
+<recently read> \large 
+                       
+l.5 ...ut Automatyki i In≈ºynierii Informatycznej}
+                                                  \\[0.3cm]
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+Missing character: There is no ≈ in font cmcsc10!
+Missing character: There is no º in font cmcsc10!
+
+Overfull \hbox (44.76642pt too wide) in paragraph at lines 5--5
+ []\OT1/cmr/m/sc/10 Instytut 
+ []
+
+
+Overfull \hbox (17.7582pt too wide) in paragraph at lines 5--5
+ \OT1/cmr/m/sc/10 Au- 
+ []
+
+
+Overfull \hbox (46.62198pt too wide) in paragraph at lines 5--5
+ \OT1/cmr/m/sc/10 tomatyki 
+ []
+
+
+Overfull \hbox (3.0222pt too wide) in paragraph at lines 5--5
+ \OT1/cmr/m/sc/10 i 
+ []
+
+
+Overfull \hbox (13.96655pt too wide) in paragraph at lines 5--5
+ \OT1/cmr/m/sc/10 In- 
+ []
+
+
+Overfull \hbox (33.1554pt too wide) in paragraph at lines 5--5
+ \OT1/cmr/m/sc/10 ynierii 
+ []
+
+
+Overfull \hbox (13.96655pt too wide) in paragraph at lines 5--5
+ \OT1/cmr/m/sc/10 In- 
+ []
+
+
+Overfull \hbox (21.28879pt too wide) in paragraph at lines 5--5
+ \OT1/cmr/m/sc/10 for- 
+ []
+
+
+Overfull \hbox (28.75539pt too wide) in paragraph at lines 5--5
+ \OT1/cmr/m/sc/10 maty- 
+ []
+
+
+Overfull \hbox (26.88876pt too wide) in paragraph at lines 5--5
+ \OT1/cmr/m/sc/10 cznej 
+ []
+
+! Undefined control sequence.
+<recently read> \large 
+                       
+l.6 ...Çad Sterowania i Elektroniki Przemys≈Çowej}
+                                                  \\[0.3cm]
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+Missing character: There is no ≈ in font cmcsc10!
+Missing character: There is no Ç in font cmcsc10!
+Missing character: There is no ≈ in font cmcsc10!
+Missing character: There is no Ç in font cmcsc10!
+
+Overfull \hbox (31.56097pt too wide) in paragraph at lines 6--6
+ []\OT1/cmr/m/sc/10 Zakad 
+ []
+
+
+Overfull \hbox (46.91083pt too wide) in paragraph at lines 6--6
+ \OT1/cmr/m/sc/10 Sterowa- 
+ []
+
+
+Overfull \hbox (15.28883pt too wide) in paragraph at lines 6--6
+ \OT1/cmr/m/sc/10 nia 
+ []
+
+
+Overfull \hbox (3.0222pt too wide) in paragraph at lines 6--6
+ \OT1/cmr/m/sc/10 i 
+ []
+
+
+Overfull \hbox (28.2609pt too wide) in paragraph at lines 6--6
+ \OT1/cmr/m/sc/10 Elek- 
+ []
+
+
+Overfull \hbox (27.97763pt too wide) in paragraph at lines 6--6
+ \OT1/cmr/m/sc/10 tron- 
+ []
+
+
+Overfull \hbox (12.39993pt too wide) in paragraph at lines 6--6
+ \OT1/cmr/m/sc/10 iki 
+ []
+
+
+Overfull \hbox (27.81647pt too wide) in paragraph at lines 6--6
+ \OT1/cmr/m/sc/10 Prze- 
+ []
+
+
+Overfull \hbox (42.48871pt too wide) in paragraph at lines 6--6
+ \OT1/cmr/m/sc/10 mysowej 
+ []
+
+
+! LaTeX Error: Environment figure undefined.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.7 		\begin{figure}
+                    [!ht]
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+Missing character: There is no [ in font nullfont!
+Missing character: There is no ! in font nullfont!
+Missing character: There is no h in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no ] in font nullfont!
+! Undefined control sequence.
+l.9 		\includegraphics
+                      [scale=0.5]{pictures/logoPP.png}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+Missing character: There is no [ in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no = in font nullfont!
+Missing character: There is no 0 in font nullfont!
+Missing character: There is no . in font nullfont!
+Missing character: There is no 5 in font nullfont!
+Missing character: There is no ] in font nullfont!
+Missing character: There is no p in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no u in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no / in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no g in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no P in font nullfont!
+Missing character: There is no P in font nullfont!
+Missing character: There is no . in font nullfont!
+Missing character: There is no p in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no g in font nullfont!
+
+! LaTeX Error: \begin{center} on input line 2 ended by \end{figure}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.10 		\end{figure}
+                   
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+! Undefined control sequence.
+<recently read> \Large 
+                       
+l.11 		\textsc{\Large Praca in≈ºynierska}
+                                         \\[0.5cm]
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+Missing character: There is no ≈ in font cmcsc10!
+Missing character: There is no º in font cmcsc10!
+
+Overfull \hbox (31.39426pt too wide) in paragraph at lines 7--11
+ \OT1/cmr/m/sc/10 Praca 
+ []
+
+
+Overfull \hbox (12.93326pt too wide) in paragraph at lines 7--11
+ \OT1/cmr/m/sc/10 in- 
+ []
+
+
+Overfull \hbox (30.66652pt too wide) in paragraph at lines 7--11
+ \OT1/cmr/m/sc/10 ynier- 
+ []
+
+
+Overfull \hbox (17.0666pt too wide) in paragraph at lines 7--11
+ \OT1/cmr/m/sc/10 ska 
+ []
+
+! Undefined control sequence.
+l.12 		\HRule
+              \\[0.4cm]
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+! LaTeX Error: There's no line here to end.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.12 		\HRule \\
+                [0.4cm]
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+! Undefined control sequence.
+l.13 		{ \huge
+                Sterowanie wybranym procesem technologicznym za pomocƒÖ uk≈Ç...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+Missing character: There is no S in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no w in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no w in font nullfont!
+Missing character: There is no y in font nullfont!
+Missing character: There is no b in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no y in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no p in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no h in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no g in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no z in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no y in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no z in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no p in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no ƒ in font nullfont!
+Missing character: There is no Ö in font nullfont!
+Missing character: There is no u in font nullfont!
+Missing character: There is no k in font nullfont!
+Missing character: There is no ≈ in font nullfont!
+Missing character: There is no Ç in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no d in font nullfont!
+Missing character: There is no u in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no k in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no p in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no w in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no g in font nullfont!
+Missing character: There is no o in font nullfont!
+! Undefined control sequence.
+l.14 		\HRule
+              \\[2.5cm]
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+! LaTeX Error: There's no line here to end.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.14 		\HRule \\
+                [2.5cm]
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+! Undefined control sequence.
+l.18 				\large
+                \emph{Autor:}\\ Mateusz Szymkowiak
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+Missing character: There is no M in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no u in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no z in font nullfont!
+Missing character: There is no S in font nullfont!
+Missing character: There is no z in font nullfont!
+Missing character: There is no y in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no k in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no w in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no k in font nullfont!
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <7> on input line 20.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <5> on input line 20.
+! Undefined control sequence.
+l.22 			\begin{flushright} \large
+                                 
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+Missing character: There is no d in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no h in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no b in font nullfont!
+Missing character: There is no . in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no ≈ in font nullfont!
+Missing character: There is no º in font nullfont!
+Missing character: There is no . in font nullfont!
+Missing character: There is no T in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no z in font nullfont!
+Missing character: There is no P in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no j in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no h in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no w in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no k in font nullfont!
+Missing character: There is no i in font nullfont!
+
+Overfull \hbox (6553.49997pt too wide) in paragraph at lines 15--28
+ $[]$$[]$ 
+ []
+
+! Undefined control sequence.
+l.32 		{\large
+               \today}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+l.32 		{\large \today
+                     }
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+! LaTeX Error: \begin{document} ended by \end{titlepage}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.37 \end{titlepage}
+                    
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+! Undefined control sequence.
+l.41 \lhead
+           {\footnotesize \textsc{Praca dyplomowa pt. ,,Sterowanie wybranym ...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+l.41 \lhead{\footnotesize
+                          \textsc{Praca dyplomowa pt. ,,Sterowanie wybranym ...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+! LaTeX Error: Missing \begin{document}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.43 ...ad Sterowania i Elektroniki Przemys≈Çowej}
+                                                  }
+You're in trouble here.  Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+Missing character: There is no ƒ in font cmcsc10!
+Missing character: There is no Ö in font cmcsc10!
+Missing character: There is no ≈ in font cmcsc10!
+Missing character: There is no Ç in font cmcsc10!
+Missing character: There is no ≈ in font cmcsc10!
+Missing character: There is no Ñ in font cmcsc10!
+Missing character: There is no ≈ in font cmcsc10!
+Missing character: There is no º in font cmcsc10!
+Missing character: There is no ≈ in font cmcsc10!
+Missing character: There is no Ç in font cmcsc10!
+Missing character: There is no ≈ in font cmcsc10!
+Missing character: There is no Ç in font cmcsc10!
+! Undefined control sequence.
+l.44 \rhead
+           {}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+Overfull \hbox (51.39426pt too wide) in paragraph at lines 43--45
+[]\OT1/cmr/m/sc/10 Praca
+ []
+
+
+Overfull \hbox (15.93326pt too wide) in paragraph at lines 43--45
+\OT1/cmr/m/sc/10 dy-
+ []
+
+
+Overfull \hbox (20.84431pt too wide) in paragraph at lines 43--45
+\OT1/cmr/m/sc/10 plo-
+ []
+
+
+Overfull \hbox (27.19989pt too wide) in paragraph at lines 43--45
+\OT1/cmr/m/sc/10 mowa
+ []
+
+
+Overfull \hbox (14.68321pt too wide) in paragraph at lines 43--45
+\OT1/cmr/m/sc/10 pt.
+ []
+
+
+Overfull \hbox (64.25514pt too wide) in paragraph at lines 43--45
+\OT1/cmr/m/sc/10 ,,Sterowanie
+ []
+
+
+Overfull \hbox (52.17761pt too wide) in paragraph at lines 43--45
+\OT1/cmr/m/sc/10 wybranym
+ []
+
+
+Overfull \hbox (21.51099pt too wide) in paragraph at lines 43--45
+\OT1/cmr/m/sc/10 pro-
+ []
+
+
+Overfull \hbox (15.26656pt too wide) in paragraph at lines 43--45
+\OT1/cmr/m/sc/10 ce-
+ []
+
+
+Overfull \hbox (17.62213pt too wide) in paragraph at lines 43--45
+\OT1/cmr/m/sc/10 sem
+ []
+
+
+Overfull \hbox (27.31094pt too wide) in paragraph at lines 43--45
+\OT1/cmr/m/sc/10 tech-
+ []
+
+
+Overfull \hbox (16.26659pt too wide) in paragraph at lines 43--45
+\OT1/cmr/m/sc/10 no-
+ []
+
+
+Overfull \hbox (21.67764pt too wide) in paragraph at lines 43--45
+\OT1/cmr/m/sc/10 log-
+ []
+
+
+Overfull \hbox (33.68874pt too wide) in paragraph at lines 43--45
+\OT1/cmr/m/sc/10 icznym
+ []
+
+
+Overfull \hbox (11.15552pt too wide) in paragraph at lines 43--45
+\OT1/cmr/m/sc/10 za
+ []
+
+
+Overfull \hbox (15.71101pt too wide) in paragraph at lines 43--45
+\OT1/cmr/m/sc/10 po-
+ []
+
+
+Overfull \hbox (19.73323pt too wide) in paragraph at lines 43--45
+\OT1/cmr/m/sc/10 moc
+ []
+
+
+Overfull \hbox (30.99991pt too wide) in paragraph at lines 43--45
+\OT1/cmr/m/sc/10 ukadu
+ []
+
+
+Overfull \hbox (32.7776pt too wide) in paragraph at lines 43--45
+\OT1/cmr/m/sc/10 mikro-
+ []
+
+
+Overfull \hbox (21.51099pt too wide) in paragraph at lines 43--45
+\OT1/cmr/m/sc/10 pro-
+ []
+
+
+Overfull \hbox (15.26656pt too wide) in paragraph at lines 43--45
+\OT1/cmr/m/sc/10 ce-
+ []
+
+
+Overfull \hbox (55.09416pt too wide) in paragraph at lines 43--45
+\OT1/cmr/m/sc/10 sorowego'' 
+ []
+
+
+Overfull \hbox (67.10518pt too wide) in paragraph at lines 43--45
+\OT1/cmr/m/sc/10 Politechnika
+ []
+
+
+Overfull \hbox (22.57205pt too wide) in paragraph at lines 43--45
+\OT1/cmr/m/sc/10 Poz-
+ []
+
+
+Overfull \hbox (32.52763pt too wide) in paragraph at lines 43--45
+\OT1/cmr/m/sc/10 naska,
+ []
+
+
+Overfull \hbox (13.96655pt too wide) in paragraph at lines 43--45
+\OT1/cmr/m/sc/10 In-
+ []
+
+
+Overfull \hbox (20.39989pt too wide) in paragraph at lines 43--45
+\OT1/cmr/m/sc/10 sty-
+ []
+
+
+Overfull \hbox (17.95546pt too wide) in paragraph at lines 43--45
+\OT1/cmr/m/sc/10 tut
+ []
+
+
+Overfull \hbox (15.82214pt too wide) in paragraph at lines 43--45
+\OT1/cmr/m/sc/10 au-
+ []
+
+
+Overfull \hbox (46.62198pt too wide) in paragraph at lines 43--45
+\OT1/cmr/m/sc/10 tomatyki
+ []
+
+
+Overfull \hbox (3.0222pt too wide) in paragraph at lines 43--45
+\OT1/cmr/m/sc/10 i
+ []
+
+
+Overfull \hbox (12.93326pt too wide) in paragraph at lines 43--45
+\OT1/cmr/m/sc/10 in-
+ []
+
+
+Overfull \hbox (33.1554pt too wide) in paragraph at lines 43--45
+\OT1/cmr/m/sc/10 ynierii
+ []
+
+
+Overfull \hbox (12.93326pt too wide) in paragraph at lines 43--45
+\OT1/cmr/m/sc/10 in-
+ []
+
+
+Overfull \hbox (21.28879pt too wide) in paragraph at lines 43--45
+\OT1/cmr/m/sc/10 for-
+ []
+
+
+Overfull \hbox (28.75539pt too wide) in paragraph at lines 43--45
+\OT1/cmr/m/sc/10 maty-
+ []
+
+
+Overfull \hbox (26.88876pt too wide) in paragraph at lines 43--45
+\OT1/cmr/m/sc/10 cznej 
+ []
+
+
+Overfull \hbox (31.56097pt too wide) in paragraph at lines 43--45
+\OT1/cmr/m/sc/10 Zakad
+ []
+
+
+Overfull \hbox (46.91083pt too wide) in paragraph at lines 43--45
+\OT1/cmr/m/sc/10 Sterowa-
+ []
+
+
+Overfull \hbox (15.28883pt too wide) in paragraph at lines 43--45
+\OT1/cmr/m/sc/10 nia
+ []
+
+
+Overfull \hbox (3.0222pt too wide) in paragraph at lines 43--45
+\OT1/cmr/m/sc/10 i
+ []
+
+
+Overfull \hbox (28.2609pt too wide) in paragraph at lines 43--45
+\OT1/cmr/m/sc/10 Elek-
+ []
+
+
+Overfull \hbox (27.97763pt too wide) in paragraph at lines 43--45
+\OT1/cmr/m/sc/10 tron-
+ []
+
+
+Overfull \hbox (12.39993pt too wide) in paragraph at lines 43--45
+\OT1/cmr/m/sc/10 iki
+ []
+
+
+Overfull \hbox (27.81647pt too wide) in paragraph at lines 43--45
+\OT1/cmr/m/sc/10 Prze-
+ []
+
+
+Overfull \hbox (42.48871pt too wide) in paragraph at lines 43--45
+\OT1/cmr/m/sc/10 mysowej
+ []
+
+)
+! Emergency stop.
+<*> ./stronaTytulowa.tex
+                        
+*** (job aborted, no legal \end found)
+
+ 
+Here is how much of TeX's memory you used:
+ 20 strings out of 493329
+ 248 string characters out of 3139063
+ 56270 words of memory out of 3000000
+ 3649 multiletter control sequences out of 15000+200000
+ 4287 words of font info for 16 fonts, out of 3000000 for 9000
+ 1141 hyphenation exceptions out of 8191
+ 20i,3n,18p,161b,225s stack positions out of 5000i,500n,10000p,200000b,50000s
+!  ==> Fatal error occurred, no output PDF file produced!

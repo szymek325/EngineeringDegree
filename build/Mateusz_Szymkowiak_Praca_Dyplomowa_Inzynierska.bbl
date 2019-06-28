@@ -1,0 +1,279 @@
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 2.8 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated as
+% required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+\sortlist[entry]{nty/global/}
+  \entry{_algorytm_????}{online}{}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{A}
+    \field{sortinithash}{A}
+    \field{title}{Algorytm {PID} w układzie mikroprocesorowego regulatora
+  temperatury z ogniwem Peltiera - str. 2 - {WAT} - {MAREK} {SAWICKI} - {PID} -
+  {MIKROPROCESOROWY} {REGULATOR} {TEMPERATURY} - {OGNIWO} {PELTIERA} -
+  {TADEUSZ} {SONDEJ}}
+    \verb{url}
+    \verb http://www.elektroonline.pl/a/2391/2,Algorytm-PID-w-ukladzie-mikropro
+    \verb cesorowego-regulatora-temperatury-z-ogniwem-Peltiera,,Elektronika
+    \endverb
+    \verb{file}
+    \verb Algorytm PID w układzie mikroprocesorowego regulatora temperatury z
+    \verb ogniwem Peltiera - str. 2 - WAT - MAREK SAWICKI - PID - MIKROPROCESOR
+    \verb OWY REGULATOR TEMPERATURY - OGNIWO PELTIERA - TADEUSZ SONDEJ:C\:\\Use
+    \verb rs\\matsz\\AppData\\Roaming\\Mozilla\\Firefox\\Profiles\\uzex6uf6.def
+    \verb ault\\zotero\\storage\\Q35FEEWB\\2,Algorytm-PID-w-ukladzie-mikroproce
+    \verb sorowego-regulatora-temperatury-z-ogniwem-Peltiera,,Elektro.html:text
+    \verb /html
+    \endverb
+    \field{urlday}{21}
+    \field{urlmonth}{01}
+    \field{urlyear}{2017}
+  \endentry
+
+  \entry{_angular-chart.js_????}{online}{}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{A}
+    \field{sortinithash}{A}
+    \field{title}{angular-chart.js - beautiful, reactive, responsive charts for
+  Angular.{JS} using Chart.js}
+    \verb{url}
+    \verb https://jtblin.github.io/angular-chart.js/
+    \endverb
+    \verb{file}
+    \verb angular-chart.js - beautiful, reactive, responsive charts for Angular
+    \verb .JS using Chart.js:C\:\\Users\\matsz\\AppData\\Roaming\\Mozilla\\Fire
+    \verb fox\\Profiles\\uzex6uf6.default\\zotero\\storage\\V2EH6U5U\\angular-c
+    \verb hart.html:text/html
+    \endverb
+    \field{urlday}{21}
+    \field{urlmonth}{01}
+    \field{urlyear}{2017}
+  \endentry
+
+  \entry{_angularjs:_????}{online}{}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{A}
+    \field{sortinithash}{A}
+    \field{title}{{AngularJS}: Tutorial: Tutorial}
+    \verb{url}
+    \verb https://docs.angularjs.org/tutorial
+    \endverb
+    \verb{file}
+    \verb AngularJS\: Tutorial\: Tutorial:C\:\\Users\\matsz\\AppData\\Roaming\\
+    \verb Mozilla\\Firefox\\Profiles\\uzex6uf6.default\\zotero\\storage\\52923R
+    \verb SG\\tutorial.html:text/html
+    \endverb
+    \field{urlday}{18}
+    \field{urlmonth}{01}
+    \field{urlyear}{2017}
+  \endentry
+
+  \entry{_arduino_????}{online}{}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{A}
+    \field{sortinithash}{A}
+    \field{title}{Arduino Playground - {HomePage}}
+    \verb{url}
+    \verb http://playground.arduino.cc/
+    \endverb
+    \verb{file}
+    \verb Arduino Playground - HomePage:C\:\\Users\\matsz\\AppData\\Roaming\\Mo
+    \verb zilla\\Firefox\\Profiles\\uzex6uf6.default\\zotero\\storage\\HUX85HR4
+    \verb \\playground.arduino.cc.html:text/html;TEC1-12706.pdf:C\:\\Users\\mat
+    \verb sz\\AppData\\Roaming\\Mozilla\\Firefox\\Profiles\\uzex6uf6.default\\z
+    \verb otero\\storage\\ARZWXBXX\\TEC1-12706.pdf:application/pdf
+    \endverb
+    \field{urlday}{12}
+    \field{urlmonth}{12}
+    \field{urlyear}{2016}
+  \endentry
+
+  \entry{_don/bluetoothserial_????}{online}{}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{D}
+    \field{sortinithash}{D}
+    \field{abstract}{%
+    {BluetoothSerial} - Cordova ({PhoneGap}) Plugin for Serial Communication
+  over Bluetooth%
+    }
+    \field{titleaddon}{{GitHub}}
+    \field{title}{don/{BluetoothSerial}}
+    \verb{url}
+    \verb https://github.com/don/BluetoothSerial
+    \endverb
+    \verb{file}
+    \verb Snapshot:C\:\\Users\\matsz\\AppData\\Roaming\\Mozilla\\Firefox\\Profi
+    \verb les\\uzex6uf6.default\\zotero\\storage\\K5CNH7HP\\BluetoothSerial.htm
+    \verb l:text/html
+    \endverb
+    \field{urlday}{21}
+    \field{urlmonth}{01}
+    \field{urlyear}{2017}
+  \endentry
+
+  \entry{drifty_ionic_????}{online}{}
+    \name{author}{1}{}{%
+      {{hash=D}{%
+         family={Drifty},
+         familyi={D\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{D1}
+    \strng{fullhash}{D1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{D}
+    \field{sortinithash}{D}
+    \field{abstract}{%
+    The easiest way to build amazing mobile and progressive web apps. 100\%
+  free and open source.%
+    }
+    \field{titleaddon}{Ionic Framework}
+    \field{title}{Ionic Framework}
+    \verb{url}
+    \verb https://ionicframework.com/
+    \endverb
+    \verb{file}
+    \verb Snapshot:C\:\\Users\\matsz\\AppData\\Roaming\\Mozilla\\Firefox\\Profi
+    \verb les\\uzex6uf6.default\\zotero\\storage\\XWGBERWU\\ionicframework.com.
+    \verb html:text/html
+    \endverb
+    \field{urlday}{19}
+    \field{urlmonth}{01}
+    \field{urlyear}{2017}
+  \endentry
+
+  \entry{ogniwo1}{article}{}
+    \name{author}{1}{}{%
+      {{hash=GP}{%
+         family={Górecki},
+         familyi={G\bibinitperiod},
+         given={Piotr},
+         giveni={P\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{GP1}
+    \strng{fullhash}{GP1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{G}
+    \field{sortinithash}{G}
+    \field{title}{Ogniwo Peltiera}
+    \field{journaltitle}{Elektronika Praktyczna}
+  \endentry
+
+  \entry{_latex_????}{online}{}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{L}
+    \field{sortinithash}{L}
+    \field{title}{{LaTeX} - A document preparation system}
+    \verb{url}
+    \verb https://www.latex-project.org/
+    \endverb
+    \verb{file}
+    \verb LaTeX - A document preparation system:C\:\\Users\\matsz\\AppData\\Roa
+    \verb ming\\Mozilla\\Firefox\\Profiles\\uzex6uf6.default\\zotero\\storage\\
+    \verb 9TFFBCUN\\www.latex-project.org.html:text/html
+    \endverb
+    \field{urlday}{21}
+    \field{urlmonth}{01}
+    \field{urlyear}{2017}
+  \endentry
+
+  \entry{ogniwo2}{article}{}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{O}
+    \field{sortinithash}{O}
+    \field{title}{Ogniwo Peltiera}
+    \field{journaltitle}{Klub Konstruktorów}
+  \endentry
+
+  \entry{_ogniwo_????}{online}{}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{O}
+    \field{sortinithash}{O}
+    \field{title}{Ogniwo Peltiera - budowa i zasada działania - Peltier.pl}
+    \verb{url}
+    \verb http://www.peltier.pl/budowa.html
+    \endverb
+    \field{urlday}{12}
+    \field{urlmonth}{12}
+    \field{urlyear}{2016}
+  \endentry
+
+  \entry{_w3schools_????}{online}{}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{W}
+    \field{sortinithash}{W}
+    \field{title}{W3Schools Online Web Tutorials}
+    \verb{url}
+    \verb http://www.w3schools.com/
+    \endverb
+    \verb{file}
+    \verb W3Schools Online Web Tutorials:C\:\\Users\\matsz\\AppData\\Roaming\\M
+    \verb ozilla\\Firefox\\Profiles\\uzex6uf6.default\\zotero\\storage\\Q5NTMEP
+    \verb D\\www.w3schools.com.html:text/html
+    \endverb
+    \field{urlday}{18}
+    \field{urlmonth}{01}
+    \field{urlyear}{2017}
+  \endentry
+
+  \entry{_wikipedia:strona_2016}{inreference}{}
+    \field{labeltitlesource}{shorttitle}
+    \field{sortinit}{W}
+    \field{sortinithash}{W}
+    \field{booktitle}{Wikipedia, the free encyclopedia}
+    \field{note}{Page Version {ID}: 45999232}
+    \field{shorttitle}{Wikipedia}
+    \field{title}{Wikipedia:Strona główna}
+    \verb{url}
+    \verb https://pl.wikipedia.org/w/index.php?title=Wikipedia:Strona_g%C5%82%C
+    \verb 3%B3wna&oldid=45999232
+    \endverb
+    \field{langid}{polish}
+    \verb{file}
+    \verb Snapshot:C\:\\Users\\matsz\\AppData\\Roaming\\Mozilla\\Firefox\\Profi
+    \verb les\\uzex6uf6.default\\zotero\\storage\\VSQHDUK5\\index.html:text/htm
+    \verb l
+    \endverb
+    \field{day}{09}
+    \field{month}{06}
+    \field{year}{2016}
+    \field{urlday}{21}
+    \field{urlmonth}{01}
+    \field{urlyear}{2017}
+  \endentry
+
+  \entry{_zotero_????}{online}{}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{Z}
+    \field{sortinithash}{Z}
+    \field{title}{Zotero {\textbar} Home}
+    \verb{url}
+    \verb https://www.zotero.org/
+    \endverb
+    \verb{file}
+    \verb Zotero | Home:C\:\\Users\\matsz\\AppData\\Roaming\\Mozilla\\Firefox\\
+    \verb Profiles\\uzex6uf6.default\\zotero\\storage\\52UJ2XTI\\www.zotero.org
+    \verb .html:text/html
+    \endverb
+    \field{urlday}{21}
+    \field{urlmonth}{01}
+    \field{urlyear}{2017}
+  \endentry
+\endsortlist
+\endinput

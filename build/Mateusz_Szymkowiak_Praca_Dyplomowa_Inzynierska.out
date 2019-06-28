@@ -1,0 +1,67 @@
+\BOOKMARK [0][-]{chapter.1}{Wstep}{}% 1
+\BOOKMARK [0][-]{chapter.2}{Cel i zakres prac}{}% 2
+\BOOKMARK [0][-]{chapter.3}{Podstawy teoretyczne}{}% 3
+\BOOKMARK [1][-]{section.3.1}{Ogniwo Peltiera}{chapter.3}% 4
+\BOOKMARK [2][-]{subsection.3.1.1}{Efekt Peltiera}{section.3.1}% 5
+\BOOKMARK [2][-]{subsection.3.1.2}{Budowa ogniwa}{section.3.1}% 6
+\BOOKMARK [1][-]{section.3.2}{Arduino}{chapter.3}% 7
+\BOOKMARK [2][-]{subsection.3.2.1}{Hardware}{section.3.2}% 8
+\BOOKMARK [2][-]{subsection.3.2.2}{Programowanie}{section.3.2}% 9
+\BOOKMARK [1][-]{section.3.3}{Technologie internetowe}{chapter.3}% 10
+\BOOKMARK [2][-]{subsection.3.3.1}{Cordova}{section.3.3}% 11
+\BOOKMARK [2][-]{subsection.3.3.2}{Ionic Framework}{section.3.3}% 12
+\BOOKMARK [2][-]{subsection.3.3.3}{HTML}{section.3.3}% 13
+\BOOKMARK [2][-]{subsection.3.3.4}{Kaskadowe arkusze styl\363w}{section.3.3}% 14
+\BOOKMARK [2][-]{subsection.3.3.5}{JavaScript}{section.3.3}% 15
+\BOOKMARK [2][-]{subsection.3.3.6}{AngularJS}{section.3.3}% 16
+\BOOKMARK [1][-]{section.3.4}{Komunikacja}{chapter.3}% 17
+\BOOKMARK [2][-]{subsection.3.4.1}{Bluetooth}{section.3.4}% 18
+\BOOKMARK [2][-]{subsection.3.4.2}{UART}{section.3.4}% 19
+\BOOKMARK [2][-]{subsection.3.4.3}{1-Wire}{section.3.4}% 20
+\BOOKMARK [0][-]{chapter.4}{Konstrukcja obiektu i uk\233adu regulacji}{}% 21
+\BOOKMARK [1][-]{section.4.1}{Wykorzystane podzespo\233y}{chapter.4}% 22
+\BOOKMARK [2][-]{subsection.4.1.1}{LCD}{section.4.1}% 23
+\BOOKMARK [2][-]{subsection.4.1.2}{DS18B20}{section.4.1}% 24
+\BOOKMARK [2][-]{subsection.4.1.3}{Modu\233 Bluetooth HC-06}{section.4.1}% 25
+\BOOKMARK [2][-]{subsection.4.1.4}{L293D}{section.4.1}% 26
+\BOOKMARK [2][-]{subsection.4.1.5}{DFRobot - dwukana\233owy sterownik silnik\363w }{section.4.1}% 27
+\BOOKMARK [2][-]{subsection.4.1.6}{Ogniwo Peltiera TEC-12706}{section.4.1}% 28
+\BOOKMARK [2][-]{subsection.4.1.7}{Wiatrak komputerowy- silnik DC}{section.4.1}% 29
+\BOOKMARK [2][-]{subsection.4.1.8}{Zasilacz ATX}{section.4.1}% 30
+\BOOKMARK [1][-]{section.4.2}{Obiekt pomiarowy}{chapter.4}% 31
+\BOOKMARK [1][-]{section.4.3}{Uk\233ad wykonawczy}{chapter.4}% 32
+\BOOKMARK [0][-]{chapter.5}{Sterowanie uk\233adem regulacji temperatury- Arduino}{}% 33
+\BOOKMARK [1][-]{section.5.1}{G\233\363wna petla programu}{chapter.5}% 34
+\BOOKMARK [1][-]{section.5.2}{Odbi\363r danych}{chapter.5}% 35
+\BOOKMARK [1][-]{section.5.3}{Regulacja temperatury}{chapter.5}% 36
+\BOOKMARK [2][-]{subsection.5.3.1}{Odczyt temperatury}{section.5.3}% 37
+\BOOKMARK [2][-]{subsection.5.3.2}{Regulator PID}{section.5.3}% 38
+\BOOKMARK [2][-]{subsection.5.3.3}{Regulator histerezowy}{section.5.3}% 39
+\BOOKMARK [2][-]{subsection.5.3.4}{Sterowanie ogniwem i silnikami}{section.5.3}% 40
+\BOOKMARK [1][-]{section.5.4}{Wysy\233anie danych}{chapter.5}% 41
+\BOOKMARK [2][-]{subsection.5.4.1}{Aktualizacja wyswietlacza LCD}{section.5.4}% 42
+\BOOKMARK [0][-]{chapter.6}{Aplikacja mobilna}{}% 43
+\BOOKMARK [1][-]{section.6.1}{Aplikacja}{chapter.6}% 44
+\BOOKMARK [1][-]{section.6.2}{Niestandardowe us\233ugi aplikacji}{chapter.6}% 45
+\BOOKMARK [2][-]{subsection.6.2.1}{Us\233uga receivedData}{section.6.2}% 46
+\BOOKMARK [2][-]{subsection.6.2.2}{Us\233uga bluetoothInformation}{section.6.2}% 47
+\BOOKMARK [1][-]{section.6.3}{Interfejs}{chapter.6}% 48
+\BOOKMARK [1][-]{section.6.4}{Strona pomiarowa}{chapter.6}% 49
+\BOOKMARK [2][-]{subsection.6.4.1}{Kontroler TempCtrl}{section.6.4}% 50
+\BOOKMARK [1][-]{section.6.5}{Zak\233adka konfiguracyjna}{chapter.6}% 51
+\BOOKMARK [2][-]{subsection.6.5.1}{Kontroler ControlCtrl}{section.6.5}% 52
+\BOOKMARK [1][-]{section.6.6}{Bluetooth}{chapter.6}% 53
+\BOOKMARK [2][-]{subsection.6.6.1}{Kontroler BluetoothCtrl}{section.6.6}% 54
+\BOOKMARK [0][-]{chapter.7}{Przeprowadzone testy}{}% 55
+\BOOKMARK [1][-]{section.7.1}{Regulator histerezowy}{chapter.7}% 56
+\BOOKMARK [1][-]{section.7.2}{Regulator PID}{chapter.7}% 57
+\BOOKMARK [2][-]{subsection.7.2.1}{P}{section.7.2}% 58
+\BOOKMARK [2][-]{subsection.7.2.2}{PI}{section.7.2}% 59
+\BOOKMARK [2][-]{subsection.7.2.3}{PD}{section.7.2}% 60
+\BOOKMARK [2][-]{subsection.7.2.4}{PID}{section.7.2}% 61
+\BOOKMARK [1][-]{section.7.3}{Aplikacja mobilna}{chapter.7}% 62
+\BOOKMARK [0][-]{chapter.8}{Podsumowanie}{}% 63
+\BOOKMARK [0][-]{chapter.8}{Bibliografia}{}% 64
+\BOOKMARK [0][-]{chapter*.2}{Dodatki}{}% 65
+\BOOKMARK [1][-]{section*.3}{Spis rysunk\363w}{chapter*.2}% 66
+\BOOKMARK [1][-]{chapter*.4}{Spis tablic}{chapter*.2}% 67

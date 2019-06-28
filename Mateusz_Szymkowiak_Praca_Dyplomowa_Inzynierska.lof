@@ -1,0 +1,102 @@
+\select@language {polish}
+\boolfalse {citerequest}\boolfalse {citetracker}\boolfalse {pagetracker}\boolfalse {backtracker}\relax 
+\defcounter {refsection}{0}\relax 
+\select@language {polish}
+\defcounter {refsection}{0}\relax 
+\addvspace {10\p@ }
+\defcounter {refsection}{0}\relax 
+\addvspace {10\p@ }
+\defcounter {refsection}{0}\relax 
+\addvspace {10\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {figure}{\numberline {3.1}{\ignorespaces System pomiarowo-wykonawczy}}{10}{figure.3.1}
+\defcounter {refsection}{0}\relax 
+\contentsline {figure}{\numberline {3.2}{\ignorespaces Budowa modu\IeC {\l }u Peltiera}}{12}{figure.3.2}
+\defcounter {refsection}{0}\relax 
+\contentsline {figure}{\numberline {3.3}{\ignorespaces Rozmieszczenie pin\IeC {\'o}w dost\IeC {\k e}pnych w Arduino Uno}}{13}{figure.3.3}
+\defcounter {refsection}{0}\relax 
+\contentsline {figure}{\numberline {3.4}{\ignorespaces Arduino IDE- przyk\IeC {\l }adowy program}}{14}{figure.3.4}
+\defcounter {refsection}{0}\relax 
+\addvspace {10\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {figure}{\numberline {4.1}{\ignorespaces Ekran LCD 2x16 znak\IeC {\'o}w}}{19}{figure.4.1}
+\defcounter {refsection}{0}\relax 
+\contentsline {figure}{\numberline {4.2}{\ignorespaces Opis wyprowadze\IeC {\'n} czujnika temperatury DS18B20}}{20}{figure.4.2}
+\defcounter {refsection}{0}\relax 
+\contentsline {figure}{\numberline {4.3}{\ignorespaces Modu\IeC {\l } Bluetooth HC-06}}{21}{figure.4.3}
+\defcounter {refsection}{0}\relax 
+\contentsline {figure}{\numberline {4.4}{\ignorespaces Sterownik silnik\IeC {\'o}w L293D}}{22}{figure.4.4}
+\defcounter {refsection}{0}\relax 
+\contentsline {figure}{\numberline {4.5}{\ignorespaces Sterownik silnik\IeC {\'o}w DFRobot}}{23}{figure.4.5}
+\defcounter {refsection}{0}\relax 
+\contentsline {figure}{\numberline {4.6}{\ignorespaces Modu\IeC {\l } ogniwa Peltiera (wym. 40x40x3,8 mm)}}{24}{figure.4.6}
+\defcounter {refsection}{0}\relax 
+\contentsline {figure}{\numberline {4.7}{\ignorespaces Wykorzystany wiatrak (bez radiatora)}}{24}{figure.4.7}
+\defcounter {refsection}{0}\relax 
+\contentsline {figure}{\numberline {4.8}{\ignorespaces Zasilacz ATX}}{25}{figure.4.8}
+\defcounter {refsection}{0}\relax 
+\contentsline {figure}{\numberline {4.9}{\ignorespaces Obiekt regulacji temperatury}}{25}{figure.4.9}
+\defcounter {refsection}{0}\relax 
+\contentsline {figure}{\numberline {4.10}{\ignorespaces Schemat po\IeC {\l }\IeC {\k a}cze\IeC {\'n} elektrycznych}}{27}{figure.4.10}
+\defcounter {refsection}{0}\relax 
+\addvspace {10\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {figure}{\numberline {5.1}{\ignorespaces G\IeC {\l }\IeC {\'o}wna p\IeC {\k e}tla programu}}{28}{figure.5.1}
+\defcounter {refsection}{0}\relax 
+\contentsline {figure}{\numberline {5.2}{\ignorespaces Ramka komunikacji od urz\IeC {\k a}dzenia mobilnego do Arduino}}{29}{figure.5.2}
+\defcounter {refsection}{0}\relax 
+\contentsline {figure}{\numberline {5.3}{\ignorespaces Schemat regulacji temperatury}}{31}{figure.5.3}
+\defcounter {refsection}{0}\relax 
+\contentsline {figure}{\numberline {5.4}{\ignorespaces Ramka przesy\IeC {\l }ana z mikrokontrolera do urz\IeC {\k a}dzenia mobilnego}}{34}{figure.5.4}
+\defcounter {refsection}{0}\relax 
+\addvspace {10\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {figure}{\numberline {6.1}{\ignorespaces Ikona zainstalowanej aplikacji (pe\IeC {\l }na nazwa: \textit {Temperature Control System})}}{37}{figure.6.1}
+\defcounter {refsection}{0}\relax 
+\contentsline {figure}{\numberline {6.2}{\ignorespaces Pasek nawigacyjny}}{38}{figure.6.2}
+\defcounter {refsection}{0}\relax 
+\contentsline {figure}{\numberline {6.3}{\ignorespaces Menu zak\IeC {\l }adek}}{39}{figure.6.3}
+\defcounter {refsection}{0}\relax 
+\contentsline {figure}{\numberline {6.4}{\ignorespaces Zak\IeC {\l }adka \textit {Temperature Data}}}{40}{figure.6.4}
+\defcounter {refsection}{0}\relax 
+\contentsline {figure}{\numberline {6.5}{\ignorespaces Zak\IeC {\l }adka \textit {Control}}}{43}{figure.6.5}
+\defcounter {refsection}{0}\relax 
+\contentsline {figure}{\numberline {6.6}{\ignorespaces Zak\IeC {\l }adka \textit {Bluetooth}}}{45}{figure.6.6}
+\defcounter {refsection}{0}\relax 
+\addvspace {10\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {figure}{\numberline {7.1}{\ignorespaces Test wydajno\IeC {\'s}ci uk\IeC {\l }adu regulacji temperatury}}{47}{figure.7.1}
+\defcounter {refsection}{0}\relax 
+\contentsline {figure}{\numberline {7.2}{\ignorespaces Regulator histerezowy. Histereza 0.5 stopnia.}}{48}{figure.7.2}
+\defcounter {refsection}{0}\relax 
+\contentsline {figure}{\numberline {7.3}{\ignorespaces Regulator histerezowy. Histereza 0.5 stopnia.}}{48}{figure.7.3}
+\defcounter {refsection}{0}\relax 
+\contentsline {figure}{\numberline {7.4}{\ignorespaces Regulator P, kp=25}}{49}{figure.7.4}
+\defcounter {refsection}{0}\relax 
+\contentsline {figure}{\numberline {7.5}{\ignorespaces Regulator P, kp=50}}{50}{figure.7.5}
+\defcounter {refsection}{0}\relax 
+\contentsline {figure}{\numberline {7.6}{\ignorespaces Regulator P, kp=100}}{50}{figure.7.6}
+\defcounter {refsection}{0}\relax 
+\contentsline {figure}{\numberline {7.7}{\ignorespaces Regulator P, kp=200}}{51}{figure.7.7}
+\defcounter {refsection}{0}\relax 
+\contentsline {figure}{\numberline {7.8}{\ignorespaces Regulator PI, kp=50 ki=15}}{52}{figure.7.8}
+\defcounter {refsection}{0}\relax 
+\contentsline {figure}{\numberline {7.9}{\ignorespaces Regulator PI, kp=50 ki=30}}{52}{figure.7.9}
+\defcounter {refsection}{0}\relax 
+\contentsline {figure}{\numberline {7.10}{\ignorespaces Regulator PI, kp=50 ki=60}}{53}{figure.7.10}
+\defcounter {refsection}{0}\relax 
+\contentsline {figure}{\numberline {7.11}{\ignorespaces Regulator PD, kp=250 kd=20}}{54}{figure.7.11}
+\defcounter {refsection}{0}\relax 
+\contentsline {figure}{\numberline {7.12}{\ignorespaces Regulator PD, kp=250 kd=40}}{55}{figure.7.12}
+\defcounter {refsection}{0}\relax 
+\contentsline {figure}{\numberline {7.13}{\ignorespaces Regulator PD, kp=250 kd=80}}{55}{figure.7.13}
+\defcounter {refsection}{0}\relax 
+\contentsline {figure}{\numberline {7.14}{\ignorespaces Regulacja dla $18^{\circ } C$}}{56}{figure.7.14}
+\defcounter {refsection}{0}\relax 
+\contentsline {figure}{\numberline {7.15}{\ignorespaces Regulacja dla $25^{\circ } C$ }}{57}{figure.7.15}
+\defcounter {refsection}{0}\relax 
+\contentsline {figure}{\numberline {7.16}{\ignorespaces Regulacja dla $30^{\circ } C$ }}{57}{figure.7.16}
+\defcounter {refsection}{0}\relax 
+\contentsline {figure}{\numberline {7.17}{\ignorespaces Test dzia\IeC {\l }ania aplikacji}}{58}{figure.7.17}
+\defcounter {refsection}{0}\relax 
+\addvspace {10\p@ }
